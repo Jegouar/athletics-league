@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body, html {
+    width: 100vw;
+    height: 100vw;
+}
+
+.body {
+    background-image: 
+        url('../static/images/bricks/abC.jpg'),
+        url('../static/images/bricks/bdE.jpg'),
+        url('../static/images/bricks/dcF.jpg'),
+        url('../static/images/bricks/caE.jpg'),
+        url('../static/images/bricks/abF.jpg'),
+        url('../static/images/bricks/bdC.jpg'),
+        url('../static/images/bricks/daF.jpg'),
+        url('../static/images/bricks/acB.jpg'),
+        url('../static/images/bricks/cfD.jpg'),
+        url('../static/images/bricks/faE.jpg'),
+        url('../static/images/bricks/adB.jpg'),
+        url('../static/images/bricks/dfE.jpg'),
+        url('../static/images/bricks/fcA.jpg'),
+        url('../static/images/bricks/cdE.jpg'),
+        url('../static/images/bricks/daB.jpg'),
+        url('../static/images/bricks/afC.jpg'),
+        url('../static/images/bricks/feD.jpg'),
+        url('../static/images/bricks/eaB.jpg'),
+        url('../static/images/bricks/acF.jpg'),
+        url('../static/images/bricks/cdB.jpg'),
+        url('../static/images/bricks/dfA.jpg'),
+        url('../static/images/bricks/feC.jpg'),
+        url('../static/images/bricks/edA.jpg'),
+        url('../static/images/bricks/dfB.jpg'),
+        url('../static/images/bricks/faC.jpg'),
+        url('../static/images/bricks/adE.jpg'),
+        url('../static/images/bricks/dcB.jpg'),
+        url('../static/images/bricks/caF.jpg'),
+        url('../static/images/bricks/abE.jpg'),
+        url('../static/images/bricks/bcD.jpg'),
+        url('../static/images/bricks/daE.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
