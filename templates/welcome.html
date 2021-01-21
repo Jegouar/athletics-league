@@ -4,9 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/welcome.css') }}" type="text/css">
     <title>Athletics League</title>
     
 <body>
+    <header>
+        <svg id="logo" width="50vw" height="60vw">
+
+        </svg>
+    </header>
+
     <ul>
         {% for club in clubs %}
             <li>{{ club.club_number }}&emsp;<a href="{{ club.club_website }}">{{ club.club_name }}</a></li>

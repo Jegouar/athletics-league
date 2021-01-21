@@ -4,12 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/96276fa2dd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/bricks.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/brass.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/wood.css') }}" type="text/css">
+    {% block styles %}
+    {% endblock %}
     <title>Athletics League</title>
 </head>
 
 <body>
     {% block content %}
     {% endblock %}
+
+    <script src="{{ url_for('static', filename='scripts/navigation.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/accordion.js') }}"></script>
+    {% block scripts %}
+    {% endblock %}
+
 </body>
 
 </html>
