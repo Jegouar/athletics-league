@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+
+    {% for match in matches %}
+        <div class="accordion-header">{{ match.match_season }} {{ match.match_number }}</div>
+    {% endfor %}
+
+{% endblock %}
