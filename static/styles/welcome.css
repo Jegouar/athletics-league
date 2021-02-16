@@ -8,6 +8,242 @@ body, html {
     height: 100%;
 }
 
-body {
-    background-color: aquamarine;
+header {
+    background-image: url(/static/images/grass.jpg);
+    background-size: 50vw 50vw;
+    padding: 5vw;
+}
+
+@media only screen and (min-width: 600px) {
+    header {
+        background-size: 35vw;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    header {
+        background-size: 25vw;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    header {
+        background-size: 20vw;
+    }
+}
+
+svg {
+    width: 40vw; 
+    height: 57.148vw;
+    margin: 0 auto;
+    display: block;
+}
+
+.draw {
+    fill: none;
+    stroke: rgba(35,31,32,0.8);
+    stroke-linecap: round;
+    stroke-miterlimit: 10;
+    stroke-width: 2.5;
+}
+
+#sock {
+    stroke-dasharray: 122;
+    stroke-dashoffset: 122;
+    animation-name: sock;
+    animation-duration: 5s;
+    animation-delay: 1s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: both;
+}
+
+@keyframes sock {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+#first-feather {
+    stroke-dasharray: 156;
+    stroke-dashoffset: 156;
+    animation-name: first;
+    animation-duration: 5s;
+    animation-delay: 1s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: both;
+}
+
+@keyframes first {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+#second-feather {
+    stroke-dasharray: 49;
+    stroke-dashoffset: 49;
+    animation-name: second;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes second {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+#third-feather {
+    stroke-dasharray: 52;
+    stroke-dashoffset: 52;
+    animation-name: third;
+    animation-duration: 2s;
+    animation-delay: 3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes third {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+#fourth-feather {
+    stroke-dasharray: 55;
+    stroke-dashoffset: 55;
+    animation-name: fourth;
+    animation-duration: 2s;
+    animation-delay: 4s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes fourth {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+#fifth-feather {
+    stroke-dasharray: 56;
+    stroke-dashoffset: 56;
+    animation-name: fifth;
+    animation-duration: 2s;
+    animation-delay: 5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes fifth {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+#shoe {
+    stroke-dasharray: 141;
+    stroke-dashoffset: 141;
+    animation-name: shoe;
+    animation-duration: 5s;
+    animation-delay: 6s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+}
+
+@keyframes shoe {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+#foreground {
+    fill: rgba(255,242,0,0);
+    animation-name: foreground;
+    animation-duration: 2s;
+    animation-delay: 10s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes foreground {
+    to {
+        fill: rgba(255,242,0,0.4);
+    }
+}
+
+#laces {
+    stroke-dasharray: 128;
+    stroke-dashoffset: 128;
+    animation-name: laces;
+    animation-duration: 4s;
+    animation-delay: 10s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes laces {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+#circle {
+    stroke-dasharray: 220;
+    stroke-dashoffset: 220;
+    animation-name: circle;
+    animation-duration: 6s;
+    animation-delay: 10s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes circle {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+#background {
+    fill: rgba(0,166,81,0);
+    animation-name: background;
+    animation-duration: 2s;
+    animation-delay: 16s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes background {
+    to {
+        fill: rgba(0,166,81,0.4);
+    }
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+
+#welcome {
+    width: 80vw;
+    margin: 0 auto;
+    color: rgba(35,31,32,0.8);
+    font-family: 'Roboto Slab', serif;
+}
+
+#welcome h1 {
+    text-align: center;
+    font-size: 6vw;
+    line-height: 6vw;
+    padding: 3vw;
+}
+
+#welcome h2 {
+    font-size: 3vw;
+}
+
+section {
+    height: 50vw;
+    background-image: url(/static/images/track.jpg);
+    background-size: 50vw 50vw;
 }
