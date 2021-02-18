@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Oswald&family=Roboto+Slab:wght@700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -41,17 +43,27 @@ svg {
 
 .draw {
     fill: none;
-    stroke: rgba(35,31,32,0.8);
+    stroke: rgba(35,31,32,0.4);
     stroke-linecap: round;
     stroke-miterlimit: 10;
     stroke-width: 2.5;
+    animation-name: draw;
+    animation-duration: 10s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: both;
+}
+
+@keyframes draw {
+    to {
+        stroke: rgba(35,31,32,0.8);
+    }
 }
 
 #sock {
     stroke-dasharray: 122;
     stroke-dashoffset: 122;
     animation-name: sock;
-    animation-duration: 5s;
+    animation-duration: 2s;
     animation-delay: 1s;
     animation-timing-function: ease-in;
     animation-fill-mode: both;
@@ -67,7 +79,7 @@ svg {
     stroke-dasharray: 156;
     stroke-dashoffset: 156;
     animation-name: first;
-    animation-duration: 5s;
+    animation-duration: 2s;
     animation-delay: 1s;
     animation-timing-function: ease-in;
     animation-fill-mode: both;
@@ -83,8 +95,8 @@ svg {
     stroke-dasharray: 49;
     stroke-dashoffset: 49;
     animation-name: second;
-    animation-duration: 2s;
-    animation-delay: 2s;
+    animation-duration: 1s;
+    animation-delay: 1.5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
 }
@@ -99,8 +111,8 @@ svg {
     stroke-dasharray: 52;
     stroke-dashoffset: 52;
     animation-name: third;
-    animation-duration: 2s;
-    animation-delay: 3s;
+    animation-duration: 1s;
+    animation-delay: 2s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
 }
@@ -115,8 +127,8 @@ svg {
     stroke-dasharray: 55;
     stroke-dashoffset: 55;
     animation-name: fourth;
-    animation-duration: 2s;
-    animation-delay: 4s;
+    animation-duration: 1s;
+    animation-delay: 2.5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
 }
@@ -131,8 +143,8 @@ svg {
     stroke-dasharray: 56;
     stroke-dashoffset: 56;
     animation-name: fifth;
-    animation-duration: 2s;
-    animation-delay: 5s;
+    animation-duration: 1s;
+    animation-delay: 3s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
 }
@@ -147,8 +159,8 @@ svg {
     stroke-dasharray: 141;
     stroke-dashoffset: 141;
     animation-name: shoe;
-    animation-duration: 5s;
-    animation-delay: 6s;
+    animation-duration: 2s;
+    animation-delay: 3s;
     animation-timing-function: ease-out;
     animation-fill-mode: both;
 }
@@ -163,7 +175,7 @@ svg {
     fill: rgba(255,242,0,0);
     animation-name: foreground;
     animation-duration: 2s;
-    animation-delay: 10s;
+    animation-delay: 5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
 }
@@ -178,8 +190,8 @@ svg {
     stroke-dasharray: 128;
     stroke-dashoffset: 128;
     animation-name: laces;
-    animation-duration: 4s;
-    animation-delay: 10s;
+    animation-duration: 2s;
+    animation-delay: 5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
 }
@@ -194,8 +206,8 @@ svg {
     stroke-dasharray: 220;
     stroke-dashoffset: 220;
     animation-name: circle;
-    animation-duration: 6s;
-    animation-delay: 10s;
+    animation-duration: 3s;
+    animation-delay: 5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
 }
@@ -210,7 +222,7 @@ svg {
     fill: rgba(0,166,81,0);
     animation-name: background;
     animation-duration: 2s;
-    animation-delay: 16s;
+    animation-delay: 8s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: both;
 }
@@ -221,13 +233,9 @@ svg {
     }
 }
 
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
-
 #welcome {
     width: 80vw;
     margin: 0 auto;
-    color: rgba(35,31,32,0.8);
     font-family: 'Roboto Slab', serif;
 }
 
@@ -242,8 +250,731 @@ svg {
     font-size: 3vw;
 }
 
+#w1 {
+    color: rgba(35,31,32,0);
+    animation-name: w1;
+    animation-duration: 0.5s;
+    animation-delay: 8s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes w1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#e1 {
+    color: rgba(35,31,32,0);
+    animation-name: e1;
+    animation-duration: 0.5s;
+    animation-delay: 8.1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes e1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#l1 {
+    color: rgba(35,31,32,0);
+    animation-name: l1;
+    animation-duration: 0.5s;
+    animation-delay: 8.2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes l1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#c1 {
+    color: rgba(35,31,32,0);
+    animation-name: c1;
+    animation-duration: 0.5s;
+    animation-delay: 8.3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes c1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#o1 {
+    color: rgba(35,31,32,0);
+    animation-name: o1;
+    animation-duration: 0.5s;
+    animation-delay: 8.4s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes o1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#m1 {
+    color: rgba(35,31,32,0);
+    animation-name: m1;
+    animation-duration: 0.5s;
+    animation-delay: 8.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes m1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#e2 {
+    color: rgba(35,31,32,0);
+    animation-name: e2;
+    animation-duration: 0.5s;
+    animation-delay: 8.6s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes e2 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#t1 {
+    color: rgba(35,31,32,0);
+    animation-name: t1;
+    animation-duration: 0.5s;
+    animation-delay: 8.7s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes t1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#o2 {
+    color: rgba(35,31,32,0);
+    animation-name: o2;
+    animation-duration: 0.5s;
+    animation-delay: 8.8s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes o2 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#t2 {
+    color: rgba(35,31,32,0);
+    animation-name: t2;
+    animation-duration: 0.5s;
+    animation-delay: 8.9s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes t2 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#h1 {
+    color: rgba(35,31,32,0);
+    animation-name: h1;
+    animation-duration: 0.5s;
+    animation-delay: 9s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes h1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#e3 {
+    color: rgba(35,31,32,0);
+    animation-name: e3;
+    animation-duration: 0.5s;
+    animation-delay: 9.1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes e3 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#v1 {
+    color: rgba(35,31,32,0);
+    animation-name: v1;
+    animation-duration: 0.5s;
+    animation-delay: 9.2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes v1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#e4 {
+    color: rgba(35,31,32,0);
+    animation-name: e4;
+    animation-duration: 0.5s;
+    animation-delay: 9.3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes e4 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#t3 {
+    color: rgba(35,31,32,0);
+    animation-name: t3;
+    animation-duration: 0.5s;
+    animation-delay: 9.4s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes t3 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#s1 {
+    color: rgba(35,31,32,0);
+    animation-name: s1;
+    animation-duration: 0.5s;
+    animation-delay: 9.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes s1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#l2 {
+    color: rgba(35,31,32,0);
+    animation-name: l2;
+    animation-duration: 0.5s;
+    animation-delay: 9.6s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes l2 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#e5 {
+    color: rgba(35,31,32,0);
+    animation-name: e5;
+    animation-duration: 0.5s;
+    animation-delay: 9.7s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes e5 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#a1 {
+    color: rgba(35,31,32,0);
+    animation-name: a1;
+    animation-duration: 0.5s;
+    animation-delay: 9.8s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes a1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#g1 {
+    color: rgba(35,31,32,0);
+    animation-name: g1;
+    animation-duration: 0.5s;
+    animation-delay: 9.9s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes g1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#u1 {
+    color: rgba(35,31,32,0);
+    animation-name: u1;
+    animation-duration: 0.5s;
+    animation-delay: 10s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes u1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#e6 {
+    color: rgba(35,31,32,0);
+    animation-name: e6;
+    animation-duration: 0.5s;
+    animation-delay: 10.1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes e6 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#w2 {
+    color: rgba(35,31,32,0);
+    animation-name: w2;
+    animation-duration: 0.5s;
+    animation-delay: 10.2s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes w2 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#e7 {
+    color: rgba(35,31,32,0);
+    animation-name: e7;
+    animation-duration: 0.5s;
+    animation-delay: 10.3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes e7 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#b1 {
+    color: rgba(35,31,32,0);
+    animation-name: b1;
+    animation-duration: 0.5s;
+    animation-delay: 10.4s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes b1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#s2 {
+    color: rgba(35,31,32,0);
+    animation-name: s2;
+    animation-duration: 0.5s;
+    animation-delay: 10.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes s2 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#i1 {
+    color: rgba(35,31,32,0);
+    animation-name: i1;
+    animation-duration: 0.5s;
+    animation-delay: 10.6s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes i1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#t4 {
+    color: rgba(35,31,32,0);
+    animation-name: t4;
+    animation-duration: 0.5s;
+    animation-delay: 10.7s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes t4 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#e8 {
+    color: rgba(35,31,32,0);
+    animation-name: e8;
+    animation-duration: 0.5s;
+    animation-delay: 10.8s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes e8 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#x1 {
+    color: rgba(35,31,32,0);
+    animation-name: x1;
+    animation-duration: 0.5s;
+    animation-delay: 10.9s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes x1 {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
+#welcome h2 {
+    color: rgba(35,31,32,0);
+    animation-name: introduction;
+    animation-duration: 1s;
+    animation-delay: 12s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+@keyframes introduction {
+    to {
+        color: rgba(35,31,32,0.8);
+    }
+}
+
 section {
     height: 50vw;
     background-image: url(/static/images/track.jpg);
     background-size: 50vw 50vw;
+}
+
+section ul {
+    font-size: 4.5vw;
+    line-height: 6vw;
+    text-align: center;
+}
+
+section ul li {
+    transform: translateX(-100vw);
+    animation-name: clubs;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+}
+
+section ul li:nth-child(1) {
+    animation-delay: 14s;
+}
+
+section ul li:nth-child(2) {
+    animation-delay: 15s;
+}
+
+section ul li:nth-child(3) {
+    animation-delay: 16s;
+}
+
+section ul li:nth-child(4) {
+    animation-delay: 17s;
+}
+
+section ul li:nth-child(5) {
+    animation-delay: 18s;
+}
+
+section ul li:nth-child(6) {
+    animation-delay: 19s;
+}
+
+section ul li:nth-child(7) {
+    animation-delay: 20s;
+}
+
+section ul li:nth-child(8) {
+    animation-delay: 21s;
+}
+
+@keyframes clubs {
+    to {
+        transform: translateX(0);
+    }
+}
+
+section ul li a {
+    font-family: 'Allerta Stencil', sans-serif;
+    text-decoration: none;
+    color: rgba(255,235,235,0.8);
+    margin-right: 3.5vw;
+}
+
+section ul li span {
+    display: inline-block;
+    height: 3.5vw;
+    width: 5.5vw;    
+}
+
+section ul li span span {
+    display: block;
+    position: absolute;
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.5vw;
+    line-height: 3.5vw;
+    height: 3.5vw;
+    width: 5.5vw;
+    color: rgba(35,31,32,0.8);
+    background-color: rgb(235,235,235);
+    text-align: center;
+    box-shadow: 0.25vw 0.25vw 0.25vw 0.25vw rgba(35,31,32,0.4);
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: both;
+}
+
+section ul li span .sixty {
+    z-index: 1;
+    opacity: 0;
+    animation-name: sixty;
+}
+
+section ul li:nth-child(1) span .sixty {
+    animation-delay: 16.7s;
+}
+
+section ul li:nth-child(2) span .sixty {
+    animation-delay: 17.7s;
+}
+
+section ul li:nth-child(3) span .sixty {
+    animation-delay: 18.7s;
+}
+
+section ul li:nth-child(4) span .sixty {
+    animation-delay: 19.7s;
+}
+
+section ul li:nth-child(5) span .sixty {
+    animation-delay: 20.7s;
+}
+
+section ul li:nth-child(6) span .sixty {
+    animation-delay: 21.7s;
+}
+
+section ul li:nth-child(7) span .sixty {
+    animation-delay: 22.7s;
+}
+
+section ul li:nth-child(8) span .sixty {
+    animation-delay: 23.7s;
+}
+
+@keyframes sixty {
+    to {
+        opacity: 1;
+    }
+}
+
+section ul li span .fifty {
+    z-index: 2;
+    opacity: 0;
+    animation-name: fifty;
+}
+
+section ul li:nth-child(1) span .fifty {
+    animation-delay: 18.1s;
+}
+
+section ul li:nth-child(2) span .fifty {
+    animation-delay: 19.1s;
+}
+
+section ul li:nth-child(3) span .fifty {
+    animation-delay: 20.1s;
+}
+
+section ul li:nth-child(4) span .fifty {
+    animation-delay: 21.1s;
+}
+
+section ul li:nth-child(5) span .fifty {
+    animation-delay: 22.1s;
+}
+
+section ul li:nth-child(6) span .fifty {
+    animation-delay: 23.1s;
+}
+
+section ul li:nth-child(7) span .fifty {
+    animation-delay: 24.1s;
+}
+
+section ul li:nth-child(8) span .fifty {
+    animation-delay: 25.1s;
+}
+
+@keyframes fifty {
+    to {
+        opacity: 1;
+    }
+}
+
+section ul li span .bstring {
+    z-index: 3;
+    opacity: 0;
+    animation-name: bstring;
+}
+
+section ul li:nth-child(1) span .bstring {
+    animation-delay: 19.5s;
+}
+
+section ul li:nth-child(2) span .bstring {
+    animation-delay: 20.5s;
+}
+
+section ul li:nth-child(3) span .bstring {
+    animation-delay: 21.5s;
+}
+
+section ul li:nth-child(4) span .bstring {
+    animation-delay: 22.5s;
+}
+
+section ul li:nth-child(5) span .bstring {
+    animation-delay: 23.5s;
+}
+
+section ul li:nth-child(6) span .bstring {
+    animation-delay: 24.5s;
+}
+
+section ul li:nth-child(7) span .bstring {
+    animation-delay: 25.5s;
+}
+
+section ul li:nth-child(8) span .bstring {
+    animation-delay: 26.5s;
+}
+
+@keyframes bstring {
+    to {
+        opacity: 1;
+    }
+}
+
+section ul li span .astring {
+    z-index: 4;
+    opacity: 0;
+    animation-name: astring;
+}
+
+section ul li:nth-child(1) span .astring {
+    animation-delay: 20.9s;
+}
+
+section ul li:nth-child(2) span .astring {
+    animation-delay: 21.9s;
+}
+
+section ul li:nth-child(3) span .astring {
+    animation-delay: 22.9s;
+}
+
+section ul li:nth-child(4) span .astring {
+    animation-delay: 23.9s;
+}
+
+section ul li:nth-child(5) span .astring {
+    animation-delay: 24.9s;
+}
+
+section ul li:nth-child(6) span .astring {
+    animation-delay: 25.9s;
+}
+
+section ul li:nth-child(7) span .astring {
+    animation-delay: 26.9s;
+}
+
+section ul li:nth-child(8) span .astring {
+    animation-delay: 27.9s;
+}
+
+@keyframes astring {
+    to {
+        opacity: 1;
+    }
 }
