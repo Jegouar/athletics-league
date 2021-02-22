@@ -14,11 +14,25 @@
 </head>
 
 <body>
+
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('welcome') }}">Home</a></li>
+            <li><a href="#">Fixtures</a></li>
+            <li><a href="#">Declarations</a></li>
+            <li><a href="#">Results</a></li>
+            {% if session.user %}
+                <li><a href="#">Log Out</a></li>
+            {% else %}
+                <li><a href="#">Log In</a></li>
+                <li><a href="#">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
     {% block content %}
     {% endblock %}
 
-    <script src="{{ url_for('static', filename='scripts/navigation.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/accordion.js') }}"></script>
     {% block scripts %}
     {% endblock %}
 
