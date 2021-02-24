@@ -23,7 +23,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/welcome")
 def welcome():
-    clubs = mongo.db.clubs.find()
+    clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
     return render_template("welcome.html", clubs=clubs)
 
 

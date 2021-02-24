@@ -1,5 +1,22 @@
 {% extends "welcome.html" %}
 {% block content %}
 
+    <form method="POST" action="{{ url_for('register') }}">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required><br>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required><br>
+        <label for="club">Club</label>
+        <select list="clubs" name="club" id="club" required>
+            {% for club in clubs %}
+                <option value="{{ club.club_name }}">{{ club.club_name }}</option>
+            {% endfor %}
+        </select>
+        <label for="team">Athlete, coach or manager</label>
+        <input type="checkbox" id="team" name="team" value="team"><br>
+        <label for="official">Official or administrator</label>
+        <input type="checkbox" id="official" name="official" value="official"><br>
+        <input type="submit" value="Register">
+    </form>
 
 {% endblock %}

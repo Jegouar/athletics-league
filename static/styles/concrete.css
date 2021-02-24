@@ -15,6 +15,7 @@ nav {
     background-image: url(/static/images/concrete.jpg);
     background-size: 50vw 25vw;
     height: 25vw;
+    z-index: 10;
 }
 
 @media only screen and (min-width: 600px) {
@@ -53,5 +54,10 @@ nav ul li {
 nav ul li a {
     text-decoration: none;
     color: rgba(235,235,235,0.2);
+    text-shadow: rgba(35,35,35,0.6) -0.1vw 0, rgba(35,35,35,0.4) 0 -0.1vw, rgba(235,235,235,0.6) 0 0.1vw, rgba(35,35,35,0.4) -0.1vw -0.1vw;
+}
+
+nav ul li a:hover {
+    color: rgba(235,235,235,0.4);
     text-shadow: rgba(35,35,35,0.6) -0.1vw 0, rgba(35,35,35,0.4) 0 -0.1vw, rgba(235,235,235,0.6) 0 0.1vw, rgba(35,35,35,0.4) -0.1vw -0.1vw;
 }
