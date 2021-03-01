@@ -39,30 +39,6 @@
     animation: none;
 }
 
-/* Concrete background image */
-#register {
-    background-image: url(/static/images/concrete.jpg);
-    background-size: 50vw 25vw;
-}
-
-@media only screen and (min-width: 600px) {
-    #register {
-        background-size: 35vw 17.5vw;
-    }
-}
-
-@media only screen and (min-width: 900px) {
-    #register {
-        background-size: 25vw 12.5vw;
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    #register {
-        background-size: 20vw 10vw;
-    }
-}
-
 /* Form background image */
 #longjump {
     height: 20vw;
@@ -144,15 +120,23 @@
     color: rgba(255,235,235,0.8);
 }
 
-#left h2 {
-    padding-top: 10vw;
+#left h2, #flash h2 {
     font-family: 'Roboto Slab', serif;
     font-size: 3vw;
     line-height: 3vw;
     text-decoration: none;
     color: rgba(235,235,235,0.4);
     text-shadow: rgba(35,35,35,0.6) -0.1vw 0, rgba(35,35,35,0.4) 0 -0.1vw, rgba(235,235,235,0.6) 0 0.1vw, rgba(35,35,35,0.4) -0.1vw -0.1vw;
+}
 
+#left h2 {
+    padding-top: 10vw;
+}
+
+#flash h2 {
+    padding-top: 3vw;
+    padding-bottom: 3vw;
+    text-align: center;
 }
 
 #right {
@@ -229,7 +213,7 @@
     font-size: 3vw;
     line-height: 5vw;
     color: rgba(255,235,235,0.8);
-    margin: 0 2vw 5vw 0;
+    margin: 3vw 1vw 5vw 1vw;
     padding: 0 2vw;
     box-sizing: border-box;
 }
