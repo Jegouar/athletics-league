@@ -1,22 +1,67 @@
 {% extends "welcome.html" %}
 {% block content %}
 
-    <form method="POST" action="{{ url_for('register') }}">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required><br>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required><br>
-        <label for="club">Club</label>
-        <select list="clubs" name="club" id="club" required>
-            {% for club in clubs %}
-                <option value="{{ club.club_name }}">{{ club.club_name }}</option>
-            {% endfor %}
-        </select>
-        <label for="team">Athlete, coach or manager</label>
-        <input type="checkbox" id="team" name="team" value="team"><br>
-        <label for="official">Official or administrator</label>
-        <input type="checkbox" id="official" name="official" value="official"><br>
-        <input type="submit" value="Register">
-    </form>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/longjump.css') }}" type="text/css">
+
+    <section id="register">
+        <form id="registration" autocomplete="off" method="POST" action="{{ url_for('register') }}">
+            <div id="longjump">
+                <div>
+                    <label for "username">Username</label>
+                    <input type="text" id="username" name="username" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required placeholder="Enter a username...">
+                </div>
+                <div>
+                    <label for "password">Password</label>
+                    <input type="password" id="password" name="password" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required placeholder="...and a password">
+                </div>
+                <div class="clublist">
+                    <label for "club">Club</label>
+                    <input id="club" name="club" type="text" placeholder="...and your club">
+                </div>
+            </div>
+            <div id="roles">
+                <div id="left">
+                    <label for "roles">Roles</label>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <h2>{{ message }}</h2>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                <div id="right">
+                    <label>Athlete
+                        <input type="checkbox" id="is_athlete" name="is_athlete" value="is_athlete" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label>Coach
+                        <input type="checkbox" id="is_coach" name="is_coach" value="is_coach">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label>Manager
+                        <input type="checkbox" id="is_manager" name="is_manager" value="is_manager">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label>Official
+                        <input type="checkbox" id="is_official" name="is_official" value="is_official">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label>Administrator
+                        <input type="checkbox" id="is_administrator" name="is_administrator" value="is_administrator">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+            </div>
+            <div id="buttons">
+                <input type="button" onclick="registrationReset()" value="Reset">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </section>
+
+    <script src="{{ url_for('static', filename='scripts/numbers.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/clubs.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/reset.js') }}"></script>
 
 {% endblock %}

@@ -1,31 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Oswald&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-}
-
-body, html {
-    height: 100%;
-}
-
 /* Track background image */
-section {
+#track {
     height: 50vw;
     background-image: url(/static/images/track.jpg);
     background-size: 50vw 50vw;
 }
 
 /* Club list text */
-section ul {
+#track ul {
     font-size: 4.5vw;
     line-height: 6vw;
     text-align: center;
 }
 
 /* Club list animation */
-section ul li {
+#track ul li {
     transform: translateX(-100vw);
     animation-name: clubs;
     animation-duration: 2s;
@@ -33,35 +23,35 @@ section ul li {
     animation-fill-mode: both;
 }
 
-section ul li:nth-child(1) {
+#track ul li:nth-child(1) {
     animation-delay: 14s;
 }
 
-section ul li:nth-child(2) {
+#track ul li:nth-child(2) {
     animation-delay: 15s;
 }
 
-section ul li:nth-child(3) {
+#track ul li:nth-child(3) {
     animation-delay: 16s;
 }
 
-section ul li:nth-child(4) {
+#track ul li:nth-child(4) {
     animation-delay: 17s;
 }
 
-section ul li:nth-child(5) {
+#track ul li:nth-child(5) {
     animation-delay: 18s;
 }
 
-section ul li:nth-child(6) {
+#track ul li:nth-child(6) {
     animation-delay: 19s;
 }
 
-section ul li:nth-child(7) {
+#track ul li:nth-child(7) {
     animation-delay: 20s;
 }
 
-section ul li:nth-child(8) {
+#track ul li:nth-child(8) {
     animation-delay: 21s;
 }
 
@@ -71,7 +61,7 @@ section ul li:nth-child(8) {
     }
 }
 
-section ul li a {
+#track ul li a {
     font-family: 'Allerta Stencil', sans-serif;
     text-decoration: none;
     color: rgba(255,235,235,0.8);
@@ -79,13 +69,13 @@ section ul li a {
 }
 
 /* Club numbers */
-section ul li span {
+#track ul li span {
     display: inline-block;
     height: 3.5vw;
     width: 5.5vw;    
 }
 
-section ul li span span {
+#track ul li span span {
     display: block;
     position: absolute;
     font-family: 'Oswald', sans-serif;
@@ -103,41 +93,41 @@ section ul li span span {
 }
 
 /* Over 60 category numbers */
-section ul li span .sixty {
+#track ul li span .sixty {
     z-index: 1;
     opacity: 0;
     animation-name: sixty;
 }
 
-section ul li:nth-child(1) span .sixty {
+#track ul li:nth-child(1) span .sixty {
     animation-delay: 16.7s;
 }
 
-section ul li:nth-child(2) span .sixty {
+#track ul li:nth-child(2) span .sixty {
     animation-delay: 17.7s;
 }
 
-section ul li:nth-child(3) span .sixty {
+#track ul li:nth-child(3) span .sixty {
     animation-delay: 18.7s;
 }
 
-section ul li:nth-child(4) span .sixty {
+#track ul li:nth-child(4) span .sixty {
     animation-delay: 19.7s;
 }
 
-section ul li:nth-child(5) span .sixty {
+#track ul li:nth-child(5) span .sixty {
     animation-delay: 20.7s;
 }
 
-section ul li:nth-child(6) span .sixty {
+#track ul li:nth-child(6) span .sixty {
     animation-delay: 21.7s;
 }
 
-section ul li:nth-child(7) span .sixty {
+#track ul li:nth-child(7) span .sixty {
     animation-delay: 22.7s;
 }
 
-section ul li:nth-child(8) span .sixty {
+#track ul li:nth-child(8) span .sixty {
     animation-delay: 23.7s;
 }
 
@@ -148,41 +138,41 @@ section ul li:nth-child(8) span .sixty {
 }
 
 /* Over 50 category numbers */
-section ul li span .fifty {
+#track ul li span .fifty {
     z-index: 2;
     opacity: 0;
     animation-name: fifty;
 }
 
-section ul li:nth-child(1) span .fifty {
+#track ul li:nth-child(1) span .fifty {
     animation-delay: 18.1s;
 }
 
-section ul li:nth-child(2) span .fifty {
+#track ul li:nth-child(2) span .fifty {
     animation-delay: 19.1s;
 }
 
-section ul li:nth-child(3) span .fifty {
+#track ul li:nth-child(3) span .fifty {
     animation-delay: 20.1s;
 }
 
-section ul li:nth-child(4) span .fifty {
+#track ul li:nth-child(4) span .fifty {
     animation-delay: 21.1s;
 }
 
-section ul li:nth-child(5) span .fifty {
+#track ul li:nth-child(5) span .fifty {
     animation-delay: 22.1s;
 }
 
-section ul li:nth-child(6) span .fifty {
+#track ul li:nth-child(6) span .fifty {
     animation-delay: 23.1s;
 }
 
-section ul li:nth-child(7) span .fifty {
+#track ul li:nth-child(7) span .fifty {
     animation-delay: 24.1s;
 }
 
-section ul li:nth-child(8) span .fifty {
+#track ul li:nth-child(8) span .fifty {
     animation-delay: 25.1s;
 }
 
@@ -193,41 +183,41 @@ section ul li:nth-child(8) span .fifty {
 }
 
 /* B-string category numbers */
-section ul li span .bstring {
+#track ul li span .bstring {
     z-index: 3;
     opacity: 0;
     animation-name: bstring;
 }
 
-section ul li:nth-child(1) span .bstring {
+#track ul li:nth-child(1) span .bstring {
     animation-delay: 19.5s;
 }
 
-section ul li:nth-child(2) span .bstring {
+#track ul li:nth-child(2) span .bstring {
     animation-delay: 20.5s;
 }
 
-section ul li:nth-child(3) span .bstring {
+#track ul li:nth-child(3) span .bstring {
     animation-delay: 21.5s;
 }
 
-section ul li:nth-child(4) span .bstring {
+#track ul li:nth-child(4) span .bstring {
     animation-delay: 22.5s;
 }
 
-section ul li:nth-child(5) span .bstring {
+#track ul li:nth-child(5) span .bstring {
     animation-delay: 23.5s;
 }
 
-section ul li:nth-child(6) span .bstring {
+#track ul li:nth-child(6) span .bstring {
     animation-delay: 24.5s;
 }
 
-section ul li:nth-child(7) span .bstring {
+#track ul li:nth-child(7) span .bstring {
     animation-delay: 25.5s;
 }
 
-section ul li:nth-child(8) span .bstring {
+#track ul li:nth-child(8) span .bstring {
     animation-delay: 26.5s;
 }
 
@@ -238,41 +228,41 @@ section ul li:nth-child(8) span .bstring {
 }
 
 /* A-string category numbers */
-section ul li span .astring {
+#track ul li span .astring {
     z-index: 4;
     opacity: 0;
     animation-name: astring;
 }
 
-section ul li:nth-child(1) span .astring {
+#track ul li:nth-child(1) span .astring {
     animation-delay: 20.9s;
 }
 
-section ul li:nth-child(2) span .astring {
+#track ul li:nth-child(2) span .astring {
     animation-delay: 21.9s;
 }
 
-section ul li:nth-child(3) span .astring {
+#track ul li:nth-child(3) span .astring {
     animation-delay: 22.9s;
 }
 
-section ul li:nth-child(4) span .astring {
+#track ul li:nth-child(4) span .astring {
     animation-delay: 23.9s;
 }
 
-section ul li:nth-child(5) span .astring {
+#track ul li:nth-child(5) span .astring {
     animation-delay: 24.9s;
 }
 
-section ul li:nth-child(6) span .astring {
+#track ul li:nth-child(6) span .astring {
     animation-delay: 25.9s;
 }
 
-section ul li:nth-child(7) span .astring {
+#track ul li:nth-child(7) span .astring {
     animation-delay: 26.9s;
 }
 
-section ul li:nth-child(8) span .astring {
+#track ul li:nth-child(8) span .astring {
     animation-delay: 27.9s;
 }
 

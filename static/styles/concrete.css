@@ -1,54 +1,66 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    border: 0;
-}
-
-body, html {
-    height: 100%;
-}
-
 /* Concrete background image */
-nav {
+body {
     background-image: url(/static/images/concrete.jpg);
     background-size: 50vw 25vw;
-    height: 25vw;
-    z-index: 10;
 }
 
 @media only screen and (min-width: 600px) {
-    nav {
+    body {
         background-size: 35vw 17.5vw;
     }
 }
 
 @media only screen and (min-width: 900px) {
-    nav {
+    body {
         background-size: 25vw 12.5vw;
     }
 }
 
 @media only screen and (min-width: 1200px) {
-    nav {
+    body {
         background-size: 20vw 10vw;
     }
 }
+
+nav {
+    height: 10vw;
+}
+
+@media only screen and (orientation: portrait) {
+    nav {
+        height: 50vw;
+    }
+}
+
 
 /* Navigation text */
 nav ul {
     width: 90vw;
     margin: 0 auto;
     font-family: 'Roboto Slab', serif;
-    font-size: 4.5vw;
-    line-height: 4.5vw;
+    font-size: 3vw;
+    line-height: 3vw;
     text-align: center;
+}
+
+@media only screen and (orientation: portrait) {
+    nav ul {
+        font-size: 6vw;
+        line-height: 6vw;
+    }
 }
 
 nav ul li {
     display: inline-block;
-    padding: 3.5vw 3.5vw 0 3.5vw;
+    padding: 3vw 2vw 0 2vw;
+}
+
+@media only screen and (orientation: portrait) {
+    nav ul li {
+        display: block;
+    }
 }
 
 nav ul li a {
@@ -61,3 +73,4 @@ nav ul li a:hover {
     color: rgba(235,235,235,0.4);
     text-shadow: rgba(35,35,35,0.6) -0.1vw 0, rgba(35,35,35,0.4) 0 -0.1vw, rgba(235,235,235,0.6) 0 0.1vw, rgba(35,35,35,0.4) -0.1vw -0.1vw;
 }
+

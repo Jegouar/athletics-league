@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Rock+Salt&display=swap');
+
+/* Logo */
+.draw {
+    stroke: rgba(35,35,35,0.8);
+    animation: none;
+}
+
+#sock, #first-feather, #second-feather, #third-feather, #fourth-feather, #fifth-feather, #shoe, #laces, #circle {
+    stroke-dashoffset: 0;
+    animation: none;
+}
+
+#foreground {
+    fill: rgba(255,240,0,0.4);
+    animation: none;
+}
+
+#background {
+    fill: rgba(0,165,80,0.4);
+    animation: none;
+}
+
+/* Welcome text */
+#w1, #e1, #l1, #c1, #o1, #m1, #e2, #t1, #o2, #t3, #h1, #e3, #v1, #e4, #t4, #s1, #l2, #e5, #a1, #g1, #u1, #e6, #w2, #e7, #b1, #s2, #i1, #t5, #e8, #x1, #welcome h2 {
+    color: rgba(35,35,35,0.8);
+    animation: none;
+}
+
+/* Club list */
+#track ul li {
+    transform: translateX(0);
+    animation: none;
+}
+
+/* Club numbers */
+#track ul li span span {
+    opacity: 1;
+    animation: none;
+}
+
+/* Concrete background image */
+#register {
+    background-image: url(/static/images/concrete.jpg);
+    background-size: 50vw 25vw;
+}
+
+@media only screen and (min-width: 600px) {
+    #register {
+        background-size: 35vw 17.5vw;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    #register {
+        background-size: 25vw 12.5vw;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #register {
+        background-size: 20vw 10vw;
+    }
+}
+
+/* Form background image */
+#longjump {
+    height: 20vw;
+    background-image: url(/static/images/pit.png);
+    background-size: 100vw 20vw;
+    background-repeat: no-repeat;
+}
+
+/* Form labels */
+#longjump label {
+    width: 50vw;
+    text-align: right;
+    float: left;
+    padding-right: 9vw;
+    box-sizing: border-box;
+    font-family: 'Allerta Stencil', sans-serif;
+    font-size: 4.5vw;
+    line-height: 6vw;
+    color: rgba(255,235,235,0.8);
+}
+
+/* Form input text boxes */
+#longjump input {
+    width: 47.5vw;
+    font-family: 'Rock Salt', cursive;
+    font-size: 3vw;
+    line-height: 6vw;
+    color: rgba(105,65,25,0.6);
+    background: transparent;
+    padding-left: 3vw;
+    box-sizing: border-box;
+}
+
+/* Club input text box */
+.clublist {
+    position: relative;
+    display: inline-block;
+    font-family: 'Rock Salt', cursive;
+    font-size: 3vw;
+    line-height: 6vw;
+}
+
+/* Club dropdown */
+.clublist-items {
+    position: absolute;
+    z-index: 10;
+    top: 100%;
+    left: 50vw;
+    width: 47.5vw;
+}
+
+.clublist-items div {
+    cursor: pointer;
+    background-image: url(/static/images/sand.png);
+    background-size: 47.5vw 6vw;
+    color: rgba(105,65,25,0.6);
+    padding-left: 3vw;
+}
+
+.clublist-items div:hover, .clublist-items strong {
+    color: rgba(35,35,35,0.6);
+}
+
+#roles div {
+    height: 33vw;
+    box-sizing: border-box;
+    display: inline-block;
+    line-height: 6vw;
+}
+
+#left {
+    width: 50vw;
+    text-align: right;
+    float: left;
+    padding-right: 9vw;
+    box-sizing: border-box;
+    font-family: 'Allerta Stencil', sans-serif;
+    font-size: 4.5vw;
+    color: rgba(255,235,235,0.8);
+}
+
+#left h2 {
+    padding-top: 10vw;
+    font-family: 'Roboto Slab', serif;
+    font-size: 3vw;
+    line-height: 3vw;
+    text-decoration: none;
+    color: rgba(235,235,235,0.4);
+    text-shadow: rgba(35,35,35,0.6) -0.1vw 0, rgba(35,35,35,0.4) 0 -0.1vw, rgba(235,235,235,0.6) 0 0.1vw, rgba(35,35,35,0.4) -0.1vw -0.1vw;
+
+}
+
+#right {
+    width: 47.5vw;
+    font-family: 'Rock Salt', cursive;
+    font-size: 3vw;
+    color: rgba(105,65,25,0.6);
+    padding-left: 6vw;
+}
+
+#right label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Hide the default checkbox */
+#right label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 2vw;
+    left: -6vw;
+    height: 2vw;
+    width: 2vw;
+    background-color: rgba(35,35,35,0.4);
+}
+
+#right label:hover input ~ .checkmark {
+    background-color: rgba(35,35,35,0.8);
+}
+
+#right label input:checked ~ .checkmark {
+    background-color: rgba(35,35,35,0.8);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+#right label input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the tick */
+#right label .checkmark:after {
+    left: 0.75vw;
+    top: 0.25vw;
+    width: 0.5vw;
+    height: 1vw;
+    border: solid rgba(255,235,235,0.8);
+    border-width: 0 0.25vw 0.25vw 0;
+    transform: rotate(45deg);
+}
+
+#buttons {
+    text-align: center;
+}
+
+/* Style buttons */
+#buttons input {
+    background-color: rgba(35,35,35,0.4);
+    font-family: 'Allerta Stencil', sans-serif;
+    font-size: 3vw;
+    line-height: 5vw;
+    color: rgba(255,235,235,0.8);
+    margin: 0 2vw 5vw 0;
+    padding: 0 2vw;
+    box-sizing: border-box;
+}
+
+#buttons input:hover {
+    background-color: rgba(35,35,35,0.8);
+}

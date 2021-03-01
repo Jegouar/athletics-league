@@ -10,6 +10,7 @@ body, html {
     height: 100%;
 }
 
+/* Grass background image */
 header {
     background-image: url(/static/images/grass.jpg);
     background-size: 50vw 50vw;
