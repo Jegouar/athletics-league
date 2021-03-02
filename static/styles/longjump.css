@@ -1,43 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Rock+Salt&display=swap');
 
-/* Logo */
-.draw {
-    stroke: rgba(35,35,35,0.8);
-    animation: none;
-}
-
-#sock, #first-feather, #second-feather, #third-feather, #fourth-feather, #fifth-feather, #shoe, #laces, #circle {
-    stroke-dashoffset: 0;
-    animation: none;
-}
-
-#foreground {
-    fill: rgba(255,240,0,0.4);
-    animation: none;
-}
-
-#background {
-    fill: rgba(0,165,80,0.4);
-    animation: none;
-}
-
-/* Welcome text */
-#w1, #e1, #l1, #c1, #o1, #m1, #e2, #t1, #o2, #t3, #h1, #e3, #v1, #e4, #t4, #s1, #l2, #e5, #a1, #g1, #u1, #e6, #w2, #e7, #b1, #s2, #i1, #t5, #e8, #x1, #welcome h2 {
-    color: rgba(35,35,35,0.8);
-    animation: none;
-}
-
-/* Club list */
-#track ul li {
-    transform: translateX(0);
-    animation: none;
-}
-
-/* Club numbers */
-#track ul li span span {
-    opacity: 1;
-    animation: none;
-}
 
 /* Page title */
 #title {

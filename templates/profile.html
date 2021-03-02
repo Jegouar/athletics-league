@@ -1,6 +1,7 @@
 {% extends "welcome.html" %}
 {% block content %}
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/noanimation.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/longjump.css') }}" type="text/css">
 
     <section>
@@ -10,15 +11,15 @@
         <div id="longjump">
             <div>
                 <label for "username">Username</label>
-                <p></p>
+                <p>{{ username }}</p>
             </div>
             <div>
                 <label for "password">Password</label>
-                <p></p>
+                <p>{{ password }}</p>
             </div>
             <div>
                 <label for "club">Club</label>
-                <p></p>
+                <p>{{ club }}</p>
             </div>
         </div>
         <div id="roles">

@@ -29,6 +29,7 @@ def welcome():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
@@ -53,11 +54,12 @@ def register():
         flash("Great, you are now registered!")
         return redirect(url_for("profile", username=session["user"]))
 
-    return render_template("register.html")
+    return render_template("register.html", clubs=clubs)
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
@@ -78,14 +80,26 @@ def login():
             flash("One or both of those aren't quite right")
             return redirect(url_for("login"))
 
-    return render_template("login.html")
+    return render_template("login.html", clubs=clubs)
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
+    clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    return render_template("profile.html", username=username)
+    
+    if session["user"]:
+        return render_template("profile.html", clubs=clubs, username=username)
+    
+    return redirect(url_for("login"))
+
+
+@app.route("/logout")
+def logout():
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
