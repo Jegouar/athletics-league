@@ -1,0 +1,57 @@
+{% extends "welcome.html" %}
+{% block content %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/longjump.css') }}" type="text/css">
+
+    <section>
+        <div id="title">
+            <p>{{ username }}'s Profile</p>
+        </div>
+        <div id="longjump">
+            <div>
+                <label for "username">Username</label>
+                <p></p>
+            </div>
+            <div>
+                <label for "password">Password</label>
+                <p></p>
+            </div>
+            <div>
+                <label for "club">Club</label>
+                <p></p>
+            </div>
+        </div>
+        <div id="roles">
+            <div id="left">
+                <label for "roles">Roles</label>
+            </div>
+            <div id="right">
+                <label>Athlete
+                    <input type="checkbox" id="is_athlete" name="is_athlete" value="is_athlete" checked="checked">
+                    <span class="checkmark"></span>
+                </label>
+                <label>Coach
+                    <input type="checkbox" id="is_coach" name="is_coach" value="is_coach">
+                    <span class="checkmark"></span>
+                </label>
+                <label>Manager
+                    <input type="checkbox" id="is_manager" name="is_manager" value="is_manager">
+                    <span class="checkmark"></span>
+                    </label>
+                <label>Official
+                    <input type="checkbox" id="is_official" name="is_official" value="is_official">
+                    <span class="checkmark"></span>
+                </label>
+                <label>Administrator
+                    <input type="checkbox" id="is_administrator" name="is_administrator" value="is_administrator">
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='scripts/numbers.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/clubs.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/reset.js') }}"></script>
+
+{% endblock %}

@@ -39,6 +39,21 @@
     animation: none;
 }
 
+/* Page title */
+#title {
+    background-color: rgba(35,35,35,0.4);
+    text-align: center;
+    margin: 0 0 5vw 0;
+}
+
+#title p {
+    font-family: 'Allerta Stencil', sans-serif;
+    font-size: 5vw;
+    line-height: 5vw;
+    color: rgba(255,235,235,0.8);
+    padding: 1vw 0 2vw 0;
+}
+
 /* Form background image */
 #longjump {
     height: 20vw;
