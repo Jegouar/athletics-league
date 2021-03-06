@@ -8,17 +8,35 @@ body, html {
     height: 100%;
 }
 
-.body {
-    background-image: 
-        url('../static/images/bricks/abC.jpg'),
-        url('../static/images/bricks/bdE.jpg'),
-        url('../static/images/bricks/dcF.jpg'),
-        url('../static/images/bricks/caE.jpg'),
-        url('../static/images/bricks/abF.jpg'),
-        url('../static/images/bricks/bdC.jpg'),
-        url('../static/images/bricks/daF.jpg'),
-        url('../static/images/bricks/acB.jpg'),
-        url('../static/images/bricks/cfD.jpg'),
-        url('../static/images/bricks/faE.jpg');
-    background-size: cover;
+body {
+    background-image:
+        url(/static/images/bricks/abC.jpg),
+        url(/static/images/bricks/bdE.jpg),
+        url(/static/images/bricks/dcF.jpg),
+        url(/static/images/bricks/caE.jpg),
+        url(/static/images/bricks/abF.jpg),
+        url(/static/images/bricks/bdC.jpg),
+        url(/static/images/bricks/daF.jpg),
+        url(/static/images/bricks/acB.jpg),
+        url(/static/images/bricks/cfD.jpg),
+        url(/static/images/bricks/faE.jpg);
+    background-size: 63.5vw 46vw;
+}
+
+@media only screen and (min-width: 600px) {
+    body {
+        background-size: 47.5vw 34.5vw;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    body {
+        background-size: 27.5vw 20vw;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    body {
+        background-size: 20vw 14.5vw;
+    }
 }

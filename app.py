@@ -90,7 +90,8 @@ def profile(username):
         {"username": session["user"]})["username"]
     
     if session["user"]:
-        return render_template("profile.html", clubs=clubs, username=username)
+        return render_template(
+            "profile.html", clubs=clubs, username=username)
     
     return redirect(url_for("login"))
 
@@ -100,6 +101,12 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
+
+
+@app.route("/fixtures")
+def fixtures():
+    matches = mongo.db.matches.find()
+    return render_template("fixtures.html", matches=matches)
 
 
 if __name__ == "__main__":

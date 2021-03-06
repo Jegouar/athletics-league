@@ -81,7 +81,7 @@
     </section>
     <nav>
         <ul>
-            <li><a href="#">Fixtures</a></li>
+            <li><a href="{{ url_for('fixtures') }}">Fixtures</a></li>
             <li><a href="#">Declarations</a></li>
             <li><a href="#">Results</a></li>
             {% if session.user %}
@@ -97,10 +97,9 @@
     {% block content %}
     {% endblock %}
 
+    <script src="{{ url_for('static', filename='scripts/numbers.js') }}"></script>
     {% block scripts %}
     {% endblock %}
-
-    <script src="{{ url_for('static', filename='scripts/numbers.js') }}"></script>
     
 </body>
 

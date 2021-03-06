@@ -2,7 +2,14 @@
 {% block content %}
 
     {% for match in matches %}
-        <div class="accordion-header">{{ match.match_season }} {{ match.match_number }}</div>
+        <details>
+            <summary>{{ match.match_season }} Match {{ match.match_number }}</summary>
+            <div>
+                <h2>{{ match.match_weekday }} {{ match.match_date }} {{ match.match_month }}</h2>
+                <h2>{{ match.match_venue }}</h2>
+                <p>{{ match.venue_address }} {{ match.venue_postcode }}</p>
+            </div>
+        </details>
     {% endfor %}
 
 {% endblock %}

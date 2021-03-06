@@ -79,6 +79,18 @@
     color: rgba(35,35,35,0.6);
 }
 
+#longjump p {
+    position: relative;
+    display: inline-block;
+    width: 47.5vw;
+    font-family: 'Rock Salt', cursive;
+    font-size: 3vw;
+    line-height: 6vw;
+    color: rgba(105,65,25,0.6);
+    padding-left: 3vw;
+    box-sizing: border-box;
+}
+
 #roles div {
     height: 33vw;
     box-sizing: border-box;
