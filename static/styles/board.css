@@ -1,0 +1,22 @@
+
+
+details {
+    float: left;
+    width: 88vw;
+    margin: 2vw 6vw;
+    box-shadow: 1vw 1vw 1vw 1vw rgba(35,35,35,0.6);
+}
+
+details summary {
+    height: 8vw;
+    background-image: url(/static/images/boardheader.jpg);
+    background-size: 80vw 8vw;
+}
+
+details div {
+    height: 44vw;
+    border: 8vw solid transparent;
+    border-image: url(/static/images/boardborder.jpg);
+    border-image-repeat: round;
+    border-image-slice: 10% fill;
+}
