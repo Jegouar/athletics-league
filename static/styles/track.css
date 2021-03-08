@@ -2,16 +2,30 @@
 
 /* Track background image */
 #track {
-    height: 50vw;
+    height: 60vw;
     background-image: url(/static/images/track.jpg);
-    background-size: 50vw 50vw;
+    background-size: 60vw 60vw;
+}
+
+@media only screen and (min-width: 600px) {
+    #track {
+        height: 50vw;
+        background-size: 50vw 50vw;
+    }
 }
 
 /* Club list text */
 #track ul {
-    font-size: 4.5vw;
-    line-height: 6vw;
+    font-size: 5.5vw;
+    line-height: 7.2vw;
     text-align: center;
+}
+
+@media only screen and (min-width: 600px) {
+    #track ul {
+        font-size: 4.5vw;
+        line-height: 6vw;
+    }
 }
 
 /* Club list animation */

@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
 
 details {
     float: left;
@@ -11,7 +11,19 @@ details summary {
     height: 8vw;
     background-image: url(/static/images/boardheader.jpg);
     background-size: 80vw 8vw;
+    font-family: 'Roboto Slab', serif;
+    font-size: 4vw;
+    line-height: 8vw;
+    text-align: center;
+    color: rgba(235,235,235,0.2);
+    text-shadow: rgba(205,155,105,0.8) -0.1vw 0, rgba(205,155,105,0.6) 0 -0.1vw, rgba(235,235,235,0.8) 0 0.1vw, rgba(205,155,105,0.6) -0.1vw -0.1vw;
 }
+
+details summary:hover {
+    color: rgba(235,235,235,0.2);
+    text-shadow: rgba(35,35,35,0.4) -0.1vw 0, rgba(35,35,35,0.2) 0 -0.1vw, rgba(235,235,235,0.4) 0 0.1vw, rgba(35,35,35,0.2) -0.1vw -0.1vw;
+}
+
 
 details div {
     height: 44vw;

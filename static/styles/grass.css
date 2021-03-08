@@ -36,16 +36,16 @@ header {
 }
 
 svg {
-    width: 40vw; 
-    height: 57.148vw;
+    width: 80vw; 
+    height: 114.296vw;
     margin: 0 auto;
     display: block;
 }
 
-@media only screen and (orientation: portrait) {
+@media only screen and (min-width: 600px) {
     svg {
-        width: 80vw;
-        height: 114.296vw;
+        width: 40vw;
+        height: 57.148vw;
     }
 }
 
@@ -242,39 +242,39 @@ svg {
 }
 
 #welcome {
-    width: 80vw;
+    width: 90vw;
     margin: 0 auto;
     font-family: 'Roboto Slab', serif;
 }
 
-@media only screen and (orientation: portrait) {
+@media only screen and (min-width: 600px) {
     #welcome {
-        width: 90vw;
+        width: 80vw;
     }
 }
 
 #welcome h1 {
     text-align: center;
-    font-size: 6vw;
-    line-height: 6vw;
-    padding: 3vw;
+    font-size: 10vw;
+    line-height: 10vw;
+    padding: 6vw;
 }
 
-@media only screen and (orientation: portrait) {
+@media only screen and (min-width: 600px) {
     #welcome h1 {
-        font-size: 10vw;
-        line-height: 10vw;
-        padding: 6vw;
+        font-size: 6vw;
+        line-height: 6vw;
+        padding: 3vw;
     }
 }
 
 #welcome h2 {
-    font-size: 3vw;
+    font-size: 6vw;
 }
 
-@media only screen and (orientation: portrait) {
+@media only screen and (min-width: 600px) {
     #welcome h2 {
-        font-size: 6vw;
+        font-size: 3vw;
     }
 }
 

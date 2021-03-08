@@ -24,42 +24,33 @@ body {
     }
 }
 
-nav {
-    height: 10vw;
-}
-
-@media only screen and (orientation: portrait) {
-    nav {
-        height: 50vw;
-    }
-}
-
-
 /* Navigation text */
 nav ul {
     width: 90vw;
     margin: 0 auto;
     font-family: 'Roboto Slab', serif;
-    font-size: 3vw;
-    line-height: 3vw;
+    font-size: 4vw;
+    line-height: 4vw;
     text-align: center;
+    padding: 3vw;
 }
 
-@media only screen and (orientation: portrait) {
+@media only screen and (min-width: 600px) {
     nav ul {
-        font-size: 6vw;
-        line-height: 6vw;
+        font-size: 3vw;
+        line-height: 3vw;
     }
 }
 
 nav ul li {
     display: inline-block;
-    padding: 3vw 2vw 0 2vw;
+    padding: 1vw 3vw;
 }
 
-@media only screen and (orientation: portrait) {
+@media only screen and (min-width: 600px) {
     nav ul li {
-        display: block;
+        display: inline-block;
+        padding: 1vw 2vw;
     }
 }
 

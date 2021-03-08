@@ -10,18 +10,32 @@
 
 #title p {
     font-family: 'Allerta Stencil', sans-serif;
-    font-size: 5vw;
-    line-height: 5vw;
+    font-size: 5.5vw;
+    line-height: 5.5vw;
     color: rgba(255,235,235,0.8);
     padding: 1vw 0 2vw 0;
 }
 
+@media only screen and (min-width: 600px) {
+    #title p {
+        font-size: 4.5vw;
+        line-height: 4.5vw;
+    }
+}
+
 /* Form background image */
 #longjump {
-    height: 20vw;
+    height: 24vw;
     background-image: url(/static/images/pit.png);
-    background-size: 100vw 20vw;
+    background-size: 100vw 24vw;
     background-repeat: no-repeat;
+}
+
+@media only screen and (min-width: 600px) {
+    #longjump {
+        height: 20vw;
+        background-size: 100vw 20vw;
+    }
 }
 
 /* Form labels */
@@ -32,21 +46,37 @@
     padding-right: 9vw;
     box-sizing: border-box;
     font-family: 'Allerta Stencil', sans-serif;
-    font-size: 4.5vw;
-    line-height: 6vw;
+    font-size: 5.5vw;
+    line-height: 7.2vw;
     color: rgba(255,235,235,0.8);
+}
+
+@media only screen and (min-width: 600px) {
+    #longjump label {
+        font-size: 4.5vw;
+        line-height: 6vw;
+    }
 }
 
 /* Form input text boxes */
 #longjump input {
-    width: 47.5vw;
+    width: 46vw;
+    float: left;
     font-family: 'Rock Salt', cursive;
-    font-size: 3vw;
-    line-height: 6vw;
+    font-size: 3.5vw;
+    line-height: 7.2vw;
     color: rgba(105,65,25,0.6);
     background: transparent;
     padding-left: 3vw;
     box-sizing: border-box;
+}
+
+@media only screen and (min-width: 600px) {
+    #longjump input {
+        width: 47.5vw;
+        font-size: 3vw;
+        line-height: 6vw;
+    }
 }
 
 /* Club input text box */
@@ -54,8 +84,15 @@
     position: relative;
     display: inline-block;
     font-family: 'Rock Salt', cursive;
-    font-size: 3vw;
-    line-height: 6vw;
+    font-size: 3.5vw;
+    line-height: 7.2vw;
+}
+
+@media only screen and (min-width: 600px) {
+    .clublist {
+        font-size: 3vw;
+        line-height: 6vw;
+    }
 }
 
 /* Club dropdown */
@@ -70,9 +107,15 @@
 .clublist-items div {
     cursor: pointer;
     background-image: url(/static/images/sand.png);
-    background-size: 47.5vw 6vw;
+    background-size: 47.5vw 7.2vw;
     color: rgba(105,65,25,0.6);
     padding-left: 3vw;
+}
+
+@media only screen and (min-width: 600px) {
+    .clublist-items div {
+        background-size: 47.5vw 6vw;
+    }
 }
 
 .clublist-items div:hover, .clublist-items strong {
@@ -82,20 +125,35 @@
 #longjump p {
     position: relative;
     display: inline-block;
-    width: 47.5vw;
+    width: 46vw;
     font-family: 'Rock Salt', cursive;
-    font-size: 3vw;
-    line-height: 6vw;
+    font-size: 3.5vw;
+    line-height: 7.2vw;
     color: rgba(105,65,25,0.6);
     padding-left: 3vw;
     box-sizing: border-box;
+}
+
+@media only screen and (min-width: 600px) {
+    #longjump p {
+        width: 47.5vw;
+        font-size: 3vw;
+        line-height: 6vw;
+    }
 }
 
 #roles div {
     height: 33vw;
     box-sizing: border-box;
     display: inline-block;
-    line-height: 6vw;
+    line-height: 7.2vw;
+}
+
+@media only screen and (min-width: 600px) {
+    #roles div {
+        height: 40vw;
+        line-height: 6vw;
+    }
 }
 
 #left {
@@ -105,17 +163,30 @@
     padding-right: 9vw;
     box-sizing: border-box;
     font-family: 'Allerta Stencil', sans-serif;
-    font-size: 4.5vw;
+    font-size: 5.5vw;
     color: rgba(255,235,235,0.8);
+}
+
+@media only screen and (min-width: 600px) {
+    #left {
+        font-size: 4.5vw;
+    }
 }
 
 #left h2, #flash h2 {
     font-family: 'Roboto Slab', serif;
-    font-size: 3vw;
-    line-height: 3vw;
+    font-size: 3.5vw;
+    line-height: 3.5vw;
     text-decoration: none;
     color: rgba(235,235,235,0.4);
     text-shadow: rgba(35,35,35,0.6) -0.1vw 0, rgba(35,35,35,0.4) 0 -0.1vw, rgba(235,235,235,0.6) 0 0.1vw, rgba(35,35,35,0.4) -0.1vw -0.1vw;
+}
+
+@media only screen and (min-width: 600px) {
+    #left h2, #flash h2 {
+        font-size: 3vw;
+        line-height: 3vw;
+    }
 }
 
 #left h2 {
@@ -129,11 +200,18 @@
 }
 
 #right {
-    width: 47.5vw;
+    width: 46vw;
     font-family: 'Rock Salt', cursive;
-    font-size: 3vw;
+    font-size: 3.5vw;
     color: rgba(105,65,25,0.6);
     padding-left: 6vw;
+}
+
+@media only screen and (min-width: 600px) {
+    #right {
+        width: 47.5vw;
+        font-size: 3vw;
+    }
 }
 
 #right label {
