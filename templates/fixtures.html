@@ -10,8 +10,10 @@
             <div id="board">
                 <div id="mapsheet">
                     <h2>{{ match.match_weekday }} {{ match.match_date }} {{ match.match_month }}</h2>
-                    <h2 id="venue">{{ match.match_venue }}</h2>
-                    <p>{{ match.venue_address }} {{ match.venue_postcode }}</p>
+                    <div>
+                        <h2>{{ match.match_venue }}</h2>
+                        <p>{{ match.venue_address }} {{ match.venue_postcode }}</p>
+                    </div>
                     <div class="map" id="{{ match.match_season }}{{ match.match_number }}"></div>
                 </div>
             </div>   
