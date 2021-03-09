@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+#mapsheet {
+    box-sizing: border-box;
+    width: 72vw;
+    padding: 6vw;
+    color: rgba(35,35,35,0.8);
+    background-color: rgb(245,245,245);
+    font-family: 'Special Elite', cursive;
+    margin-top: -4vw;
+}
+
+@media only screen and (min-width: 600px) {
+    #mapsheet {
+        width: 42vw;
+        padding: 4vw;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    #mapsheet {
+        width: 45vw;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #mapsheet {
+        width: 48vw;
+    }
+}
+
+.map {
+    height: 60vw;
+    margin-top: 2vw;
+}
+
+@media only screen and (min-width: 600px) {
+    .map {
+        height: 34vw;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .map {
+        height: 37vw;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .map {
+        height: 40vw;
+    }
+}

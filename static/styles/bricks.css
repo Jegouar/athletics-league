@@ -40,3 +40,32 @@ body {
         background-size: 20vw 14.5vw;
     }
 }
+
+.container {
+    position: absolute;
+    left: 0;
+    top: 101vw;
+    width: 100vw;
+}
+
+@media only screen and (min-width: 600px) {
+    .container {
+        left: 38vw;
+        top: 4vw;
+        width: 62vw;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .container {
+        left: 35vw;
+        width: 65vw;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .container {
+        left: 32vw;
+        width: 68vw;
+    }
+}

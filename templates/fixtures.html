@@ -2,16 +2,23 @@
 {% block content %}
 
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/board.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/paper.css') }}" type="text/css">
 
     {% for match in matches %}
         <details>
             <summary>{{ match.match_season }} Match {{ match.match_number }}</summary>
-            <div>
-                <h2>{{ match.match_weekday }} {{ match.match_date }} {{ match.match_month }}</h2>
-                <h2>{{ match.match_venue }}</h2>
-                <p>{{ match.venue_address }} {{ match.venue_postcode }}</p>
-            </div>
+            <div id="board">
+                <div id="mapsheet">
+                    <h2>{{ match.match_weekday }} {{ match.match_date }} {{ match.match_month }}</h2>
+                    <h2 id="venue">{{ match.match_venue }}</h2>
+                    <p>{{ match.venue_address }} {{ match.venue_postcode }}</p>
+                    <div class="map" id="{{ match.match_season }}{{ match.match_number }}"></div>
+                </div>
+            </div>   
         </details>
     {% endfor %}
+
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDOVg-dREo0Ck1QqKT0fQyRQGP_hCp1l8&callback=initMap&libraries=&v=weekly"></script>
+    <script src="{{ url_for('static', filename='scripts/maps.js') }}"></script>
 
 {% endblock %}
