@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
 
-details {
+details, .add {
     float: left;
     width: 88vw;
     margin: 0 6vw 2vw 6vw;
@@ -8,25 +8,25 @@ details {
 }
 
 @media only screen and (min-width: 600px) {
-    details {
+    details, .add {
         width: 58vw;
         margin: 0 4vw 2vw 0;
     }
 }
 
 @media only screen and (min-width: 900px) {
-    details {
+    details, .add {
         width: 61vw;
     }
 }
 
 @media only screen and (min-width: 1200px) {
-    details {
+    details, .add {
         width: 64vw;
     }
 }
 
-details summary {
+details summary, .add {
     height: 10vw;
     background-image: url(/static/images/boardheader.jpg);
     background-size: 88vw 10vw;
@@ -39,7 +39,7 @@ details summary {
 }
 
 @media only screen and (min-width: 600px) {
-    details summary {
+    details summary, .add {
         height: 8vw;
         background-size: 58vw 8vw;
         font-size: 4vw;
@@ -48,7 +48,7 @@ details summary {
 }
 
 @media only screen and (min-width: 900px) {
-    details summary {
+    details summary, .add {
         height: 7vw;
         background-size: 61vw 7vw;
         font-size: 3.5vw;
@@ -57,7 +57,7 @@ details summary {
 }
 
 @media only screen and (min-width: 1200px) {
-    details summary {
+    details summary, .add {
         height: 6vw;
         background-size: 64vw 6vw;
         font-size: 3vw;
@@ -65,11 +65,16 @@ details summary {
     }
 }
 
-details summary:hover {
+.add a {
+    text-decoration: none;
+    color: rgba(235,235,235,0.2);
+    text-shadow: rgba(205,155,105,0.8) -0.1vw 0, rgba(205,155,105,0.6) 0 -0.1vw, rgba(235,235,235,0.8) 0 0.1vw, rgba(205,155,105,0.6) -0.1vw -0.1vw;
+}
+
+details summary:hover, .add a:hover {
     color: rgba(235,235,235,0.2);
     text-shadow: rgba(35,35,35,0.4) -0.1vw 0, rgba(35,35,35,0.2) 0 -0.1vw, rgba(235,235,235,0.4) 0 0.1vw, rgba(35,35,35,0.2) -0.1vw -0.1vw;
 }
-
 
 details #board {
     border: 8vw solid transparent;

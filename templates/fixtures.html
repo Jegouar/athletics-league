@@ -4,6 +4,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/board.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/paper.css') }}" type="text/css">
 
+    {% if session.user %}
+        <div class="add">
+            <a href="{{ url_for('add_fixture') }}">Add Fixture</a>
+        </div>
+    {% endif %}
+
     {% for match in matches %}
         <details>
             <summary>{{ match.match_season }} Match {{ match.match_number }}</summary>

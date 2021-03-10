@@ -109,6 +109,11 @@ def fixtures():
     return render_template("fixtures.html", matches=matches)
 
 
+@app.route("/add_fixture")
+def add_fixture():
+    return render_template("add_fixture.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
 
-#mapsheet {
+#mapsheet, #fixtureform {
     box-sizing: border-box;
     width: 72vw;
     padding: 6vw;
@@ -11,20 +11,20 @@
 }
 
 @media only screen and (min-width: 600px) {
-    #mapsheet {
+    #mapsheet, #fixtureform {
         width: 42vw;
         padding: 4vw;
     }
 }
 
 @media only screen and (min-width: 900px) {
-    #mapsheet {
+    #mapsheet, #fixtureform {
         width: 45vw;
     }
 }
 
 @media only screen and (min-width: 1200px) {
-    #mapsheet {
+    #mapsheet, #fixtureform {
         width: 48vw;
     }
 }
