@@ -8,6 +8,10 @@
         <div class="add">
             <a href="{{ url_for('add_match') }}">Add Match</a>
         </div>
+    {% else %}
+        <div class="add">
+            <p>Log in to add or edit matches</p>
+        </div>
     {% endif %}
 
     {% for match in matches %}
