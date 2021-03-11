@@ -11,11 +11,11 @@
         <form id="login" autocomplete="off" method="POST" action="{{ url_for('login') }}">
             <div id="longjump">
                 <div>
-                    <label for "username">Username</label>
+                    <label for="username">Username</label>
                     <input type="text" id="username" name="username" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required placeholder="Enter your username...">
                 </div>
                 <div>
-                    <label for "password">Password</label>
+                    <label for="password">Password</label>
                     <input type="password" id="password" name="password" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required placeholder="...and password">
                 </div>
             </div>
@@ -28,15 +28,13 @@
                     {% endif %}
                 {% endwith %}
             </div>
-            </div>
             <div id="buttons">
-                <input type="button" onclick="signinReset()" value="Reset">
+                <input type="reset" value="Reset">
                 <input type="submit" value="Submit">
             </div>
         </form>
     </section>
 
     <script src="{{ url_for('static', filename='scripts/numbers.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/reset.js') }}"></script>
 
 {% endblock %}

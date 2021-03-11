@@ -51,3 +51,7 @@
         height: 40vw;
     }
 }
+
+#mapsheet > p {
+    display: none;
+}

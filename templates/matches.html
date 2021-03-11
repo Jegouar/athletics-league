@@ -6,7 +6,7 @@
 
     {% if session.user %}
         <div class="add">
-            <a href="{{ url_for('add_fixture') }}">Add Fixture</a>
+            <a href="{{ url_for('add_match') }}">Add Match</a>
         </div>
     {% endif %}
 
@@ -15,12 +15,14 @@
             <summary>{{ match.match_season }} Match {{ match.match_number }}</summary>
             <div id="board">
                 <div id="mapsheet">
-                    <h2>{{ match.match_weekday }} {{ match.match_date }} {{ match.match_month }}</h2>
+                    <h2>{{ match.match_date }}</h2>
                     <div>
                         <h2>{{ match.match_venue }}</h2>
                         <p>{{ match.venue_address }} {{ match.venue_postcode }}</p>
                     </div>
                     <div class="map" id="{{ match.match_season }}{{ match.match_number }}"></div>
+                    <p id="lat{{ match.match_season }}{{ match.match_number }}">{{ match.venue_latitude }}</p>
+                    <p id="lng{{ match.match_season }}{{ match.match_number }}">{{ match.venue_longitude }}</p>
                 </div>
             </div>   
         </details>

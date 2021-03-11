@@ -103,15 +103,16 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/fixtures")
-def fixtures():
+@app.route("/matches")
+def matches():
     matches = mongo.db.matches.find()
-    return render_template("fixtures.html", matches=matches)
+    return render_template("matches.html", matches=matches)
 
 
-@app.route("/add_fixture")
-def add_fixture():
-    return render_template("add_fixture.html")
+@app.route("/add_match")
+def add_match():
+    venues = mongo.db.venues.find().sort("venue_name")
+    return render_template("add_match.html", venues=venues)
 
 
 if __name__ == "__main__":

@@ -11,21 +11,21 @@
         <form id="register" autocomplete="off" method="POST" action="{{ url_for('register') }}">
             <div id="longjump">
                 <div>
-                    <label for "username">Username</label>
+                    <label for="username">Username</label>
                     <input type="text" id="username" name="username" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required placeholder="Enter a username...">
                 </div>
                 <div>
-                    <label for "password">Password</label>
+                    <label for="password">Password</label>
                     <input type="password" id="password" name="password" minlength="5" maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required placeholder="...and a password">
                 </div>
                 <div class="clublist">
-                    <label for "club">Club</label>
+                    <label for="club">Club</label>
                     <input id="club" name="club" type="text" placeholder="...and your club">
                 </div>
             </div>
             <div id="roles">
                 <div id="left">
-                    <label for "roles">Roles</label>
+                    <label for="roles">Roles</label>
                     {% with messages = get_flashed_messages() %}
                         {% if messages %}
                             {% for message in messages %}
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div id="buttons">
-                <input type="button" onclick="registrationReset()" value="Reset">
+                <input type="reset" value="Reset">
                 <input type="submit" value="Submit">
             </div>
         </form>
@@ -66,6 +66,5 @@
 
     <script src="{{ url_for('static', filename='scripts/numbers.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/clubs.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/reset.js') }}"></script>
 
 {% endblock %}

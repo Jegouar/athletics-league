@@ -10,21 +10,21 @@
         </div>
         <div id="longjump">
             <div>
-                <label for "username">Username</label>
+                <label for="username">Username</label>
                 <p>{{ username }}</p>
             </div>
             <div>
-                <label for "password">Password</label>
+                <label for="password">Password</label>
                 <p>{{ password }}</p>
             </div>
             <div>
-                <label for "club">Club</label>
+                <label for="club">Club</label>
                 <p>{{ club }}</p>
             </div>
         </div>
         <div id="roles">
             <div id="left">
-                <label for "roles">Roles</label>
+                <label for="roles">Roles</label>
             </div>
             <div id="right">
                 <label>Athlete
@@ -53,6 +53,5 @@
 
     <script src="{{ url_for('static', filename='scripts/numbers.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/clubs.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/reset.js') }}"></script>
 
 {% endblock %}

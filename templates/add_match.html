@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/board.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/paper.css') }}" type="text/css">
+
+    <details open>
+        <summary>Add Match</summary>
+        <div id="board">
+            <div id="matchform">
+                <form id="add_match" autocomplete="off" method="POST" action="">
+                    <div>
+                        <label for="match_season">Season:</label>
+                        <select id="match_season" name="match_season">
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="match_number">Match number:</label>
+                        <input type="radio" id="one" name="match_number" value="1">
+                        <label for="one">1</label>
+                        <input type="radio" id="two" name="match_number" value="2">
+                        <label for="two">2</label>
+                        <input type="radio" id="three" name="match_number" value="3">
+                        <label for="three">3</label>
+                        <input type="radio" id="four" name="match_number" value="4">
+                        <label for="four">4</label>
+                    </div>
+                    <div>
+                        <label for="match_date">Date:</label>
+                        <input type="date" id="match_date" name="match_date">
+                    </div>
+                    <div>
+                        <label for="match_venue">Venue:</label>
+                        <select id="match_venue" name="match_venue">
+                            <option>Pick a track</option>
+                            {% for match_venue in match_venues %}
+                                <option value="{{ venues.venue_name }}">{{ venues.venue_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="buttons">
+                        <input type="reset" value="Reset">
+                        <input type="submit" value="Submit">
+                    </div>
+                </form>
+            </div>
+        </div>   
+    </details>
+
+{% endblock %}
