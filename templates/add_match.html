@@ -11,7 +11,8 @@
                 <form id="add_match" autocomplete="off" method="POST" action="">
                     <div>
                         <label for="match_season">Season:</label>
-                        <select id="match_season" name="match_season">
+                        <select id="match_season" name="match_season" required>
+                            <option value="" disabled selected>Choose year</option>
                             <option value="2012">2012</option>
                             <option value="2013">2013</option>
                             <option value="2014">2014</option>
@@ -38,14 +39,14 @@
                     </div>
                     <div>
                         <label for="match_date">Date:</label>
-                        <input type="date" id="match_date" name="match_date">
+                        <input type="date" id="match_date" name="match_date" required>
                     </div>
                     <div>
                         <label for="match_venue">Venue:</label>
-                        <select id="match_venue" name="match_venue">
-                            <option>Pick a track</option>
-                            {% for match_venue in match_venues %}
-                                <option value="{{ venues.venue_name }}">{{ venues.venue_name }}</option>
+                        <select id="match_venue" name="match_venue" required>
+                            <option value="" disabled selected>Choose venue</option>
+                            {% for venue in venues %}
+                                <option value="{{ venue.venue_name }}">{{ venue.venue_name }}</option>
                             {% endfor %}
                         </select>
                     </div>

@@ -111,7 +111,7 @@ def matches():
 
 @app.route("/add_match")
 def add_match():
-    venues = mongo.db.venues.find().sort("venue_name")
+    venues = mongo.db.venues.find().sort("venue_name", 1)
     return render_template("add_match.html", venues=venues)
 
 
