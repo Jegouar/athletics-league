@@ -105,12 +105,58 @@ def logout():
 
 @app.route("/matches")
 def matches():
-    matches = mongo.db.matches.find()
+    matches = mongo.db.matches.find().sort("match_date", -1)
     return render_template("matches.html", matches=matches)
 
 
-@app.route("/add_match")
+@app.route("/add_match", methods=["GET", "POST"])
 def add_match():
+    if request.method == "POST":
+        # Additional information for venues
+        if request.form.get("match_venue") == "Tilsley Park":
+            venue_address = "Dunmore Road, Abingdon, Oxfordshire"
+            venue_postcode = "OX14 1PU"
+            venue_latitude = 51.68851413424184
+            venue_longitude = -1.2844304304305583
+        elif request.form.get("match_venue") == "Horspath Athletics and Sports Ground":
+            venue_address = "Horspath Road, Oxford, Oxfordshire"
+            venue_postcode = "OX4 2RR"
+            venue_latitude = 51.7375972575029
+            venue_longitude = -1.1871759304287552
+        elif request.form.get("match_venue") == "Palmer Park Stadium":
+            venue_address = "Wokingham Road, Earley, Reading, Berkshire"
+            venue_postcode = "RG6 1LF"
+            venue_latitude = 51.451455101790785
+            venue_longitude = -0.9376482397139002
+        elif request.form.get("match_venue") == "Swindon Athletics Track":
+            venue_address = "75 Shrivenham Road, Swindon, Wiltshire"
+            venue_postcode = "SN1 2QA"
+            venue_latitude = 51.56697977134897
+            venue_longitude = -1.76940873043505
+        elif request.form.get("match_venue") == "Crookham Common Athletics Track":
+            venue_address = "Thatcham, Berkshire"
+            venue_postcode = "RG19 8ET"
+            venue_latitude = 51.380717539827984
+            venue_longitude = -1.2511990592783035
+        elif request.form.get("match_venue") == "John Nike Stadium":
+            venue_address = "2 South Hill Road, Bracknell, Berkshire"
+            venue_postcode = "RG12 7NN"
+            venue_latitude = 51.400788248114885
+            venue_longitude = -0.7499129592775471
+        match = {
+            "match_season": request.form.get("match_season"),
+            "match_number": request.form.get("match_number"),
+            "match_date": request.form.get("match_date"),
+            "match_venue": request.form.get("match_venue"),
+            "venue_address": venue_address,
+            "venue_postcode": venue_postcode,
+            "venue_latitude": venue_latitude,
+            "venue_longitude": venue_longitude
+        }
+        mongo.db.matches.insert_one(match)
+        flash("Match successfully added")
+        return redirect(url_for("matches"))
+
     venues = mongo.db.venues.find().sort("venue_name", 1)
     return render_template("add_match.html", venues=venues)
 

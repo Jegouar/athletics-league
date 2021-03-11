@@ -8,7 +8,7 @@
         <summary>Add Match</summary>
         <div id="board">
             <div id="matchform">
-                <form id="add_match" autocomplete="off" method="POST" action="">
+                <form id="add_match" autocomplete="off" method="POST" action="{{ url_for('add_match') }}">
                     <div>
                         <label for="match_season">Season:</label>
                         <select id="match_season" name="match_season" required>
