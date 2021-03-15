@@ -256,6 +256,13 @@ def add_match():
     return render_template("add_match.html", venues=venues)
 
 
+@app.route("/edit_match/<match_id>", methods=["GET", "POST"])
+def edit_match(match_id):
+    match = mongo.db.matches.find_one({"_id": ObjectId(match_id)})
+    venues = mongo.db.venues.find().sort("venue_name", 1)
+    return render_template("edit_match.html", match=match, venues=venues)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

@@ -5,10 +5,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/paper.css') }}" type="text/css">
 
     <details open>
-        <summary>Add Match</summary>
+        <summary>Edit Match</summary>
         <div id="board">
             <div class="sheet">
-                <form id="add_match" autocomplete="off" method="POST" action="{{ url_for('add_match') }}">
+                <form id="add_match" autocomplete="off" method="POST" action="{{ url_for('edit_match', match_id=match._id) }}">
                     <div id="seasonlabel">
                         <label for="match_season">Season:</label>
                     </div>
@@ -147,7 +147,7 @@
                     </div>
                     <div id="buttons">
                         <input type="reset" value="Reset">
-                        <input type="submit" value="Add">
+                        <input type="submit" value="Edit">
                     </div>
                 </form>
             </div>
