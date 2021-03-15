@@ -8,6 +8,7 @@
     background-color: rgb(245,245,245);
     font-family: 'Special Elite', cursive;
     margin-top: -4vw;
+    box-shadow: 1vw 1vw 1vw rgba(35,35,35,0.8);
 }
 
 @media only screen and (min-width: 600px) {
@@ -63,6 +64,7 @@
     padding: 2vw;
     background-color: rgb(250,235,140);
     font-family: 'Permanent Marker', cursive;
+    box-shadow: 0 1vw 0.5vw 0 rgba(35,35,35,0.6);
 }
 
 form {
