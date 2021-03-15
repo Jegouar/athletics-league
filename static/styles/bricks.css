@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -67,5 +69,36 @@ body {
     .container {
         left: 32vw;
         width: 68vw;
+    }
+}
+
+#flash h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 5vw;
+    line-height: 10vw;
+    text-decoration: none;
+    text-align: center;
+    color: rgba(235,235,235,0.2);
+    text-shadow: rgba(35,35,35,0.6) -0.1vw 0, rgba(35,35,35,0.4) 0 -0.1vw, rgba(235,235,235,0.6) 0 0.1vw, rgba(35,35,35,0.4) -0.1vw -0.1vw;
+}
+
+@media only screen and (min-width: 600px) {
+    #flash h2 {
+        font-size: 4vw;
+        line-height: 8vw;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    details summary, .add {
+        font-size: 3.5vw;
+        line-height: 7vw;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    details summary, .add {
+        font-size: 3vw;
+        line-height: 6vw;
     }
 }

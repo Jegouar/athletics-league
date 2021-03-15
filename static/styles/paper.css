@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&family=Permanent+Marker&family=Special+Elite&display=swap');
 
-#mapsheet, #fixtureform {
+.sheet {
     box-sizing: border-box;
     width: 72vw;
     padding: 6vw;
@@ -11,20 +11,20 @@
 }
 
 @media only screen and (min-width: 600px) {
-    #mapsheet, #fixtureform {
+    .sheet {
         width: 42vw;
         padding: 4vw;
     }
 }
 
 @media only screen and (min-width: 900px) {
-    #mapsheet, #fixtureform {
+    .sheet {
         width: 45vw;
     }
 }
 
 @media only screen and (min-width: 1200px) {
-    #mapsheet, #fixtureform {
+    .sheet {
         width: 48vw;
     }
 }
@@ -52,6 +52,229 @@
     }
 }
 
-#mapsheet > p {
+.sheet > p {
     display: none;
+}
+
+.postit {
+    position: absolute;
+    left: 20%;
+    bottom: 20%;
+    padding: 2vw;
+    background-color: rgb(250,235,140);
+    font-family: 'Permanent Marker', cursive;
+}
+
+form {
+    height: 58vw;
+}
+
+@media only screen and (min-width: 600px) {
+    form {
+        height: 73vw;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    form {
+        height: 67vw;
+    }
+}
+
+form > div {
+    float: left;
+    margin-bottom: 2vw;
+}
+
+label {
+    font-family: 'Special Elite', cursive;
+    font-size: 2.5vw;
+    line-height: 6vw;
+}
+
+#seasonlabel, #season, #numberlabel, #number, #weekdaylabel, #weekday, #monthdaylabel, #monthday, #monthlabel, #month, #venuelabel, #venue {
+    height: 6vw;
+}
+
+@media only screen and (min-width: 600px) {
+    #numberlabel, #number {
+        height: 12vw;
+    }
+}
+
+#seasonlabel, #numberlabel, #weekdaylabel, #monthdaylabel, #monthlabel, #venuelabel {
+    width: 40%;
+}
+
+@media only screen and (min-width: 600px) {
+    #numberlabel {
+        width: 60%;
+    }
+}
+
+#season, #number, #weekday, #monthday, #month, #venue {
+    width: 60%;
+}
+
+@media only screen and (min-width: 600px) {
+    #number {
+        width: 40%;
+    }
+}
+
+.custom-select {
+    position: relative;
+    float: right;
+    font-family: 'Just Another Hand', cursive;
+    font-size: 4vw;
+    line-height: 6vw;
+    color: rgba(35,35,35,0.8);
+    width: 60%;
+}
+
+.custom-select select {
+    display: none;
+}
+
+.select-selected {
+    background-color: rgb(255,255,255);
+    border: 0.1vw solid rgba(185,185,185,0.8);
+}
+
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 2.5vw;
+    right: 2vw;
+    width: 0;
+    height: 0;
+    border: 1vw solid transparent;
+    border-color: rgba(35,35,35,0.8) transparent transparent transparent;
+}
+
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent rgba(35,35,35,0.8) transparent;
+    top: 1.5vw;
+}
+
+.select-items div, .select-selected {
+    color: rgba(35,35,35,0.8);
+    padding: 0 2vw;
+    border: 0.1vw solid rgba(185,185,185,0.8);
+    cursor: pointer;
+    user-select: none;
+}
+
+.select-items {
+    position: absolute;
+    background-color: rgb(245,245,245);
+    border: 0.1vw solid rgba(185,185,185,0.8);
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(185,185,185,0.8);
+}
+
+.radio {
+    width: 25%;
+    float: left;
+}
+
+@media only screen and (min-width: 600px) {
+    .radio {
+        width: 50%;
+    }
+}
+
+.radiolabel {
+    display: block;
+    position: relative;
+    font-family: 'Just Another Hand', cursive;
+    font-size: 4vw;
+    line-height: 6vw;
+    color: rgba(35,35,35,0.8);
+    cursor: pointer;
+}
+
+.radiolabel input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    top: 1vw;
+    left: 0;
+    width: 3vw;
+    height: 3vw;
+    background-color: rgb(255,255,255);
+    border: 0.1vw solid rgba(185,185,185,0.8);
+    border-radius: 50%;
+}
+
+.radiolabel:hover input ~ .checkmark {
+    background-color: rgba(185,185,185,0.8);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.radiolabel input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.radiolabel .checkmark:after {
+    top: 1vw;
+    left: 1vw;
+    width: 1vw;
+    height: 1vw;
+    border-radius: 50%;
+    background-color: rgba(35,35,35,0.8);
+}
+
+
+/* Style buttons */
+#buttons {
+    width: 100%;
+    text-align: center;
+}
+
+#buttons input {
+    background-color: rgb(255,255,255);
+    border: 0.1vw solid rgba(185,185,185,0.8);
+    font-family: 'Special Elite', cursive;
+    font-size: 2.5vw;
+    line-height: 6vw;
+    margin: 4vw 2vw;
+    padding: 0 2vw;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 600px) {
+    #buttons input {
+        margin: 12vw 2vw 4vw 2vw;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    #buttons input {
+        margin: 6vw 2vw 4vw 2vw;
+    }
+}
+
+#buttons input:hover {
+    background-color: rgba(185,185,185,0.8);
 }

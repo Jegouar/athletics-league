@@ -80,6 +80,7 @@
     text-decoration: none;
     color: rgba(255,235,235,0.8);
     margin-right: 3.5vw;
+    cursor: pointer;
 }
 
 /* Club numbers */

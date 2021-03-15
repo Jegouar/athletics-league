@@ -71,6 +71,7 @@ header {
 nav {
     width: 41vw;
     margin-top: 6vw;
+    cursor: pointer;
 }
 
 @media only screen and (min-width: 600px) {

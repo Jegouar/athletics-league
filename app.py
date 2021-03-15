@@ -88,7 +88,7 @@ def profile(username):
     clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    
+
     if session["user"]:
         return render_template(
             "profile.html", clubs=clubs, username=username)
@@ -143,10 +143,105 @@ def add_match():
             venue_postcode = "RG12 7NN"
             venue_latitude = 51.400788248114885
             venue_longitude = -0.7499129592775471
+        # Date compiler
+        match_date = request.form.get("match_season") + request.form.get("match_month") + request.form.get("match_monthday")
+        # Day of month for display compiler
+        if request.form.get("match_monthday") == "-01":
+            display_monthday = "1st"
+        elif request.form.get("match_monthday") == "-02":
+            display_monthday = "2nd"
+        elif request.form.get("match_monthday") == "-03":
+            display_monthday = "3rd"
+        elif request.form.get("match_monthday") == "-04":
+            display_monthday = "4th"
+        elif request.form.get("match_monthday") == "-05":
+            display_monthday = "5th"
+        elif request.form.get("match_monthday") == "-06":
+            display_monthday = "6th"
+        elif request.form.get("match_monthday") == "-07":
+            display_monthday = "7th"
+        elif request.form.get("match_monthday") == "-08":
+            display_monthday = "8th"
+        elif request.form.get("match_monthday") == "-09":
+            display_monthday = "9th"
+        elif request.form.get("match_monthday") == "-10":
+            display_monthday = "10th"
+        elif request.form.get("match_monthday") == "-11":
+            display_monthday = "11th"
+        elif request.form.get("match_monthday") == "-12":
+            display_monthday = "12th"
+        elif request.form.get("match_monthday") == "-13":
+            display_monthday = "13th"
+        elif request.form.get("match_monthday") == "-14":
+            display_monthday = "14th"
+        elif request.form.get("match_monthday") == "-15":
+            display_monthday = "15th"
+        elif request.form.get("match_monthday") == "-16":
+            display_monthday = "16th"
+        elif request.form.get("match_monthday") == "-17":
+            display_monthday = "17th"
+        elif request.form.get("match_monthday") == "-18":
+            display_monthday = "18th"
+        elif request.form.get("match_monthday") == "-19":
+            display_monthday = "19th"
+        elif request.form.get("match_monthday") == "-20":
+            display_monthday = "20th"
+        elif request.form.get("match_monthday") == "-21":
+            display_monthday = "21st"
+        elif request.form.get("match_monthday") == "-22":
+            display_monthday = "22nd"
+        elif request.form.get("match_monthday") == "-23":
+            display_monthday = "23rd"
+        elif request.form.get("match_monthday") == "-24":
+            display_monthday = "24th"
+        elif request.form.get("match_monthday") == "-25":
+            display_monthday = "25th"
+        elif request.form.get("match_monthday") == "-26":
+            display_monthday = "26th"
+        elif request.form.get("match_monthday") == "-27":
+            display_monthday = "27th"
+        elif request.form.get("match_monthday") == "-28":
+            display_monthday = "28th"
+        elif request.form.get("match_monthday") == "-29":
+            display_monthday = "29th"
+        elif request.form.get("match_monthday") == "-30":
+            display_monthday = "30th"
+        elif request.form.get("match_monthday") == "-31":
+            display_monthday = "31st"
+        # Month for display compiler
+        if request.form.get("match_month") == "-01":
+            display_month = "January"
+        elif request.form.get("match_month") == "-02":
+            display_month = "February"
+        elif request.form.get("match_month") == "-03":
+            display_month = "March"
+        elif request.form.get("match_month") == "-04":
+            display_month = "April"
+        elif request.form.get("match_month") == "-05":
+            display_month = "May"
+        elif request.form.get("match_month") == "-06":
+            display_month = "June"
+        elif request.form.get("match_month") == "-07":
+            display_month = "July"
+        elif request.form.get("match_month") == "-08":
+            display_month = "August"
+        elif request.form.get("match_month") == "-09":
+            display_month = "September"
+        elif request.form.get("match_month") == "-10":
+            display_month = "October"
+        elif request.form.get("match_month") == "-11":
+            display_month = "November"
+        elif request.form.get("match_month") == "-12":
+            display_month = "December"
         match = {
             "match_season": request.form.get("match_season"),
             "match_number": request.form.get("match_number"),
-            "match_date": request.form.get("match_date"),
+            "match_weekday": request.form.get("match_weekday"),
+            "match_monthday": request.form.get("match_monthday"),
+            "display_monthday": display_monthday,
+            "match_month": request.form.get("match_month"),
+            "display_month": display_month,
+            "match_date": match_date,
             "match_venue": request.form.get("match_venue"),
             "venue_address": venue_address,
             "venue_postcode": venue_postcode,

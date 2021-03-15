@@ -36,6 +36,7 @@ details summary, .add {
     text-align: center;
     color: rgba(235,235,235,0.2);
     text-shadow: rgba(205,155,105,0.8) -0.1vw 0, rgba(205,155,105,0.6) 0 -0.1vw, rgba(235,235,235,0.8) 0 0.1vw, rgba(205,155,105,0.6) -0.1vw -0.1vw;
+    cursor: pointer;
 }
 
 @media only screen and (min-width: 600px) {
@@ -81,4 +82,13 @@ details #board {
     border-image: url(/static/images/boardborder.jpg);
     border-image-repeat: round;
     border-image-slice: 10% fill;
+}
+
+.delete {
+    font-family: 'Roboto Slab', serif;
+    font-size: 3vw;
+    text-align: center;
+    transform: translateY(8vw);
+    color: rgba(235,235,235,0.2);
+    text-shadow: rgba(205,155,105,0.8) -0.1vw 0, rgba(205,155,105,0.6) 0 -0.1vw, rgba(235,235,235,0.8) 0 0.1vw, rgba(205,155,105,0.6) -0.1vw -0.1vw;
 }

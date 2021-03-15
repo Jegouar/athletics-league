@@ -7,10 +7,12 @@
     <details open>
         <summary>Add Match</summary>
         <div id="board">
-            <div id="matchform">
+            <div class="sheet">
                 <form id="add_match" autocomplete="off" method="POST" action="{{ url_for('add_match') }}">
-                    <div>
+                    <div id="seasonlabel">
                         <label for="match_season">Season:</label>
+                    </div>
+                    <div id="season" class="custom-select">
                         <select id="match_season" name="match_season" required>
                             <option value="" disabled selected>Choose year</option>
                             <option value="2012">2012</option>
@@ -24,25 +26,118 @@
                             <option value="2020">2020</option>
                             <option value="2021">2021</option>
                             <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
                         </select>
                     </div>
-                    <div>
+                    <div id="numberlabel">
                         <label for="match_number">Match number:</label>
-                        <input type="radio" id="one" name="match_number" value="1">
-                        <label for="one">1</label>
-                        <input type="radio" id="two" name="match_number" value="2">
-                        <label for="two">2</label>
-                        <input type="radio" id="three" name="match_number" value="3">
-                        <label for="three">3</label>
-                        <input type="radio" id="four" name="match_number" value="4">
-                        <label for="four">4</label>
                     </div>
-                    <div>
-                        <label for="match_date">Date:</label>
-                        <input type="date" id="match_date" name="match_date" required>
+                    <div id="number">
+                        <div class="radio">
+                            <label for="one" class="radiolabel">&emsp;1
+                                <input type="radio" id="one" name="match_number" value="1">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label for="two" class="radiolabel">&emsp;2
+                                <input type="radio" id="two" name="match_number" value="2">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label for="three" class="radiolabel">&emsp;3
+                                <input type="radio" id="three" name="match_number" value="3">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label for="four" class="radiolabel">&emsp;4
+                                <input type="radio" id="four" name="match_number" value="4">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
                     </div>
-                    <div>
-                        <label for="match_venue">Venue:</label>
+                    <div id="weekdaylabel">
+                        <label for="match_weekday">Weekday:</label>
+                    </div>
+                    <div id="weekday" class="custom-select">
+                        <select id="match_weekday" name="match_weekday" required>
+                            <option value="" disabled selected>Choose day</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                    <div id="monthdaylabel">
+                        <label for="match_monthday">Date:</label>
+                    </div>
+                    <div id="monthday" class="custom-select">
+                        <select id="match_monthday" name="match_monthday" required>
+                            <option value="" disabled selected>Choose date</option>
+                            <option value="-01">1st</option>
+                            <option value="-02">2nd</option>
+                            <option value="-03">3rd</option>
+                            <option value="-04">4th</option>
+                            <option value="-05">5th</option>
+                            <option value="-06">6th</option>
+                            <option value="-07">7th</option>
+                            <option value="-08">8th</option>
+                            <option value="-09">9th</option>
+                            <option value="-10">10th</option>
+                            <option value="-11">11th</option>
+                            <option value="-12">12th</option>
+                            <option value="-13">13th</option>
+                            <option value="-14">14th</option>
+                            <option value="-15">15th</option>
+                            <option value="-16">16th</option>
+                            <option value="-17">17th</option>
+                            <option value="-18">18th</option>
+                            <option value="-19">19th</option>
+                            <option value="-20">20th</option>
+                            <option value="-21">21st</option>
+                            <option value="-22">22nd</option>
+                            <option value="-23">23rd</option>
+                            <option value="-24">24th</option>
+                            <option value="-25">25th</option>
+                            <option value="-26">26th</option>
+                            <option value="-27">27th</option>
+                            <option value="-28">28th</option>
+                            <option value="-29">29th</option>
+                            <option value="-30">30th</option>
+                            <option value="-31">31st</option>
+                        </select>
+                    </div>
+                    <div id="monthlabel">
+                        <label for="match_month">Month:</label>
+                    </div>
+                    <div id="month" class="custom-select">
+                        <select id="match_month" name="match_month" required>
+                            <option value="" disabled selected>Choose month</option>
+                            <option value="-01">January</option>
+                            <option value="-02">February</option>
+                            <option value="-03">March</option>
+                            <option value="-04">April</option>
+                            <option value="-05">May</option>
+                            <option value="-06">June</option>
+                            <option value="-07">July</option>
+                            <option value="-08">August</option>
+                            <option value="-09">September</option>
+                            <option value="-10">October</option>
+                            <option value="-11">November</option>
+                            <option value="-12">December</option>
+                        </select>
+                    </div>
+                    <div id="venuelabel">
+                        <label for="match_venue">Venue:</label><br>
+                    </div>
+                    <div id="venue" class="custom-select">
                         <select id="match_venue" name="match_venue" required>
                             <option value="" disabled selected>Choose venue</option>
                             {% for venue in venues %}
@@ -58,5 +153,7 @@
             </div>
         </div>   
     </details>
+
+    <script src="{{ url_for('static', filename='scripts/select.js') }}"></script>
 
 {% endblock %}
