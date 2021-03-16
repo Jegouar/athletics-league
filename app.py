@@ -423,6 +423,13 @@ def edit_match(match_id):
     )
 
 
+@app.route("/delete_match/<match_id>")
+def delete_match(match_id):
+    mongo.db.matches.remove({"_id": ObjectId(match_id)})
+    flash("Match successfully deleted")
+    return redirect(url_for("matches"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

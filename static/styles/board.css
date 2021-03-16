@@ -89,6 +89,15 @@ details #board {
     font-size: 3vw;
     text-align: center;
     transform: translateY(8vw);
+    }
+
+.delete a {
+    text-decoration: none;
     color: rgba(235,235,235,0.2);
     text-shadow: rgba(205,155,105,0.8) -0.1vw 0, rgba(205,155,105,0.6) 0 -0.1vw, rgba(235,235,235,0.8) 0 0.1vw, rgba(205,155,105,0.6) -0.1vw -0.1vw;
+}
+
+.delete a:hover {
+    color: rgba(235,235,235,0.2);
+    text-shadow: rgba(35,35,35,0.4) -0.1vw 0, rgba(35,35,35,0.2) 0 -0.1vw, rgba(235,235,235,0.4) 0 0.1vw, rgba(35,35,35,0.2) -0.1vw -0.1vw;
 }

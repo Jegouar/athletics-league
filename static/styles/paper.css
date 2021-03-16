@@ -67,6 +67,11 @@
     box-shadow: 0 1vw 0.5vw 0 rgba(35,35,35,0.6);
 }
 
+.edit h3 a {
+    color: rgba(35,35,35,0.8);
+    text-decoration: none;
+}
+
 form {
     height: 60vw;
 }
