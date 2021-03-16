@@ -10,7 +10,7 @@
         </div>
     {% else %}
         <div class="add">
-            <p>Log in to add or edit matches</p>
+            <p>Log in below to add or edit matches</p>
         </div>
     {% endif %}
 
@@ -19,7 +19,7 @@
             <summary>{{ match.match_season }} Match {{ match.match_number }}</summary>
             <div id="board">
                 <div class="sheet" id="mapsheet{{ match.match_season }}{{ match.match_number }}">
-                    <h2>{{ match.match_weekday }} {{ match.display_monthday }} {{ match.display_month }}</h2>
+                    <h2>{{ match.match_weekday }} {{ match.match_monthday }} {{ match.match_month }}</h2>
                     <div>
                         <h2>{{ match.match_venue }}</h2>
                         <p>{{ match.venue_address }} {{ match.venue_postcode }}</p>
@@ -32,13 +32,15 @@
                         <div class="edit">
                             <h3><br><a href="{{ url_for('edit_match', match_id=match._id) }}">Edit match details</a></h3>
                         </div>
-                        {% endif %}
+                    {% endif %}
                     <p id="lat{{ match.match_season }}{{ match.match_number }}">{{ match.venue_latitude }}</p>
                     <p id="lng{{ match.match_season }}{{ match.match_number }}">{{ match.venue_longitude }}</p>
                 </div>
-                <div class="delete">
-                    <p>Delete match</p>
-                </div>
+                {% if session.user %}
+                    <div class="delete">
+                        <p>Delete match</p>
+                    </div>
+                {% endif %}
             </div>   
         </details>
     {% endfor %}

@@ -68,18 +68,18 @@
 }
 
 form {
-    height: 58vw;
+    height: 60vw;
 }
 
 @media only screen and (min-width: 600px) {
     form {
-        height: 73vw;
+        height: 75vw;
     }
 }
 
 @media only screen and (min-width: 900px) {
     form {
-        height: 67vw;
+        height: 69vw;
     }
 }
 
@@ -94,8 +94,12 @@ label {
     line-height: 6vw;
 }
 
-#seasonlabel, #season, #numberlabel, #number, #weekdaylabel, #weekday, #monthdaylabel, #monthday, #monthlabel, #month, #venuelabel, #venue {
+#seasonlabel, #season, #numberlabel, #number, #weekdaylabel, #weekday, #monthdaylabel, #monthday, #monthlabel, #month {
     height: 6vw;
+}
+
+#venuelabel, #venue {
+    height: 8vw;
 }
 
 @media only screen and (min-width: 600px) {
@@ -253,7 +257,7 @@ label {
     text-align: center;
 }
 
-#buttons input {
+#buttons input, #buttons a {
     background-color: rgb(255,255,255);
     border: 0.1vw solid rgba(185,185,185,0.8);
     font-family: 'Special Elite', cursive;
@@ -266,17 +270,22 @@ label {
 }
 
 @media only screen and (min-width: 600px) {
-    #buttons input {
+    #buttons input, #buttons a {
         margin: 12vw 2vw 4vw 2vw;
     }
 }
 
 @media only screen and (min-width: 900px) {
-    #buttons input {
+    #buttons input, #buttons a {
         margin: 6vw 2vw 4vw 2vw;
     }
 }
 
-#buttons input:hover {
+#buttons input:hover, #buttons a:hover {
     background-color: rgba(185,185,185,0.8);
+}
+
+#buttons a {
+    text-decoration: none;
+    padding: 1.75vw 2vw;
 }
