@@ -68,6 +68,9 @@
         <ul>
             {% for club in clubs %}
                 <li>
+                    {% if access == "full" %}
+                        <span class="button">Edit</span>
+                    {% endif %}
                     <a href="{{ club.club_website }}">{{ club.club_name }}</a>
                     <span>
                         <span class="astring">{{ club.club_number }}</span>

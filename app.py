@@ -24,7 +24,9 @@ mongo = PyMongo(app)
 @app.route("/welcome")
 def welcome():
     clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
-    return render_template("welcome.html", clubs=clubs)
+    access = mongo.db.users.find_one(
+        {"username": session["user"]})["access"]
+    return render_template("welcome.html", clubs=clubs, access=access)
 
 
 @app.route("/register", methods=["GET", "POST"])
