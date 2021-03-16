@@ -37,6 +37,11 @@ def register():
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
+        
+        if request.form.get("is_official") == "is_official" or request.form.get("is_administrator") == "is_administrator":
+            access = "full"
+        else:
+            access = "standard"
 
         register = {
             "username": request.form.get("username").lower(),
@@ -46,7 +51,8 @@ def register():
             "is_coach": request.form.get("is_coach"),
             "is_manager": request.form.get("is_manager"),
             "is_official": request.form.get("is_official"),
-            "is_administrator": request.form.get("is_administrator")
+            "is_administrator": request.form.get("is_administrator"),
+            "access": access
         }
         mongo.db.users.insert_one(register)
 
@@ -88,11 +94,32 @@ def profile(username):
     clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
+    club = mongo.db.users.find_one(
+        {"username": session["user"]})["club"]
+    is_athlete = mongo.db.users.find_one(
+        {"username": session["user"]})["is_athlete"]
+    is_coach = mongo.db.users.find_one(
+        {"username": session["user"]})["is_coach"]
+    is_manager = mongo.db.users.find_one(
+        {"username": session["user"]})["is_manager"]
+    is_official = mongo.db.users.find_one(
+        {"username": session["user"]})["is_official"]
+    is_administrator = mongo.db.users.find_one(
+        {"username": session["user"]})["is_administrator"]
 
     if session["user"]:
         return render_template(
-            "profile.html", clubs=clubs, username=username)
-    
+            "profile.html",
+            clubs=clubs,
+            username=username,
+            is_athlete=is_athlete,
+            is_coach=is_coach,
+            is_manager=is_manager,
+            is_official=is_official,
+            is_administrator=is_administrator,
+            club=club
+        )
+
     return redirect(url_for("login"))
 
 

@@ -14,10 +14,6 @@
                 <p>{{ username }}</p>
             </div>
             <div>
-                <label for="password">Password</label>
-                <p>{{ password }}</p>
-            </div>
-            <div>
                 <label for="club">Club</label>
                 <p>{{ club }}</p>
             </div>
@@ -27,26 +23,21 @@
                 <label for="roles">Roles</label>
             </div>
             <div id="right">
-                <label>Athlete
-                    <input type="checkbox" id="is_athlete" name="is_athlete" value="is_athlete" checked="checked">
-                    <span class="checkmark"></span>
-                </label>
-                <label>Coach
-                    <input type="checkbox" id="is_coach" name="is_coach" value="is_coach">
-                    <span class="checkmark"></span>
-                </label>
-                <label>Manager
-                    <input type="checkbox" id="is_manager" name="is_manager" value="is_manager">
-                    <span class="checkmark"></span>
-                    </label>
-                <label>Official
-                    <input type="checkbox" id="is_official" name="is_official" value="is_official">
-                    <span class="checkmark"></span>
-                </label>
-                <label>Administrator
-                    <input type="checkbox" id="is_administrator" name="is_administrator" value="is_administrator">
-                    <span class="checkmark"></span>
-                </label>
+                {% if is_athlete == "is_athlete" %}
+                    <label>Athlete</label>
+                {% endif %}
+                {% if is_coach == "is_coach" %}
+                    <label>Coach</label>
+                {% endif %}
+                {% if is_manager == "is_manager" %}
+                    <label>Manager</label>
+                {% endif %}
+                {% if is_official == "is_official" %}
+                    <label>Official</label>
+                {% endif %}
+                {% if is_administrator == "is_administrator" %}
+                    <label>Administrator</label>
+                {% endif %}
             </div>
         </div>
     </section>
