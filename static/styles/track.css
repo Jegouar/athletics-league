@@ -287,7 +287,7 @@
     }
 }
 
-#track ul li .button {
+#track ul li .button a {
     width: fit-content;
     padding: 0 1vw;
     display: inline-block;

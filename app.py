@@ -29,6 +29,23 @@ def welcome():
     return render_template("welcome.html", clubs=clubs, access=access)
 
 
+@app.route("/edit_club/<club_id>", methods=["GET", "POST"])
+def edit_club(club_id):
+    if request.method == "POST":
+        submit = {
+            "club_name": request.form.get("club_name"),
+            "club_number": request.form.get("club_number"),
+            "club_website": request.form.get("club_website"),
+            "club_status": request.form.get("club_status")
+        }
+        mongo.db.clubs.update({"_id": ObjectId(club_id)}, submit)
+        flash("Club information successfully updated")
+        return redirect(url_for("welcome"))
+
+    club = mongo.db.clubs.find_one({"_id": ObjectId(club_id)})
+    return render_template("edit_club.html", club=club)
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
