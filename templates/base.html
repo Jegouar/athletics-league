@@ -4,12 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/96276fa2dd.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/bricks.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/brass.css') }}" type="text/css">
     {% block styles %}
     {% endblock %}
-    <title>Athletics League</title>
+    <title>SCVAC League Western Division</title>
 </head>
 
 <body>
@@ -52,12 +51,21 @@
     </header>
 
     <nav>
-        <div class="brass">
-            <a href="{{ url_for('welcome') }}">Clubs</a>
-        </div>
-        <div class="brass">
-            <a href="{{ url_for('matches') }}">Matches</a>
-        </div>
+        {% if access == "full" %}
+            <div class="brass">
+                <a href="{{ url_for('clubs') }}">Clubs</a>
+            </div>
+            <div class="brass">
+                <a href="{{ url_for('matches') }}">Matches</a>
+            </div>  
+        {% else %}
+            <div class="brass">
+                <a href="{{ url_for('welcome') }}">Clubs</a>
+            </div>
+            <div class="brass">
+                <a href="{{ url_for('matches_display') }}">Matches</a>
+            </div>
+        {% endif %}
         <div class="brass">
             <a href="#">Declarations</a>
         </div>

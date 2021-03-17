@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/grass.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/track.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/concrete.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/noanimation.css') }}" type="text/css">
+    <title>Welcome to the Vets League!</title>
+</head>
+
+<body>
+    <header id="clear">
+        
+    </header>
+    <section id="track">
+        <ul>
+            {% for club in clubs %}
+                <li>
+                    <span class="button"><a href="{{ url_for('edit_club', club_id=club._id) }}">Edit</a></span>
+                    <a href="{{ club.club_website }}">{{ club.club_name }}</a>
+                    <span>
+                        <span class="astring">{{ club.club_number }}</span>
+                        <span class="bstring">{{ club.club_number }}{{ club.club_number }}</span>
+                        <span class="fifty">{{ club.club_number }}50</span>
+                        <span class="sixty">{{ club.club_number }}60</span>
+                    </span>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('matches') }}">Matches</a></li>
+            <li><a href="#">Declarations</a></li>
+            <li><a href="#">Results</a></li>
+            <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+        </ul>
+    </nav>
+    <section id="flash">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <h2>{{ message }}</h2>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
+
+    {% block content %}
+    {% endblock %}
+
+    <script src="{{ url_for('static', filename='scripts/numbers.js') }}"></script>
+    {% block scripts %}
+    {% endblock %}
+    
+</body>
+
+</html>

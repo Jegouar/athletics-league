@@ -742,3 +742,13 @@ svg {
         color: rgba(35,35,35,0.8);
     }
 }
+
+#clear {
+    height: 30vw;
+}
+
+@media only screen and (min-width: 600px) {
+    #clear {
+        height: 25vw;
+    }
+}

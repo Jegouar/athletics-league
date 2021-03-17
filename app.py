@@ -24,9 +24,15 @@ mongo = PyMongo(app)
 @app.route("/welcome")
 def welcome():
     clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
+    return render_template("welcome.html", clubs=clubs)
+
+
+@app.route("/clubs")
+def clubs():
+    clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
     access = mongo.db.users.find_one(
         {"username": session["user"]})["access"]
-    return render_template("welcome.html", clubs=clubs, access=access)
+    return render_template("clubs.html", clubs=clubs, access=access)
 
 
 @app.route("/edit_club/<club_id>", methods=["GET", "POST"])
@@ -40,7 +46,7 @@ def edit_club(club_id):
         }
         mongo.db.clubs.update({"_id": ObjectId(club_id)}, submit)
         flash("Club information successfully updated")
-        return redirect(url_for("welcome"))
+        return redirect(url_for("clubs"))
 
     club = mongo.db.clubs.find_one({"_id": ObjectId(club_id)})
     return render_template("edit_club.html", club=club)
@@ -125,6 +131,8 @@ def profile(username):
         {"username": session["user"]})["is_official"]
     is_administrator = mongo.db.users.find_one(
         {"username": session["user"]})["is_administrator"]
+    access = mongo.db.users.find_one(
+        {"username": session["user"]})["access"]
 
     if session["user"]:
         return render_template(
@@ -136,7 +144,8 @@ def profile(username):
             is_manager=is_manager,
             is_official=is_official,
             is_administrator=is_administrator,
-            club=club
+            club=club,
+            access=access
         )
 
     return redirect(url_for("login"))
@@ -149,10 +158,18 @@ def logout():
     return redirect(url_for("login"))
 
 
+@app.route("/matches_display")
+def matches_display():
+    matches = mongo.db.matches.find().sort("match_date", -1)
+    return render_template("matches_display.html", matches=matches)
+
+
 @app.route("/matches")
 def matches():
     matches = mongo.db.matches.find().sort("match_date", -1)
-    return render_template("matches.html", matches=matches)
+    access = mongo.db.users.find_one(
+        {"username": session["user"]})["access"]
+    return render_template("matches.html", matches=matches, access=access)
 
 
 @app.route("/add_match", methods=["GET", "POST"])
@@ -292,6 +309,7 @@ def add_match():
             "venue_latitude": venue_latitude,
             "venue_longitude": venue_longitude
         }
+        
         mongo.db.matches.insert_one(match)
         flash("Match successfully added")
         return redirect(url_for("matches"))

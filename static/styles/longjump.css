@@ -73,7 +73,6 @@
 
 @media only screen and (min-width: 600px) {
     #longjump input {
-        width: 47.5vw;
         font-size: 3vw;
         line-height: 6vw;
     }
@@ -136,24 +135,35 @@
 
 @media only screen and (min-width: 600px) {
     #longjump p {
-        width: 47.5vw;
         font-size: 3vw;
         line-height: 6vw;
     }
 }
 
-#roles div {
-    height: 33vw;
+#roles div, #status div {
     box-sizing: border-box;
     display: inline-block;
     line-height: 7.2vw;
 }
 
 @media only screen and (min-width: 600px) {
-    #roles div {
-        height: 40vw;
+    #roles div, #status div {
         line-height: 6vw;
     }
+}
+
+#roles div {
+    height: 33vw;
+}
+
+@media only screen and (min-width: 600px) {
+    #roles div {
+        height: 40vw;
+    }
+}
+
+#status div {
+    height: 20vw;
 }
 
 #left {
@@ -209,7 +219,6 @@
 
 @media only screen and (min-width: 600px) {
     #right {
-        width: 47.5vw;
         font-size: 3vw;
     }
 }

@@ -1,4 +1,4 @@
-{% extends "welcome.html" %}
+{% extends "clubs.html" %}
 {% block content %}
 
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/noanimation.css') }}" type="text/css">
@@ -12,35 +12,36 @@
             <div id="longjump">
                 <div>
                     <label for="club_name">Club name</label>
-                    <input type="text" id="club_name" name="club_name" required>
+                    <input type="text" id="club_name" name="club_name" value="{{ club.club_name }}" required>
                 </div>
                 <div>
                     <label for="club_number">Club number</label>
-                    <input type="text" id="club_number" name="club_number" required>
+                    <input type="text" id="club_number" name="club_number" value="{{ club.club_number }}" required>
                 </div>
                 <div>
                     <label for="club_website">Club website</label>
-                    <input type="text" id="club_website" name="club_website" required>
+                    <input type="text" id="club_website" name="club_website" value="{{ club.club_website }}" required>
                 </div>
             </div>
-            <div id="roles">
+            <div id="status">
                 <div id="left">
                     <label for="club_status">Club status</label>
-                    {% with messages = get_flashed_messages() %}
-                        {% if messages %}
-                            {% for message in messages %}
-                                <h2>{{ message }}</h2>
-                            {% endfor %}
-                        {% endif %}
-                    {% endwith %}
                 </div>
                 <div id="right">
                     <label>Active
-                        <input type="radio" id="active" name="club_status" value="active">
+                        {% if club.club_status == "active" %}
+                            <input type="radio" id="active" name="club_status" value="active" checked>
+                        {% else %}
+                            <input type="radio" id="active" name="club_status" value="active">
+                        {% endif %}
                         <span class="checkmark"></span>
                     </label>
                     <label>Inactive
-                        <input type="radio" id="inactive" name="club_status" value="inactive">
+                        {% if club.club_status == "inactive" %}
+                            <input type="radio" id="inactive" name="club_status" value="inactive" checked>
+                        {% else %}
+                            <input type="radio" id="inactive" name="club_status" value="inactive">
+                        {% endif %}
                         <span class="checkmark"></span>
                     </label>
                 </div>
