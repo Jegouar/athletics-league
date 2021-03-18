@@ -29,14 +29,18 @@ def welcome():
 
 @app.route("/clubs")
 def clubs():
-    clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
     access = mongo.db.users.find_one(
         {"username": session["user"]})["access"]
+    clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
     return render_template("clubs.html", clubs=clubs, access=access)
 
 
 @app.route("/edit_club/<club_id>", methods=["GET", "POST"])
 def edit_club(club_id):
+    access = mongo.db.users.find_one(
+        {"username": session["user"]})["access"]
+    club = mongo.db.clubs.find_one({"_id": ObjectId(club_id)})
+
     if request.method == "POST":
         submit = {
             "club_name": request.form.get("club_name"),
@@ -48,13 +52,11 @@ def edit_club(club_id):
         flash("Club information successfully updated")
         return redirect(url_for("clubs"))
 
-    club = mongo.db.clubs.find_one({"_id": ObjectId(club_id)})
-    return render_template("edit_club.html", club=club)
+    return render_template("edit_club.html", club=club, access=access)
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
@@ -85,12 +87,12 @@ def register():
         flash("Great, you are now registered!")
         return redirect(url_for("profile", username=session["user"]))
 
+    clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
     return render_template("register.html", clubs=clubs)
 
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
@@ -111,6 +113,7 @@ def login():
             flash("One or both of those aren't quite right")
             return redirect(url_for("login"))
 
+    clubs = mongo.db.clubs.find({"club_status": "active"}).sort("club_name")
     return render_template("login.html", clubs=clubs)
 
 
@@ -166,9 +169,9 @@ def matches_display():
 
 @app.route("/matches")
 def matches():
-    matches = mongo.db.matches.find().sort("match_date", -1)
     access = mongo.db.users.find_one(
         {"username": session["user"]})["access"]
+    matches = mongo.db.matches.find().sort("match_date", -1)
     return render_template("matches.html", matches=matches, access=access)
 
 
@@ -314,6 +317,8 @@ def add_match():
         flash("Match successfully added")
         return redirect(url_for("matches"))
 
+    access = mongo.db.users.find_one(
+        {"username": session["user"]})["access"]
     seasons = mongo.db.seasons.find().sort("season_year")
     weekdays = mongo.db.weekdays.find()
     monthdays = mongo.db.monthdays.find()
@@ -325,7 +330,8 @@ def add_match():
         weekdays=weekdays,
         monthdays=monthdays,
         months=months,
-        venues=venues
+        venues=venues,
+        access=access
     )
 
 
@@ -470,6 +476,8 @@ def edit_match(match_id):
         flash("Match successfully updated")
         return redirect(url_for("matches"))
 
+    access = mongo.db.users.find_one(
+        {"username": session["user"]})["access"]
     match = mongo.db.matches.find_one({"_id": ObjectId(match_id)})
     seasons = mongo.db.seasons.find().sort("season_year")
     weekdays = mongo.db.weekdays.find()
@@ -483,7 +491,8 @@ def edit_match(match_id):
         weekdays=weekdays,
         monthdays=monthdays,
         months=months,
-        venues=venues
+        venues=venues,
+        access=access
     )
 
 
@@ -527,6 +536,8 @@ def add_timetable():
         flash("Event successfully added")
         return redirect(url_for("add_timetable"))
 
+    access = mongo.db.users.find_one(
+        {"username": session["user"]})["access"]
     seasons = mongo.db.seasons.find().sort("season_year")
     timetable_hours = mongo.db.timetable_hours.find().sort("hour")
     timetable_minutes = mongo.db.timetable_minutes.find().sort("minute")
@@ -536,7 +547,8 @@ def add_timetable():
         seasons=seasons,
         timetable_hours=timetable_hours,
         timetable_minutes=timetable_minutes,
-        events=events
+        events=events,
+        access=access
     )
 
 

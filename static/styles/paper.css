@@ -72,21 +72,38 @@
     text-decoration: none;
 }
 
-form {
+#add_match, #edit_match {
     height: 60vw;
 }
 
 @media only screen and (min-width: 600px) {
-    form {
+    #add_match, #edit_match {
         height: 75vw;
     }
 }
 
 @media only screen and (min-width: 900px) {
-    form {
+    #add_match, #edit_match {
         height: 69vw;
     }
 }
+
+#add_timetable, #edit_timetable {
+    height: 69vw;
+}
+
+@media only screen and (min-width: 600px) {
+    #add_timetable, #edit_timetable {
+        height: 103vw;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    #add_timetable, #edit_timetable {
+        height: 84vw;
+    }
+}
+
 
 form > div {
     float: left;
@@ -99,7 +116,7 @@ label {
     line-height: 6vw;
 }
 
-#seasonlabel, #season, #numberlabel, #number, #weekdaylabel, #weekday, #monthdaylabel, #monthday, #monthlabel, #month {
+#seasonlabel, #season, #numberlabel, #number, #weekdaylabel, #weekday, #monthdaylabel, #monthday, #monthlabel, #month, #timelabel, #time, #hour, #minute {
     height: 6vw;
 }
 
@@ -113,7 +130,7 @@ label {
     }
 }
 
-#seasonlabel, #numberlabel, #weekdaylabel, #monthdaylabel, #monthlabel, #venuelabel {
+#seasonlabel, #numberlabel, #weekdaylabel, #monthdaylabel, #monthlabel, #venuelabel, #timelabel, #eventlabel {
     width: 40%;
 }
 
@@ -121,9 +138,12 @@ label {
     #numberlabel {
         width: 60%;
     }
+    #timelabel, #eventlabel {
+        width: 50%;
+    }
 }
 
-#season, #number, #weekday, #monthday, #month, #venue {
+#season, #number, #weekday, #monthday, #month, #venue, #time, #event {
     width: 60%;
 }
 
@@ -131,6 +151,22 @@ label {
     #number {
         width: 40%;
     }
+    #time, #event {
+        width: 50%;
+    }
+}
+
+#hour, #minute {
+    width: 50%;
+    float: left;
+}
+
+#categorieslabel, #categories {
+    width: 100%;
+}
+
+#categorieslabel {
+    height: 4vw;
 }
 
 .custom-select {
@@ -232,6 +268,10 @@ label {
     border-radius: 50%;
 }
 
+.square {
+    border-radius: 0;
+}
+
 .radiolabel:hover input ~ .checkmark {
     background-color: rgba(185,185,185,0.8);
 }
@@ -253,6 +293,27 @@ label {
     height: 1vw;
     border-radius: 50%;
     background-color: rgba(35,35,35,0.8);
+}
+
+.radiolabel .square:after {
+    border-radius: 0;
+}
+
+.checkbox {
+    width: 25%;
+    float: left;
+}
+
+@media only screen and (min-width: 600px) {
+    .checkbox {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .checkbox {
+        width: 33.3%;
+    }
 }
 
 
