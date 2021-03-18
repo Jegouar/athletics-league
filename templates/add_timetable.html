@@ -5,22 +5,59 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/paper.css') }}" type="text/css">
 
     <details open>
-        <summary>Events for {{ match.match_season }} Match {{ match.match_number }}</summary>
+        <summary>Enter events for timetable</summary>
         <div id="board">
             <div class="sheet">
                 <form id="add_timetable" autocomplete="off" method="POST" action="{{ url_for('add_timetable') }}">
+                    <div id="season" class="custom-select">
+                        <select id="match_season" name="match_season" required>
+                            <option value="" disabled>Choose year</option>
+                            {% for season in seasons %}
+                                <option value="{{ season.season_year }}">{{ season.season_year }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="numberlabel">
+                        <label for="match_number">Match number:</label>
+                    </div>
+                    <div id="number">
+                        <div class="radio">
+                            <label for="one" class="radiolabel">&emsp;1
+                                <input type="radio" id="one" name="match_number" value="1">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label for="two" class="radiolabel">&emsp;2
+                                <input type="radio" id="two" name="match_number" value="2">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label for="three" class="radiolabel">&emsp;3
+                                <input type="radio" id="three" name="match_number" value="3">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label for="four" class="radiolabel">&emsp;4
+                                <input type="radio" id="four" name="match_number" value="4">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
                     <div id="timelabel">
                         <label for="event_time">Event time:</label>
                     </div>
                     <div id="time" class="custom-select">
                         <select id="event_hour" name="event_hour" required>
-                            {% for hour in timetable_hours %}
-                                <option value="{{ timetable_hours.hour }}">{{ timetable_hours.hour }}</option>
+                            {% for timetable_hour in timetable_hours %}
+                                <option value="{{ timetable_hour.hour }}">{{ timetable_hour.hour }}</option>
                             {% endfor %}
                         </select>
                         <select id="event_minute" name="event_minute" required>
-                            {% for minute in timetable_minutes %}
-                                <option value="{{ timetable_minutes.minute }}">{{ timetable_minutes.minute }}</option>
+                            {% for timetable_minute in timetable_minutes %}
+                                <option value="{{ timetable_minute.minute }}">{{ timetable_minute.minute }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -30,12 +67,12 @@
                     <div id="event" class="custom-select">
                         <select id="event_name" name="event_name" required>
                             {% for event in events %}
-                                <option value="{{ events.event_name }}">{{ events.event_name }}</option>
+                                <option value="{{ event.event_name }}">{{ event.event_name }}</option>
                             {% endfor %}
                         </select>
                     </div>
                     <div id="categorieslabel">
-                        <label for="event_categories">Match number:</label>
+                        <label for="event_categories">Event categories:</label>
                     </div>
                     <div id="categories">
                         <div class="checkbox">

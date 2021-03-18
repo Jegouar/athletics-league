@@ -494,6 +494,52 @@ def delete_match(match_id):
     return redirect(url_for("matches"))
 
 
+@app.route("/add_timetable", methods=["GET", "POST"])
+def add_timetable():
+    if request.method == "POST":
+        # Time compiler
+        event_time = request.form.get("event_hour") + ":" + request.form.get("event_minute")
+        # Categories array compiler
+        event_categories = [
+            request.form.get("M35"),
+            request.form.get("M35A"),
+            request.form.get("M35B"),
+            request.form.get("M50"),
+            request.form.get("M60"),
+            request.form.get("MNS"),
+            request.form.get("W35"),
+            request.form.get("W35A"),
+            request.form.get("W35B"),
+            request.form.get("W50"),
+            request.form.get("W60"),
+            request.form.get("WNS"),
+        ]
+        # Remove null values
+        event_categories = list(filter(None,event_categories))
+        timetable_event = {
+            "match_season": request.form.get("match_season"),
+            "match_number": request.form.get("match_number"),
+            "event_time": event_time,
+            "event_name": request.form.get("event_name"),
+            "event_categories": event_categories
+        }
+        mongo.db.timetable_events.insert_one(timetable_event)
+        flash("Event successfully added")
+        return redirect(url_for("add_timetable"))
+
+    seasons = mongo.db.seasons.find().sort("season_year")
+    timetable_hours = mongo.db.timetable_hours.find().sort("hour")
+    timetable_minutes = mongo.db.timetable_minutes.find().sort("minute")
+    events = mongo.db.events.find().sort("event_name")
+    return render_template(
+        "add_timetable.html",
+        seasons=seasons,
+        timetable_hours=timetable_hours,
+        timetable_minutes=timetable_minutes,
+        events=events
+    )
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
