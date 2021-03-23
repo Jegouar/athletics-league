@@ -20,13 +20,17 @@
                     </div>
                     <div class="map" id="{{ match.match_season }}{{ match.match_number }}"></div>
                     <div class="postit" id="postit{{ match.match_season }}{{ match.match_number }}">
-                        <h2><a href="{{ url_for('add_timetable') }}">Add a<br>timetable</a></h2>
+                        <h2><a href="{{ url_for('add_timetable', match_id=match._id) }}">Add a<br>timetable</a></h2>
                     </div>
                     <div class="edit">
                         <h3><br><a href="{{ url_for('edit_match', match_id=match._id) }}">Edit match details</a></h3>
                     </div>
                     <p id="lat{{ match.match_season }}{{ match.match_number }}">{{ match.venue_latitude }}</p>
                     <p id="lng{{ match.match_season }}{{ match.match_number }}">{{ match.venue_longitude }}</p>
+                </div>
+                <div class="sheet">
+                    <h2>Timetable</h2>
+                    
                 </div>
                 <div class="delete">
                     <a href="{{ url_for('delete_match', match_id=match._id) }}">Delete match</a>

@@ -744,11 +744,11 @@ svg {
 }
 
 #clear {
-    height: 30vw;
+    height: 20vw;
 }
 
 @media only screen and (min-width: 600px) {
     #clear {
-        height: 25vw;
+        height: 10vw;
     }
 }

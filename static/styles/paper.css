@@ -67,6 +67,10 @@
     box-shadow: 0 1vw 0.5vw 0 rgba(35,35,35,0.6);
 }
 
+.postit a {
+    text-decoration: none;
+}
+
 .edit h3 a {
     color: rgba(35,35,35,0.8);
     text-decoration: none;
@@ -89,23 +93,27 @@
 }
 
 #add_timetable, #edit_timetable {
-    height: 69vw;
+    height: 73vw;
 }
 
 @media only screen and (min-width: 600px) {
     #add_timetable, #edit_timetable {
-        height: 103vw;
+        height: 96vw;
     }
 }
 
 @media only screen and (min-width: 900px) {
     #add_timetable, #edit_timetable {
-        height: 84vw;
+        height: 90vw;
     }
 }
 
-
 form > div {
+    float: left;
+    margin-bottom: 2vw;
+}
+
+form section > div {
     float: left;
     margin-bottom: 2vw;
 }
@@ -116,11 +124,11 @@ label {
     line-height: 6vw;
 }
 
-#seasonlabel, #season, #numberlabel, #number, #weekdaylabel, #weekday, #monthdaylabel, #monthday, #monthlabel, #month, #timelabel, #time, #hour, #minute {
+#seasonlabel, #season, #numberlabel, #number, #weekdaylabel, #weekday, #monthdaylabel, #monthday, #monthlabel, #month, .timelabel, .time, .hour, .minute {
     height: 6vw;
 }
 
-#venuelabel, #venue {
+#venuelabel, #venue, .pagelabel {
     height: 8vw;
 }
 
@@ -130,7 +138,7 @@ label {
     }
 }
 
-#seasonlabel, #numberlabel, #weekdaylabel, #monthdaylabel, #monthlabel, #venuelabel, #timelabel, #eventlabel {
+#seasonlabel, #numberlabel, #weekdaylabel, #monthdaylabel, #monthlabel, #venuelabel, .timelabel, .eventlabel {
     width: 40%;
 }
 
@@ -138,12 +146,12 @@ label {
     #numberlabel {
         width: 60%;
     }
-    #timelabel, #eventlabel {
+    .timelabel, .eventlabel {
         width: 50%;
     }
 }
 
-#season, #number, #weekday, #monthday, #month, #venue, #time, #event {
+#season, #number, #weekday, #monthday, #month, #venue, .time, .event {
     width: 60%;
 }
 
@@ -151,22 +159,28 @@ label {
     #number {
         width: 40%;
     }
-    #time, #event {
+    .time, .event {
         width: 50%;
     }
 }
 
-#hour, #minute {
+.hour, .minute {
     width: 50%;
     float: left;
 }
 
-#categorieslabel, #categories {
+
+.categorieslabel, .categories, .pagelabel {
     width: 100%;
 }
 
-#categorieslabel {
+.categorieslabel {
     height: 4vw;
+}
+
+.pagelabel label {
+    font-size: 3vw;
+    line-height: 3vw;
 }
 
 .custom-select {
@@ -176,7 +190,7 @@ label {
     font-size: 4vw;
     line-height: 6vw;
     color: rgba(35,35,35,0.8);
-    width: 60%;
+    width: 100%;
 }
 
 .custom-select select {
@@ -268,11 +282,21 @@ label {
     border-radius: 50%;
 }
 
-.square {
-    border-radius: 0;
+.squarecheckmark {
+    position: absolute;
+    top: 1vw;
+    left: 0;
+    width: 3vw;
+    height: 3vw;
+    background-color: rgb(255,255,255);
+    border: 0.1vw solid rgba(185,185,185,0.8);
 }
 
 .radiolabel:hover input ~ .checkmark {
+    background-color: rgba(185,185,185,0.8);
+}
+
+.radiolabel:hover input ~ .squarecheckmark {
     background-color: rgba(185,185,185,0.8);
 }
 
@@ -282,7 +306,17 @@ label {
     display: none;
 }
 
+.squarecheckmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
 .radiolabel input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.radiolabel input:checked ~ .squarecheckmark:after {
     display: block;
 }
 
@@ -295,8 +329,12 @@ label {
     background-color: rgba(35,35,35,0.8);
 }
 
-.radiolabel .square:after {
-    border-radius: 0;
+.radiolabel .squarecheckmark:after {
+    top: 1vw;
+    left: 1vw;
+    width: 1vw;
+    height: 1vw;
+    background-color: rgba(35,35,35,0.8);
 }
 
 .checkbox {
@@ -316,11 +354,31 @@ label {
     }
 }
 
+.categories {
+    margin-bottom: 10vw;
+}
+
+@media only screen and (min-width: 600px) {
+    .categories {
+        margin-bottom: -2vw;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .categories {
+        margin-bottom: 10vw;
+    }
+}
+
 
 /* Style buttons */
 #buttons {
     width: 100%;
     text-align: center;
+}
+
+#buttons div {
+    display: inline-block;
 }
 
 #buttons input, #buttons a {
@@ -355,3 +413,30 @@ label {
     text-decoration: none;
     padding: 1.75vw 2vw;
 }
+
+#buttons div input, #buttons div a {
+    margin: 2vw 1vw 0 1vw;
+}
+
+#progress {
+    margin-top: 6vw;
+}
+
+@media only screen and (min-width: 600px) {
+    #progress {
+        margin-top: 12vw;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    #progress {
+        margin-top: 6vw;
+    }
+}
+
+
+/* Hide all steps by default: */
+.tab {
+    display: none;
+}
+

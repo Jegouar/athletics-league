@@ -5,160 +5,484 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/paper.css') }}" type="text/css">
 
     <details open>
-        <summary>Enter events for timetable</summary>
+        <summary>Add events for {{ match.match_season }} Match {{ match.match_number }}</summary>
         <div id="board">
             <div class="sheet">
-                <form id="add_timetable" autocomplete="off" method="POST" action="{{ url_for('add_timetable') }}">
-                    <div id="seasonlabel">
-                        <label for="match_season">Season:</label>
-                    </div>
-                    <div id="season" class="custom-select">
-                        <select id="match_season" name="match_season" required>
-                            <option value="" disabled>Choose year</option>
-                            {% for season in seasons %}
-                                <option value="{{ season.season_year }}">{{ season.season_year }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="numberlabel">
-                        <label for="match_number">Match number:</label>
-                    </div>
-                    <div id="number">
-                        <div class="radio">
-                            <label for="one" class="radiolabel">&emsp;1
-                                <input type="radio" id="one" name="match_number" value="1">
-                                <span class="checkmark"></span>
-                            </label>
+                <form id="add_timetable" autocomplete="off" method="POST" action="{{ url_for('add_timetable', match_id=match._id) }}">
+                    
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Check the match details</label>
                         </div>
-                        <div class="radio">
-                            <label for="two" class="radiolabel">&emsp;2
-                                <input type="radio" id="two" name="match_number" value="2">
-                                <span class="checkmark"></span>
-                            </label>
+                        <div id="seasonlabel">
+                            <label for="match_season">Season:</label>
                         </div>
-                        <div class="radio">
-                            <label for="three" class="radiolabel">&emsp;3
-                                <input type="radio" id="three" name="match_number" value="3">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label for="four" class="radiolabel">&emsp;4
-                                <input type="radio" id="four" name="match_number" value="4">
-                                <span class="checkmark"></span>
-                            </label>
-                        </div>
-                    </div>
-                    <div id="timelabel">
-                        <label for="event_time">Event time:</label>
-                    </div>
-                    <div id="time">
-                        <div id="hour" class="custom-select">
-                            <select id="event_hour" name="event_hour" required>
-                                {% for timetable_hour in timetable_hours %}
-                                    <option value="{{ timetable_hour.hour }}">{{ timetable_hour.hour }}</option>
+                        <div id="season" class="custom-select">
+                            <select id="match_season" name="match_season" required>
+                                <option value="" disabled>Choose year</option>
+                                {% for season in seasons %}
+                                    {% if season.season_year == match.match_season %}
+                                        <option value="{{ season.season_year }}" selected>{{ season.season_year }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>
-                        <div id="minute" class="custom-select">
-                            <select id="event_minute" name="event_minute" required>
-                                {% for timetable_minute in timetable_minutes %}
-                                    <option value="{{ timetable_minute.minute }}">{{ timetable_minute.minute }}</option>
+                        <div id="numberlabel">
+                            <label for="match_number">Match number:</label>
+                        </div>
+                        <div id="number">
+                            <div class="radio">
+                                <label for="one" class="radiolabel">&emsp;1
+                                    {% if match.match_number == "1" %}
+                                        <input type="radio" id="one" name="match_number" value="1" checked>
+                                    {% endif %}
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="two" class="radiolabel">&emsp;2
+                                    {% if match.match_number == "2" %}
+                                        <input type="radio" id="two" name="match_number" value="2" checked>
+                                    {% endif %}
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="three" class="radiolabel">&emsp;3
+                                    {% if match.match_number == "3" %}
+                                        <input type="radio" id="three" name="match_number" value="3" checked>
+                                    {% endif %}
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="four" class="radiolabel">&emsp;4
+                                    {% if match.match_number == "3" %}
+                                        <input type="radio" id="four" name="match_number" value="4" checked>
+                                    {% endif %}
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div id="weekdaylabel">
+                            <label for="match_weekday">Weekday:</label>
+                        </div>
+                        <div id="weekday" class="custom-select">
+                            <select id="match_weekday" name="match_weekday" required>
+                                <option value="" disabled>Choose day</option>
+                                {% for weekday in weekdays %}
+                                    {% if weekday.weekday_name == match.match_weekday %}
+                                        <option value="{{ weekday.weekday_name }}" selected>{{ weekday.weekday_name }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select>
                         </div>
-                    </div>
-                    <div id="eventlabel">
-                        <label for="event_name">Event name:</label>
-                    </div>
-                    <div id="event" class="custom-select">
-                        <select id="event_name" name="event_name" required>
-                            {% for event in events %}
-                                <option value="{{ event.event_name }}">{{ event.event_name }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div id="categorieslabel">
-                        <label for="event_categories">Event categories:</label>
-                    </div>
-                    <div id="categories">
-                        <div class="checkbox">
-                            <label for="M35" class="radiolabel">&emsp;M35
-                                <input type="checkbox" id="M35" name="M35" value="M35">
-                                <span class="checkmark square"></span>
-                            </label>
+                        <div id="monthdaylabel">
+                            <label for="match_monthday">Date:</label>
                         </div>
-                        <div class="checkbox">
-                            <label for="M35A" class="radiolabel">&emsp;M35 A
-                                <input type="checkbox" id="M35A" name="M35A" value="M35 A">
-                                <span class="checkmark square"></span>
-                            </label>
+                        <div id="monthday" class="custom-select">
+                            <select id="match_monthday" name="match_monthday" required>
+                                <option value="" disabled>Choose date</option>
+                                {% for monthday in monthdays %}
+                                    {% if monthday.monthday_name == match.match_monthday %}
+                                        <option value="{{ monthday.monthday_name }}" selected>{{ monthday.monthday_name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
                         </div>
-                        <div class="checkbox">
-                            <label for="M35B" class="radiolabel">&emsp;M35 B
-                                <input type="checkbox" id="M35B" name="M35B" value="M35 B">
-                                <span class="checkmark square"></span>
-                            </label>
+                        <div id="monthlabel">
+                            <label for="match_month">Month:</label>
                         </div>
-                        <div class="checkbox">
-                            <label for="M50" class="radiolabel">&emsp;M50
-                                <input type="checkbox" id="M50" name="M50" value="M50">
-                                <span class="checkmark square"></span>
-                            </label>
+                        <div id="month" class="custom-select">
+                            <select id="match_month" name="match_month" required>
+                                <option value="" disabled>Choose month</option>
+                                {% for month in months %}
+                                    {% if month.month_name == match.match_month %}
+                                        <option value="{{ month.month_name }}" selected>{{ month.month_name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
                         </div>
-                        <div class="checkbox">
-                            <label for="M60" class="radiolabel">&emsp;M60
-                                <input type="checkbox" id="M60" name="M60" value="M60">
-                                <span class="checkmark square"></span>
-                            </label>
+                        <div id="venuelabel">
+                            <label for="match_venue">Venue:</label><br>
                         </div>
-                        <div class="checkbox">
-                            <label for="MNS" class="radiolabel">&emsp;M NS
-                                <input type="checkbox" id="MNS" name="MNS" value="M NS">
-                                <span class="checkmark square"></span>
-                            </label>
+                        <div id="venue" class="custom-select">
+                            <select id="match_venue" name="match_venue" required>
+                                <option value="" disabled>Choose venue</option>
+                                {% for venue in venues %}
+                                    {% if venue.venue_name == match.match_venue %}
+                                        <option value="{{ venue.venue_name }}" selected>{{ venue.venue_name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
                         </div>
-                        <div class="checkbox">
-                            <label for="W35" class="radiolabel">&emsp;W35
-                                <input type="checkbox" id="W35" name="W35" value="W35">
-                                <span class="checkmark square"></span>
-                            </label>
+                    </section>
+
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Add the first event</label>
                         </div>
-                        <div class="checkbox">
-                            <label for="W35A" class="radiolabel">&emsp;W35 A
-                                <input type="checkbox" id="W35A" name="W35A" value="W35 A">
-                                <span class="checkmark square"></span>
-                            </label>
+                        <div class="timelabel">
+                            <label for="event_time01">Event time:</label>
                         </div>
-                        <div class="checkbox">
-                            <label for="W35B" class="radiolabel">&emsp;W35 B
-                                <input type="checkbox" id="W35B" name="W35B" value="W35 B">
-                                <span class="checkmark square"></span>
-                            </label>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="event_hour01" required>
+                                        {% for timetable_hour in timetable_hours %}
+                                            <option value="{{ timetable_hour.hour }}">{{ timetable_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="event_minute01" required>
+                                        {% for timetable_minute in timetable_minutes %}
+                                            <option value="{{ timetable_minute.minute }}">{{ timetable_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="checkbox">
-                            <label for="W50" class="radiolabel">&emsp;W50
-                                <input type="checkbox" id="W50" name="W50" value="W50">
-                                <span class="checkmark square"></span>
-                            </label>
+                        <div class="eventlabel">
+                            <label for="event_name01">Event name:</label>
                         </div>
-                        <div class="checkbox">
-                            <label for="W60" class="radiolabel">&emsp;W60
-                                <input type="checkbox" id="W60" name="W60" value="W60">
-                                <span class="checkmark square"></span>
-                            </label>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="event_name01" required>
+                                    {% for event in events %}
+                                        <option value="{{ event.event_name }}">{{ event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                         </div>
-                        <div class="checkbox">
-                            <label for="WNS" class="radiolabel">&emsp;W NS
-                                <input type="checkbox" id="WNS" name="WNS" value="W NS">
-                                <span class="checkmark square"></span>
-                            </label>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
                         </div>
-                    </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="M3501" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="M3501" name="M3501" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="M35A01" class="radiolabel">&emsp;M35 A
+                                    <input type="checkbox" id="M35A01" name="M35A01" value="M35 A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="M35B01" class="radiolabel">&emsp;M35 B
+                                    <input type="checkbox" id="M35B01" name="M35B01" value="M35 B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="M5001" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="M5001" name="M5001" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="M6001" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="M6001" name="M6001" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="MNS01" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="MNS01" name="MNS01" value="M NS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="W3501" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="W3501" name="W3501" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="W35A01" class="radiolabel">&emsp;W35 A
+                                    <input type="checkbox" id="W35A01" name="W35A01" value="W35 A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="W35B01" class="radiolabel">&emsp;W35 B
+                                    <input type="checkbox" id="W35B01" name="W35B01" value="W35 B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="W5001" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="W5001" name="W5001" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="W6001" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="W6001" name="W6001" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="WNS01" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="WNS01" name="WNS01" value="W NS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Add the second event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="event_time02">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="event_hour02" required>
+                                        {% for timetable_hour in timetable_hours %}
+                                            <option value="{{ timetable_hour.hour }}">{{ timetable_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="event_minute02" required>
+                                        {% for timetable_minute in timetable_minutes %}
+                                            <option value="{{ timetable_minute.minute }}">{{ timetable_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="event_name02">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="event_name02" required>
+                                    {% for event in events %}
+                                        <option value="{{ event.event_name }}">{{ event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories02">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="M3502" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="M3502" name="M3502" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="M35A02" class="radiolabel">&emsp;M35 A
+                                    <input type="checkbox" id="M35A02" name="M35A02" value="M35 A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="M35B02" class="radiolabel">&emsp;M35 B
+                                    <input type="checkbox" id="M35B02" name="M35B02" value="M35 B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="M5002" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="M5002" name="M5002" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="M6002" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="M6002" name="M6002" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="MNS02" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="MNS02" name="MNS02" value="M NS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="W3502" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="W3502" name="W3502" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="W35A02" class="radiolabel">&emsp;W35 A
+                                    <input type="checkbox" id="W35A02" name="W35A02" value="W35 A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="W35B02" class="radiolabel">&emsp;W35 B
+                                    <input type="checkbox" id="W35B02" name="W35B02" value="W35 B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="W5002" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="W5002" name="W5001" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="W6002" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="W6002" name="W6002" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="WNS02" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="WNS02" name="WNS02" value="W NS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Add the third event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="event_time03">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="event_hour03" required>
+                                        {% for timetable_hour in timetable_hours %}
+                                            <option value="{{ timetable_hour.hour }}">{{ timetable_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="event_minute03" required>
+                                        {% for timetable_minute in timetable_minutes %}
+                                            <option value="{{ timetable_minute.minute }}">{{ timetable_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="event_name03">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="event_name03" required>
+                                    {% for event in events %}
+                                        <option value="{{ event.event_name }}">{{ event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories03">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="M3503" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="M3503" name="M3503" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="M35A03" class="radiolabel">&emsp;M35 A
+                                    <input type="checkbox" id="M35A03" name="M35A03" value="M35 A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="M35B03" class="radiolabel">&emsp;M35 B
+                                    <input type="checkbox" id="M35B03" name="M35B03" value="M35 B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="M5003" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="M5003" name="M5003" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="M6003" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="M6003" name="M6003" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="MNS03" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="MNS03" name="MNS03" value="M NS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="W3503" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="W3503" name="W3503" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="W35A03" class="radiolabel">&emsp;W35 A
+                                    <input type="checkbox" id="W35A03" name="W35A03" value="W35 A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="W35B03" class="radiolabel">&emsp;W35 B
+                                    <input type="checkbox" id="W35B03" name="W35B03" value="W35 B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="W5003" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="W5003" name="W5003" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="W6003" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="W6003" name="W6003" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="WNS03" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="WNS03" name="WNS03" value="W NS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+                    
                     <div id="buttons">
-                        <a href="{{ url_for('matches') }}">Cancel</a>
-                        <input type="submit" value="Add Event">
+                        <div id="progress">
+                            <input type="button" id="previous" value="Go back" onclick="sequence(-1)">
+                            <input type="button" id="next" value="Go on" onclick="sequence(1)">
+                        </div>
+                        <div id="commit">
+                            <a href="{{ url_for('matches') }}">Cancel</a>
+                            <input type="submit" value="Submit">
+                        </div>
                     </div>
+                    
                 </form>
             </div>
         </div>   
@@ -166,5 +490,6 @@
 
     <script src="{{ url_for('static', filename='scripts/select.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/sheet.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/timetable.js') }}"></script>
 
 {% endblock %}
