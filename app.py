@@ -64,8 +64,10 @@ def register():
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
-        
-        if request.form.get("is_official") == "is_official" or request.form.get("is_administrator") == "is_administrator":
+
+        if request.form.get(
+            "is_official") == "is_official" or request.form.get(
+                "is_administrator") == "is_administrator":
             access = "full"
         else:
             access = "standard"
@@ -100,11 +102,11 @@ def login():
         if existing_user:
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    flash("Welcome, {}".format(
-                        request.form.get("username")))
-                    return redirect(url_for(
-                        "profile", username=session["user"]))
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(
+                    request.form.get("username")))
+                return redirect(url_for(
+                    "profile", username=session["user"]))
             else:
                 flash("One or both of those aren't quite right")
                 return redirect(url_for("login"))
@@ -164,11 +166,9 @@ def logout():
 @app.route("/matches_display")
 def matches_display():
     matches = mongo.db.matches.find().sort("match_date", -1)
-    timetable_events = mongo.db.timetable_events.find().sort("event_time")
     return render_template(
         "matches_display.html",
-        matches=matches,
-        timetable_events=timetable_events
+        matches=matches
     )
 
 
@@ -177,11 +177,9 @@ def matches():
     access = mongo.db.users.find_one(
         {"username": session["user"]})["access"]
     matches = mongo.db.matches.find().sort("match_date", -1)
-    timetable_events = mongo.db.timetable_events.find().sort("event_time")
     return render_template(
         "matches.html",
         matches=matches,
-        timetable_events=timetable_events,
         access=access
     )
 
@@ -195,7 +193,8 @@ def add_match():
             venue_postcode = "OX14 1PU"
             venue_latitude = 51.68851413424184
             venue_longitude = -1.2844304304305583
-        elif request.form.get("match_venue") == "Horspath Athletics and Sports Ground":
+        elif request.form.get(
+            "match_venue") == "Horspath Athletics and Sports Ground":
             venue_address = "Horspath Road, Oxford, Oxfordshire"
             venue_postcode = "OX4 2RR"
             venue_latitude = 51.7375972575029
@@ -210,7 +209,8 @@ def add_match():
             venue_postcode = "SN1 2QA"
             venue_latitude = 51.56697977134897
             venue_longitude = -1.76940873043505
-        elif request.form.get("match_venue") == "Crookham Common Athletics Track":
+        elif request.form.get(
+            "match_venue") == "Crookham Common Athletics Track":
             venue_address = "Thatcham, Berkshire"
             venue_postcode = "RG19 8ET"
             venue_latitude = 51.380717539827984
@@ -309,7 +309,8 @@ def add_match():
         elif request.form.get("match_month") == "December":
             numeric_month = "-12"
         # Date compiler
-        match_date = request.form.get("match_season") + numeric_month + numeric_monthday
+        match_date = request.form.get(
+            "match_season") + numeric_month + numeric_monthday
         match = {
             "match_season": request.form.get("match_season"),
             "match_number": request.form.get("match_number"),
@@ -323,7 +324,7 @@ def add_match():
             "venue_latitude": venue_latitude,
             "venue_longitude": venue_longitude
         }
-        
+
         mongo.db.matches.insert_one(match)
         flash("Match successfully added")
         return redirect(url_for("matches"))
@@ -355,7 +356,8 @@ def edit_match(match_id):
             venue_postcode = "OX14 1PU"
             venue_latitude = 51.68851413424184
             venue_longitude = -1.2844304304305583
-        elif request.form.get("match_venue") == "Horspath Athletics and Sports Ground":
+        elif request.form.get(
+            "match_venue") == "Horspath Athletics and Sports Ground":
             venue_address = "Horspath Road, Oxford, Oxfordshire"
             venue_postcode = "OX4 2RR"
             venue_latitude = 51.7375972575029
@@ -370,7 +372,8 @@ def edit_match(match_id):
             venue_postcode = "SN1 2QA"
             venue_latitude = 51.56697977134897
             venue_longitude = -1.76940873043505
-        elif request.form.get("match_venue") == "Crookham Common Athletics Track":
+        elif request.form.get(
+            "match_venue") == "Crookham Common Athletics Track":
             venue_address = "Thatcham, Berkshire"
             venue_postcode = "RG19 8ET"
             venue_latitude = 51.380717539827984
@@ -469,7 +472,8 @@ def edit_match(match_id):
         elif request.form.get("match_month") == "December":
             numeric_month = "-12"
         # Date compiler
-        match_date = request.form.get("match_season") + numeric_month + numeric_monthday
+        match_date = request.form.get(
+            "match_season") + numeric_month + numeric_monthday
         submit = {
             "match_season": request.form.get("match_season"),
             "match_number": request.form.get("match_number"),
@@ -523,7 +527,8 @@ def add_timetable(match_id):
             venue_postcode = "OX14 1PU"
             venue_latitude = 51.68851413424184
             venue_longitude = -1.2844304304305583
-        elif request.form.get("match_venue") == "Horspath Athletics and Sports Ground":
+        elif request.form.get(
+            "match_venue") == "Horspath Athletics and Sports Ground":
             venue_address = "Horspath Road, Oxford, Oxfordshire"
             venue_postcode = "OX4 2RR"
             venue_latitude = 51.7375972575029
@@ -538,7 +543,8 @@ def add_timetable(match_id):
             venue_postcode = "SN1 2QA"
             venue_latitude = 51.56697977134897
             venue_longitude = -1.76940873043505
-        elif request.form.get("match_venue") == "Crookham Common Athletics Track":
+        elif request.form.get(
+            "match_venue") == "Crookham Common Athletics Track":
             venue_address = "Thatcham, Berkshire"
             venue_postcode = "RG19 8ET"
             venue_latitude = 51.380717539827984
@@ -637,413 +643,454 @@ def add_timetable(match_id):
         elif request.form.get("match_month") == "December":
             numeric_month = "-12"
         # Date compiler
-        match_date = request.form.get("match_season") + numeric_month + numeric_monthday
+        match_date = request.form.get(
+            "match_season") + numeric_month + numeric_monthday
         # Time compiler
-        event_time01 = request.form.get("event_hour01") + ":" + request.form.get("event_minute01")
-        event_time02 = request.form.get("event_hour02") + ":" + request.form.get("event_minute02")
-        event_time03 = request.form.get("event_hour03") + ":" + request.form.get("event_minute03")
-        event_time04 = request.form.get("event_hour04") + ":" + request.form.get("event_minute04")
-        event_time05 = request.form.get("event_hour05") + ":" + request.form.get("event_minute05")
-        event_time06 = request.form.get("event_hour06") + ":" + request.form.get("event_minute06")
-        event_time07 = request.form.get("event_hour07") + ":" + request.form.get("event_minute07")
-        event_time08 = request.form.get("event_hour08") + ":" + request.form.get("event_minute08")
-        event_time09 = request.form.get("event_hour09") + ":" + request.form.get("event_minute09")
-        event_time10 = request.form.get("event_hour10") + ":" + request.form.get("event_minute10")
-        event_time11 = request.form.get("event_hour11") + ":" + request.form.get("event_minute11")
-        event_time12 = request.form.get("event_hour12") + ":" + request.form.get("event_minute12")
-        event_time13 = request.form.get("event_hour13") + ":" + request.form.get("event_minute13")
-        event_time14 = request.form.get("event_hour14") + ":" + request.form.get("event_minute14")
-        event_time15 = request.form.get("event_hour15") + ":" + request.form.get("event_minute15")
-        event_time16 = request.form.get("event_hour16") + ":" + request.form.get("event_minute16")
-        event_time17 = request.form.get("event_hour17") + ":" + request.form.get("event_minute17")
-        event_time18 = request.form.get("event_hour18") + ":" + request.form.get("event_minute18")
+        first_sprint_time = request.form.get(
+            "first_sprint_hour") + ":" + request.form.get(
+                "first_sprint_minute")
+        second_sprint_time = request.form.get(
+            "second_sprint_hour") + ":" + request.form.get(
+                "second_sprint_minute")
+        third_sprint_time = request.form.get(
+            "third_sprint_hour") + ":" + request.form.get(
+                "third_sprint_minute")
+        fourth_sprint_time = request.form.get(
+            "fourth_sprint_hour") + ":" + request.form.get(
+                "fourth_sprint_minute")
+        first_middle_time = request.form.get(
+            "first_middle_hour") + ":" + request.form.get(
+                "first_middle_minute")
+        second_middle_time = request.form.get(
+            "second_middle_hour") + ":" + request.form.get(
+                "second_middle_minute")
+        first_distance_time = request.form.get(
+            "first_distance_hour") + ":" + request.form.get(
+                "first_distance_minute")
+        second_distance_time = request.form.get(
+            "second_distance_hour") + ":" + request.form.get(
+                "second_distance_minute")
+        third_distance_time = request.form.get(
+            "third_distance_hour") + ":" + request.form.get(
+                "third_distance_minute")
+        fourth_distance_time = request.form.get(
+            "fourth_distance_hour") + ":" + request.form.get(
+                "fourth_distance_minute")
+        first_relay_time = request.form.get(
+            "first_relay_hour") + ":" + request.form.get(
+                "first_relay_minute")
+        second_relay_time = request.form.get(
+            "second_relay_hour") + ":" + request.form.get(
+                "second_relay_minute")
+        first_jump_time = request.form.get(
+            "first_jump_hour") + ":" + request.form.get(
+                "first_jump_minute")
+        second_jump_time = request.form.get(
+            "second_jump_hour") + ":" + request.form.get(
+                "second_jump_minute")
+        third_jump_time = request.form.get(
+            "third_jump_hour") + ":" + request.form.get(
+                "third_jump_minute")
+        fourth_jump_time = request.form.get(
+            "fourth_jump_hour") + ":" + request.form.get(
+                "fourth_jump_minute")
+        first_throw_time = request.form.get(
+            "first_throw_hour") + ":" + request.form.get(
+                "first_throw_minute")
+        second_throw_time = request.form.get(
+            "second_throw_hour") + ":" + request.form.get(
+                "second_throw_minute")
+        third_throw_time = request.form.get(
+            "third_throw_hour") + ":" + request.form.get(
+                "third_throw_minute")
+        fourth_throw_time = request.form.get(
+            "fourth_throw_hour") + ":" + request.form.get(
+                "fourth_throw_minute")
         # Categories array compiler
-        event_categories01 = [
-            request.form.get("M3501"),
-            request.form.get("M35A01"),
-            request.form.get("M35B01"),
-            request.form.get("M5001"),
-            request.form.get("M6001"),
-            request.form.get("MNS01"),
-            request.form.get("W3501"),
-            request.form.get("W35A01"),
-            request.form.get("W35B01"),
-            request.form.get("W5001"),
-            request.form.get("W6001"),
-            request.form.get("WNS01")
+        first_sprint_categories = [
+            request.form.get("first_sprint_M35A"),
+            request.form.get("first_sprint_M35B"),
+            request.form.get("first_sprint_M50"),
+            request.form.get("first_sprint_M60"),
+            request.form.get("first_sprint_MNS"),
+            request.form.get("first_sprint_W35A"),
+            request.form.get("first_sprint_W35B"),
+            request.form.get("first_sprint_W50"),
+            request.form.get("first_sprint_W60"),
+            request.form.get("first_sprint_WNS")
         ]
-        event_categories02 = [
-            request.form.get("M3502"),
-            request.form.get("M35A02"),
-            request.form.get("M35B02"),
-            request.form.get("M5002"),
-            request.form.get("M6002"),
-            request.form.get("MNS02"),
-            request.form.get("W3502"),
-            request.form.get("W35A02"),
-            request.form.get("W35B02"),
-            request.form.get("W5002"),
-            request.form.get("W6002"),
-            request.form.get("WNS02")
+        second_sprint_categories = [
+            request.form.get("second_sprint_M35A"),
+            request.form.get("second_sprint_M35B"),
+            request.form.get("second_sprint_M50"),
+            request.form.get("second_sprint_M60"),
+            request.form.get("second_sprint_MNS"),
+            request.form.get("second_sprint_W35A"),
+            request.form.get("second_sprint_W35B"),
+            request.form.get("second_sprint_W50"),
+            request.form.get("second_sprint_W60"),
+            request.form.get("second_sprint_WNS")
         ]
-        event_categories03 = [
-            request.form.get("M3503"),
-            request.form.get("M35A03"),
-            request.form.get("M35B03"),
-            request.form.get("M5003"),
-            request.form.get("M6003"),
-            request.form.get("MNS03"),
-            request.form.get("W3503"),
-            request.form.get("W35A03"),
-            request.form.get("W35B03"),
-            request.form.get("W5003"),
-            request.form.get("W6003"),
-            request.form.get("WNS03")
+        third_sprint_categories = [
+            request.form.get("third_sprint_M35A"),
+            request.form.get("third_sprint_M35B"),
+            request.form.get("third_sprint_M50"),
+            request.form.get("third_sprint_M60"),
+            request.form.get("third_sprint_MNS"),
+            request.form.get("third_sprint_W35A"),
+            request.form.get("third_sprint_W35B"),
+            request.form.get("third_sprint_W50"),
+            request.form.get("third_sprint_W60"),
+            request.form.get("third_sprint_WNS")
         ]
-        event_categories04 = [
-            request.form.get("M3504"),
-            request.form.get("M35A04"),
-            request.form.get("M35B04"),
-            request.form.get("M5004"),
-            request.form.get("M6004"),
-            request.form.get("MNS04"),
-            request.form.get("W3504"),
-            request.form.get("W35A04"),
-            request.form.get("W35B04"),
-            request.form.get("W5004"),
-            request.form.get("W6004"),
-            request.form.get("WNS04")
+        fourth_sprint_categories = [
+            request.form.get("fourth_sprint_M35A"),
+            request.form.get("fourth_sprint_M35B"),
+            request.form.get("fourth_sprint_M50"),
+            request.form.get("fourth_sprint_M60"),
+            request.form.get("fourth_sprint_MNS"),
+            request.form.get("fourth_sprint_W35A"),
+            request.form.get("fourth_sprint_W35B"),
+            request.form.get("fourth_sprint_W50"),
+            request.form.get("fourth_sprint_W60"),
+            request.form.get("fourth_sprint_WNS")
         ]
-        event_categories05 = [
-            request.form.get("M3505"),
-            request.form.get("M35A05"),
-            request.form.get("M35B05"),
-            request.form.get("M5005"),
-            request.form.get("M6005"),
-            request.form.get("MNS05"),
-            request.form.get("W3505"),
-            request.form.get("W35A05"),
-            request.form.get("W35B05"),
-            request.form.get("W5005"),
-            request.form.get("W6005"),
-            request.form.get("WNS05")
+        first_middle_categories = [
+            request.form.get("first_middle_M35A"),
+            request.form.get("first_middle_M35B"),
+            request.form.get("first_middle_M50"),
+            request.form.get("first_middle_M60"),
+            request.form.get("first_middle_MNS"),
+            request.form.get("first_middle_W35A"),
+            request.form.get("first_middle_W35B"),
+            request.form.get("first_middle_W50"),
+            request.form.get("first_middle_W60"),
+            request.form.get("first_middle_WNS")
         ]
-        event_categories06 = [
-            request.form.get("M3506"),
-            request.form.get("M35A06"),
-            request.form.get("M35B06"),
-            request.form.get("M5006"),
-            request.form.get("M6006"),
-            request.form.get("MNS06"),
-            request.form.get("W3506"),
-            request.form.get("W35A06"),
-            request.form.get("W35B06"),
-            request.form.get("W5006"),
-            request.form.get("W6006"),
-            request.form.get("WNS06")
+        second_middle_categories = [
+            request.form.get("second_middle_M35A"),
+            request.form.get("second_middle_M35B"),
+            request.form.get("second_middle_M50"),
+            request.form.get("second_middle_M60"),
+            request.form.get("second_middle_MNS"),
+            request.form.get("second_middle_W35A"),
+            request.form.get("second_middle_W35B"),
+            request.form.get("second_middle_W50"),
+            request.form.get("second_middle_W60"),
+            request.form.get("second_middle_WNS")
         ]
-        event_categories07 = [
-            request.form.get("M3507"),
-            request.form.get("M35A07"),
-            request.form.get("M35B07"),
-            request.form.get("M5007"),
-            request.form.get("M6007"),
-            request.form.get("MNS07"),
-            request.form.get("W3507"),
-            request.form.get("W35A07"),
-            request.form.get("W35B07"),
-            request.form.get("W5007"),
-            request.form.get("W6007"),
-            request.form.get("WNS07")
+        first_distance_categories = [
+            request.form.get("first_distance_M35"),
+            request.form.get("first_distance_M35A"),
+            request.form.get("first_distance_M35B"),
+            request.form.get("first_distance_M50"),
+            request.form.get("first_distance_M60"),
+            request.form.get("first_distance_MNS"),
+            request.form.get("first_distance_W35"),
+            request.form.get("first_distance_W35A"),
+            request.form.get("first_distance_W35B"),
+            request.form.get("first_distance_W50"),
+            request.form.get("first_distance_W60"),
+            request.form.get("first_distance_WNS")
         ]
-        event_categories08 = [
-            request.form.get("M3508"),
-            request.form.get("M35A08"),
-            request.form.get("M35B08"),
-            request.form.get("M5008"),
-            request.form.get("M6008"),
-            request.form.get("MNS08"),
-            request.form.get("W3508"),
-            request.form.get("W35A08"),
-            request.form.get("W35B08"),
-            request.form.get("W5008"),
-            request.form.get("W6008"),
-            request.form.get("WNS08")
+        second_distance_categories = [
+            request.form.get("second_distance_M35"),
+            request.form.get("second_distance_M35A"),
+            request.form.get("second_distance_M35B"),
+            request.form.get("second_distance_M50"),
+            request.form.get("second_distance_M60"),
+            request.form.get("second_distance_MNS"),
+            request.form.get("second_distance_W35"),
+            request.form.get("second_distance_W35A"),
+            request.form.get("second_distance_W35B"),
+            request.form.get("second_distance_W50"),
+            request.form.get("second_distance_W60"),
+            request.form.get("second_distance_WNS")
         ]
-        event_categories09 = [
-            request.form.get("M3509"),
-            request.form.get("M35A09"),
-            request.form.get("M35B09"),
-            request.form.get("M5009"),
-            request.form.get("M6009"),
-            request.form.get("MNS09"),
-            request.form.get("W3509"),
-            request.form.get("W35A09"),
-            request.form.get("W35B09"),
-            request.form.get("W5009"),
-            request.form.get("W6009"),
-            request.form.get("WNS09")
+        third_distance_categories = [
+            request.form.get("third_distance_M35"),
+            request.form.get("third_distance_M35A"),
+            request.form.get("third_distance_M35B"),
+            request.form.get("third_distance_M50"),
+            request.form.get("third_distance_M60"),
+            request.form.get("third_distance_MNS"),
+            request.form.get("third_distance_W35"),
+            request.form.get("third_distance_W35A"),
+            request.form.get("third_distance_W35B"),
+            request.form.get("third_distance_W50"),
+            request.form.get("third_distance_W60"),
+            request.form.get("third_distance_WNS")
         ]
-        event_categories10 = [
-            request.form.get("M3510"),
-            request.form.get("M35A10"),
-            request.form.get("M35B10"),
-            request.form.get("M5010"),
-            request.form.get("M6010"),
-            request.form.get("MNS10"),
-            request.form.get("W3510"),
-            request.form.get("W35A10"),
-            request.form.get("W35B10"),
-            request.form.get("W5010"),
-            request.form.get("W6010"),
-            request.form.get("WNS10")
+        fourth_distance_categories = [
+            request.form.get("fourth_distance_M35"),
+            request.form.get("fourth_distance_M35A"),
+            request.form.get("fourth_distance_M35B"),
+            request.form.get("fourth_distance_M50"),
+            request.form.get("fourth_distance_M60"),
+            request.form.get("fourth_distance_MNS"),
+            request.form.get("fourth_distance_W35"),
+            request.form.get("fourth_distance_W35A"),
+            request.form.get("fourth_distance_W35B"),
+            request.form.get("fourth_distance_W50"),
+            request.form.get("fourth_distance_W60"),
+            request.form.get("fourth_distance_WNS")
         ]
-        event_categories11 = [
-            request.form.get("M3511"),
-            request.form.get("M35A11"),
-            request.form.get("M35B11"),
-            request.form.get("M5011"),
-            request.form.get("M6011"),
-            request.form.get("MNS11"),
-            request.form.get("W3511"),
-            request.form.get("W35A11"),
-            request.form.get("W35B11"),
-            request.form.get("W5011"),
-            request.form.get("W6011"),
-            request.form.get("WNS11")
+        first_relay_categories = [
+            request.form.get("first_relay_M35"),
+            request.form.get("first_relay_W35")
         ]
-        event_categories12 = [
-            request.form.get("M3512"),
-            request.form.get("M35A12"),
-            request.form.get("M35B12"),
-            request.form.get("M5012"),
-            request.form.get("M6012"),
-            request.form.get("MNS12"),
-            request.form.get("W3512"),
-            request.form.get("W35A12"),
-            request.form.get("W35B12"),
-            request.form.get("W5012"),
-            request.form.get("W6012"),
-            request.form.get("WNS12")
+        second_relay_categories = [
+            request.form.get("second_relay_M35"),
+            request.form.get("second_relay_W35")
         ]
-        event_categories13 = [
-            request.form.get("M3513"),
-            request.form.get("M35A13"),
-            request.form.get("M35B13"),
-            request.form.get("M5013"),
-            request.form.get("M6013"),
-            request.form.get("MNS13"),
-            request.form.get("W3513"),
-            request.form.get("W35A13"),
-            request.form.get("W35B13"),
-            request.form.get("W5013"),
-            request.form.get("W6013"),
-            request.form.get("WNS13")
+        first_jump_categories = [
+            request.form.get("first_jump_M35"),
+            request.form.get("first_jump_M50"),
+            request.form.get("first_jump_M60"),
+            request.form.get("first_jump_MNS"),
+            request.form.get("first_jump_W35"),
+            request.form.get("first_jump_W50"),
+            request.form.get("first_jump_W60"),
+            request.form.get("first_jump_WNS")
         ]
-        event_categories14 = [
-            request.form.get("M3514"),
-            request.form.get("M35A14"),
-            request.form.get("M35B14"),
-            request.form.get("M5014"),
-            request.form.get("M6014"),
-            request.form.get("MNS14"),
-            request.form.get("W3514"),
-            request.form.get("W35A14"),
-            request.form.get("W35B14"),
-            request.form.get("W5014"),
-            request.form.get("W6014"),
-            request.form.get("WNS14")
+        second_jump_categories = [
+            request.form.get("second_jump_M35"),
+            request.form.get("second_jump_M50"),
+            request.form.get("second_jump_M60"),
+            request.form.get("second_jump_MNS"),
+            request.form.get("second_jump_W35"),
+            request.form.get("second_jump_W50"),
+            request.form.get("second_jump_W60"),
+            request.form.get("second_jump_WNS")
         ]
-        event_categories15 = [
-            request.form.get("M3515"),
-            request.form.get("M35A15"),
-            request.form.get("M35B15"),
-            request.form.get("M5015"),
-            request.form.get("M6015"),
-            request.form.get("MNS15"),
-            request.form.get("W3515"),
-            request.form.get("W35A15"),
-            request.form.get("W35B15"),
-            request.form.get("W5015"),
-            request.form.get("W6015"),
-            request.form.get("WNS15")
+        third_jump_categories = [
+            request.form.get("third_jump_M35"),
+            request.form.get("third_jump_M50"),
+            request.form.get("third_jump_M60"),
+            request.form.get("third_jump_MNS"),
+            request.form.get("third_jump_W35"),
+            request.form.get("third_jump_W50"),
+            request.form.get("third_jump_W60"),
+            request.form.get("third_jump_WNS")
         ]
-        event_categories16 = [
-            request.form.get("M3516"),
-            request.form.get("M35A16"),
-            request.form.get("M35B16"),
-            request.form.get("M5016"),
-            request.form.get("M6016"),
-            request.form.get("MNS16"),
-            request.form.get("W3516"),
-            request.form.get("W35A16"),
-            request.form.get("W35B16"),
-            request.form.get("W5016"),
-            request.form.get("W6016"),
-            request.form.get("WNS16")
+        fourth_jump_categories = [
+            request.form.get("fourth_jump_M35"),
+            request.form.get("fourth_jump_M50"),
+            request.form.get("fourth_jump_M60"),
+            request.form.get("fourth_jump_MNS"),
+            request.form.get("fourth_jump_W35"),
+            request.form.get("fourth_jump_W50"),
+            request.form.get("fourth_jump_W60"),
+            request.form.get("fourth_jump_WNS")
         ]
-        event_categories17 = [
-            request.form.get("M3517"),
-            request.form.get("M35A17"),
-            request.form.get("M35B17"),
-            request.form.get("M5017"),
-            request.form.get("M6017"),
-            request.form.get("MNS17"),
-            request.form.get("W3517"),
-            request.form.get("W35A17"),
-            request.form.get("W35B17"),
-            request.form.get("W5017"),
-            request.form.get("W6017"),
-            request.form.get("WNS17")
+        first_throw_categories = [
+            request.form.get("first_throw_M35"),
+            request.form.get("first_throw_M50"),
+            request.form.get("first_throw_M60"),
+            request.form.get("first_throw_MNS"),
+            request.form.get("first_throw_W35"),
+            request.form.get("first_throw_W50"),
+            request.form.get("first_throw_W60"),
+            request.form.get("first_throw_WNS")
         ]
-        event_categories18 = [
-            request.form.get("M3518"),
-            request.form.get("M35A18"),
-            request.form.get("M35B18"),
-            request.form.get("M5018"),
-            request.form.get("M6018"),
-            request.form.get("MNS18"),
-            request.form.get("W3518"),
-            request.form.get("W35A18"),
-            request.form.get("W35B18"),
-            request.form.get("W5018"),
-            request.form.get("W6018"),
-            request.form.get("WNS18")
+        second_throw_categories = [
+            request.form.get("second_throw_M35"),
+            request.form.get("second_throw_M50"),
+            request.form.get("second_throw_M60"),
+            request.form.get("second_throw_MNS"),
+            request.form.get("second_throw_W35"),
+            request.form.get("second_throw_W50"),
+            request.form.get("second_throw_W60"),
+            request.form.get("second_throw_WNS")
         ]
-        # Remove null values
-        event_categories01 = list(filter(None, event_categories01))
-        event_categories02 = list(filter(None, event_categories02))
-        event_categories03 = list(filter(None, event_categories03))
-        event_categories04 = list(filter(None, event_categories04))
-        event_categories05 = list(filter(None, event_categories05))
-        event_categories06 = list(filter(None, event_categories06))
-        event_categories07 = list(filter(None, event_categories07))
-        event_categories08 = list(filter(None, event_categories08))
-        event_categories09 = list(filter(None, event_categories09))
-        event_categories10 = list(filter(None, event_categories10))
-        event_categories11 = list(filter(None, event_categories11))
-        event_categories12 = list(filter(None, event_categories12))
-        event_categories13 = list(filter(None, event_categories13))
-        event_categories14 = list(filter(None, event_categories14))
-        event_categories15 = list(filter(None, event_categories15))
-        event_categories16 = list(filter(None, event_categories16))
-        event_categories17 = list(filter(None, event_categories17))
-        event_categories18 = list(filter(None, event_categories18))
+        third_throw_categories = [
+            request.form.get("third_throw_M35"),
+            request.form.get("third_throw_M50"),
+            request.form.get("third_throw_M60"),
+            request.form.get("third_throw_MNS"),
+            request.form.get("third_throw_W35"),
+            request.form.get("third_throw_W50"),
+            request.form.get("third_throw_W60"),
+            request.form.get("third_throw_WNS")
+        ]
+        fourth_throw_categories = [
+            request.form.get("fourth_throw_M35"),
+            request.form.get("fourth_throw_M50"),
+            request.form.get("fourth_throw_M60"),
+            request.form.get("fourth_throw_MNS"),
+            request.form.get("fourth_throw_W35"),
+            request.form.get("fourth_throw_W50"),
+            request.form.get("fourth_throw_W60"),
+            request.form.get("fourth_throw_WNS")
+        ]
+        # Remove null values in categories arrays
+        first_sprint_categories = list(
+            filter(None, first_sprint_categories))
+        second_sprint_categories = list(
+            filter(None, second_sprint_categories))
+        third_sprint_categories = list(
+            filter(None, third_sprint_categories))
+        fourth_sprint_categories = list(
+            filter(None, fourth_sprint_categories))
+        first_middle_categories = list(
+            filter(None, first_middle_categories))
+        second_middle_categories = list(
+            filter(None, second_middle_categories))
+        first_distance_categories = list(
+            filter(None, first_distance_categories))
+        second_distance_categories = list(
+            filter(None, second_distance_categories))
+        third_distance_categories = list(
+            filter(None, third_distance_categories))
+        fourth_distance_categories = list(
+            filter(None, fourth_distance_categories))
+        first_relay_categories = list(
+            filter(None, first_relay_categories))
+        second_relay_categories = list(
+            filter(None, second_relay_categories))
+        first_jump_categories = list(
+            filter(None, first_jump_categories))
+        second_jump_categories = list(
+            filter(None, second_jump_categories))
+        third_jump_categories = list(
+            filter(None, third_jump_categories))
+        fourth_jump_categories = list(
+            filter(None, fourth_jump_categories))
+        first_throw_categories = list(
+            filter(None, first_throw_categories))
+        second_throw_categories = list(
+            filter(None, second_throw_categories))
+        third_throw_categories = list(
+            filter(None, third_throw_categories))
+        fourth_throw_categories = list(
+            filter(None, fourth_throw_categories))
         # Match event dictionary compiler
-        match_event01 = {
-            "event_time": event_time01,
-            "event_name": request.form.get("event_name01"),
-            "event_categories": event_categories01
+        first_sprint_event = {
+            "event_time": first_sprint_time,
+            "event_name": request.form.get("first_sprint_name"),
+            "event_categories": first_sprint_categories
         }
-        match_event02 = {
-            "event_time": event_time02,
-            "event_name": request.form.get("event_name02"),
-            "event_categories": event_categories02
+        second_sprint_event = {
+            "event_time": second_sprint_time,
+            "event_name": request.form.get("second_sprint_name"),
+            "event_categories": second_sprint_categories
         }
-        match_event03 = {
-            "event_time": event_time03,
-            "event_name": request.form.get("event_name03"),
-            "event_categories": event_categories03
+        third_sprint_event = {
+            "event_time": third_sprint_time,
+            "event_name": request.form.get("third_sprint_name"),
+            "event_categories": third_sprint_categories
         }
-        match_event04 = {
-            "event_time": event_time04,
-            "event_name": request.form.get("event_name04"),
-            "event_categories": event_categories04
+        fourth_sprint_event = {
+            "event_time": fourth_sprint_time,
+            "event_name": request.form.get("fourth_sprint_name"),
+            "event_categories": fourth_sprint_categories
         }
-        match_event05 = {
-            "event_time": event_time05,
-            "event_name": request.form.get("event_name05"),
-            "event_categories": event_categories05
+        first_middle_event = {
+            "event_time": first_middle_time,
+            "event_name": request.form.get("first_middle_name"),
+            "event_categories": first_middle_categories
         }
-        match_event06 = {
-            "event_time": event_time06,
-            "event_name": request.form.get("event_name06"),
-            "event_categories": event_categories06
+        second_middle_event = {
+            "event_time": second_middle_time,
+            "event_name": request.form.get("second_middle_name"),
+            "event_categories": second_middle_categories
         }
-        match_event07 = {
-            "event_time": event_time07,
-            "event_name": request.form.get("event_name07"),
-            "event_categories": event_categories07
+        first_distance_event = {
+            "event_time": first_distance_time,
+            "event_name": request.form.get("first_distance_name"),
+            "event_categories": first_distance_categories
         }
-        match_event08 = {
-            "event_time": event_time08,
-            "event_name": request.form.get("event_name08"),
-            "event_categories": event_categories08
+        second_distance_event = {
+            "event_time": second_distance_time,
+            "event_name": request.form.get("second_distance_name"),
+            "event_categories": second_distance_categories
         }
-        match_event09 = {
-            "event_time": event_time09,
-            "event_name": request.form.get("event_name09"),
-            "event_categories": event_categories09
+        third_distance_event = {
+            "event_time": third_distance_time,
+            "event_name": request.form.get("third_distance_name"),
+            "event_categories": third_distance_categories
         }
-        match_event10 = {
-            "event_time": event_time10,
-            "event_name": request.form.get("event_name10"),
-            "event_categories": event_categories10
+        fourth_distance_event = {
+            "event_time": fourth_distance_time,
+            "event_name": request.form.get("fourth_distance_name"),
+            "event_categories": fourth_distance_categories
         }
-        match_event11 = {
-            "event_time": event_time11,
-            "event_name": request.form.get("event_name11"),
-            "event_categories": event_categories11
+        first_relay_event = {
+            "event_time": first_relay_time,
+            "event_name": request.form.get("first_relay_name"),
+            "event_categories": first_relay_categories
         }
-        match_event12 = {
-            "event_time": event_time12,
-            "event_name": request.form.get("event_name12"),
-            "event_categories": event_categories12
+        second_relay_event = {
+            "event_time": second_relay_time,
+            "event_name": request.form.get("second_relay_name"),
+            "event_categories": second_relay_categories
         }
-        match_event13 = {
-            "event_time": event_time13,
-            "event_name": request.form.get("event_name13"),
-            "event_categories": event_categories13
+        first_jump_event = {
+            "event_time": first_jump_time,
+            "event_name": request.form.get("first_jump_name"),
+            "event_categories": first_jump_categories
         }
-        match_event14 = {
-            "event_time": event_time14,
-            "event_name": request.form.get("event_name14"),
-            "event_categories": event_categories04
+        second_jump_event = {
+            "event_time": second_jump_time,
+            "event_name": request.form.get("second_jump_name"),
+            "event_categories": second_jump_categories
         }
-        match_event15 = {
-            "event_time": event_time15,
-            "event_name": request.form.get("event_name15"),
-            "event_categories": event_categories15
+        third_jump_event = {
+            "event_time": third_jump_time,
+            "event_name": request.form.get("third_jump_name"),
+            "event_categories": third_jump_categories
         }
-        match_event16 = {
-            "event_time": event_time16,
-            "event_name": request.form.get("event_name16"),
-            "event_categories": event_categories16
+        fourth_jump_event = {
+            "event_time": fourth_jump_time,
+            "event_name": request.form.get("fourth_jump_name"),
+            "event_categories": fourth_jump_categories
         }
-        match_event17 = {
-            "event_time": event_time17,
-            "event_name": request.form.get("event_name17"),
-            "event_categories": event_categories17
+        first_throw_event = {
+            "event_time": first_throw_time,
+            "event_name": request.form.get("first_throw_name"),
+            "event_categories": first_throw_categories
         }
-        match_event18 = {
-            "event_time": event_time18,
-            "event_name": request.form.get("event_name18"),
-            "event_categories": event_categories18
+        second_throw_event = {
+            "event_time": second_throw_time,
+            "event_name": request.form.get("second_throw_name"),
+            "event_categories": second_throw_categories
+        }
+        third_throw_event = {
+            "event_time": third_throw_time,
+            "event_name": request.form.get("third_throw_name"),
+            "event_categories": third_throw_categories
+        }
+        fourth_throw_event = {
+            "event_time": fourth_throw_time,
+            "event_name": request.form.get("fourth_throw_name"),
+            "event_categories": fourth_throw_categories
         }
         # Match timetable array compiler
         match_timetable = [
-            match_event01,
-            match_event02,
-            match_event03,
-            match_event04,
-            match_event05,
-            match_event06,
-            match_event07,
-            match_event08,
-            match_event09,
-            match_event10,
-            match_event11,
-            match_event12,
-            match_event13,
-            match_event14,
-            match_event15,
-            match_event16,
-            match_event17,
-            match_event18
+            first_sprint_event,
+            second_sprint_event,
+            third_sprint_event,
+            fourth_sprint_event,
+            first_middle_event,
+            second_middle_event,
+            first_distance_event,
+            second_distance_event,
+            third_distance_event,
+            fourth_distance_event,
+            first_relay_event,
+            second_relay_event,
+            first_jump_event,
+            second_jump_event,
+            third_jump_event,
+            fourth_jump_event,
+            first_throw_event,
+            second_throw_event,
+            third_throw_event,
+            fourth_throw_event
         ]
         # Remove null values
         match_timetable = list(filter(None, match_timetable))
-        submit = {
+        timetable = {
             "match_season": request.form.get("match_season"),
             "match_number": request.form.get("match_number"),
             "match_weekday": request.form.get("match_weekday"),
@@ -1057,7 +1104,7 @@ def add_timetable(match_id):
             "venue_longitude": venue_longitude,
             "match_timetable": match_timetable
         }
-        mongo.db.matches.update({"_id": ObjectId(match_id)}, submit)
+        mongo.db.matches.update({"_id": ObjectId(match_id)}, timetable)
         flash("Timetable successfully added")
         return redirect(url_for("matches"))
 
@@ -1069,9 +1116,126 @@ def add_timetable(match_id):
     monthdays = mongo.db.monthdays.find()
     months = mongo.db.months.find()
     venues = mongo.db.venues.find().sort("venue_name", 1)
-    timetable_hours = mongo.db.timetable_hours.find().sort("hour")
-    timetable_minutes = mongo.db.timetable_minutes.find().sort("minute")
-    events = mongo.db.events.find().sort("event_name")
+    first_sprint_hours = mongo.db.first_sprint_hours.find().sort(
+        "hour")
+    first_sprint_minutes = mongo.db.first_sprint_minutes.find().sort(
+        "minute")
+    first_sprint_events = mongo.db.first_sprint_events.find().sort(
+        "event_name")
+    second_sprint_hours = mongo.db.second_sprint_hours.find().sort(
+        "hour")
+    second_sprint_minutes = mongo.db.second_sprint_minutes.find().sort(
+        "minute")
+    second_sprint_events = mongo.db.second_sprint_events.find().sort(
+        "event_name")
+    third_sprint_hours = mongo.db.third_sprint_hours.find().sort(
+        "hour")
+    third_sprint_minutes = mongo.db.third_sprint_minutes.find().sort(
+        "minute")
+    third_sprint_events = mongo.db.third_sprint_events.find().sort(
+        "event_name")
+    fourth_sprint_hours = mongo.db.fourth_sprint_hours.find().sort(
+        "hour")
+    fourth_sprint_minutes = mongo.db.fourth_sprint_minutes.find().sort(
+        "minute")
+    fourth_sprint_events = mongo.db.fourth_sprint_events.find().sort(
+        "event_name")
+    first_middle_hours = mongo.db.first_middle_hours.find().sort(
+        "hour")
+    first_middle_minutes = mongo.db.first_middle_minutes.find().sort(
+        "minute")
+    first_middle_events = mongo.db.first_middle_events.find().sort(
+        "event_name")
+    second_middle_hours = mongo.db.second_middle_hours.find().sort(
+        "hour")
+    second_middle_minutes = mongo.db.second_middle_minutes.find().sort(
+        "minute")
+    second_middle_events = mongo.db.second_middle_events.find().sort(
+        "event_name")
+    first_distance_hours = mongo.db.first_distance_hours.find().sort(
+        "hour")
+    first_distance_minutes = mongo.db.first_distance_minutes.find().sort(
+        "minute")
+    first_distance_events = mongo.db.first_distance_events.find().sort(
+        "event_name")
+    second_distance_hours = mongo.db.second_distance_hours.find().sort(
+        "hour")
+    second_distance_minutes = mongo.db.second_distance_minutes.find().sort(
+        "minute")
+    second_distance_events = mongo.db.second_distance_events.find().sort(
+        "event_name")
+    third_distance_hours = mongo.db.third_distance_hours.find().sort(
+        "hour")
+    third_distance_minutes = mongo.db.third_distance_minutes.find().sort(
+        "minute")
+    third_distance_events = mongo.db.third_distance_events.find().sort(
+        "event_name")
+    fourth_distance_hours = mongo.db.fourth_distance_hours.find().sort(
+        "hour")
+    fourth_distance_minutes = mongo.db.fourth_distance_minutes.find().sort(
+        "minute")
+    fourth_distance_events = mongo.db.fourth_distance_events.find().sort(
+        "event_name")
+    first_relay_hours = mongo.db.first_relay_hours.find().sort(
+        "hour")
+    first_relay_minutes = mongo.db.first_relay_minutes.find().sort(
+        "minute")
+    first_relay_events = mongo.db.first_relay_events.find().sort(
+        "event_name")
+    second_relay_hours = mongo.db.second_relay_hours.find().sort(
+        "hour")
+    second_relay_minutes = mongo.db.second_relay_minutes.find().sort(
+        "minute")
+    second_relay_events = mongo.db.second_relay_events.find().sort(
+        "event_name")
+    first_jump_hours = mongo.db.first_jump_hours.find().sort(
+        "hour")
+    first_jump_minutes = mongo.db.first_jump_minutes.find().sort(
+        "minute")
+    first_jump_events = mongo.db.first_jump_events.find().sort(
+        "event_name")
+    second_jump_hours = mongo.db.second_jump_hours.find().sort(
+        "hour")
+    second_jump_minutes = mongo.db.second_jump_minutes.find().sort(
+        "minute")
+    second_jump_events = mongo.db.second_jump_events.find().sort(
+        "event_name")
+    third_jump_hours = mongo.db.third_jump_hours.find().sort(
+        "hour")
+    third_jump_minutes = mongo.db.third_jump_minutes.find().sort(
+        "minute")
+    third_jump_events = mongo.db.third_jump_events.find().sort(
+        "event_name")
+    fourth_jump_hours = mongo.db.fourth_jump_hours.find().sort(
+        "hour")
+    fourth_jump_minutes = mongo.db.fourth_jump_minutes.find().sort(
+        "minute")
+    fourth_jump_events = mongo.db.fourth_jump_events.find().sort(
+        "event_name")
+    first_throw_hours = mongo.db.first_throw_hours.find().sort(
+        "hour")
+    first_throw_minutes = mongo.db.first_throw_minutes.find().sort(
+        "minute")
+    first_throw_events = mongo.db.first_throw_events.find().sort(
+        "event_name")
+    second_throw_hours = mongo.db.second_throw_hours.find().sort(
+        "hour")
+    second_throw_minutes = mongo.db.second_throw_minutes.find().sort(
+        "minute")
+    second_throw_events = mongo.db.second_throw_events.find().sort(
+        "event_name")
+    third_throw_hours = mongo.db.third_throw_hours.find().sort(
+        "hour")
+    third_throw_minutes = mongo.db.third_throw_minutes.find().sort(
+        "minute")
+    third_throw_events = mongo.db.third_throw_events.find().sort(
+        "event_name")
+    fourth_throw_hours = mongo.db.fourth_throw_hours.find().sort(
+        "hour")
+    fourth_throw_minutes = mongo.db.fourth_throw_minutes.find().sort(
+        "minute")
+    fourth_throw_events = mongo.db.fourth_throw_events.find().sort(
+        "event_name")
     return render_template(
         "add_timetable.html",
         match=match,
@@ -1080,9 +1244,66 @@ def add_timetable(match_id):
         monthdays=monthdays,
         months=months,
         venues=venues,
-        timetable_hours=timetable_hours,
-        timetable_minutes=timetable_minutes,
-        events=events,
+        first_sprint_hours=first_sprint_hours,
+        first_sprint_minutes=first_sprint_minutes,
+        first_sprint_events=first_sprint_events,
+        second_sprint_hours=second_sprint_hours,
+        second_sprint_minutes=second_sprint_minutes,
+        second_sprint_events=second_sprint_events,
+        third_sprint_hours=third_sprint_hours,
+        third_sprint_minutes=third_sprint_minutes,
+        third_sprint_events=third_sprint_events,
+        fourth_sprint_hours=fourth_sprint_hours,
+        fourth_sprint_minutes=fourth_sprint_minutes,
+        fourth_sprint_events=fourth_sprint_events,
+        first_middle_hours=first_middle_hours,
+        first_middle_minutes=first_middle_minutes,
+        first_middle_events=first_middle_events,
+        second_middle_hours=second_middle_hours,
+        second_middle_minutes=second_middle_minutes,
+        second_middle_events=second_middle_events,
+        first_distance_hours=first_distance_hours,
+        first_distance_minutes=first_distance_minutes,
+        first_distance_events=first_distance_events,
+        second_distance_hours=second_distance_hours,
+        second_distance_minutes=second_distance_minutes,
+        second_distance_events=second_distance_events,
+        third_distance_hours=third_distance_hours,
+        third_distance_minutes=third_distance_minutes,
+        third_distance_events=third_distance_events,
+        fourth_distance_hours=fourth_distance_hours,
+        fourth_distance_minutes=fourth_distance_minutes,
+        fourth_distance_events=fourth_distance_events,
+        first_relay_hours=first_relay_hours,
+        first_relay_minutes=first_relay_minutes,
+        first_relay_events=first_relay_events,
+        second_relay_hours=second_relay_hours,
+        second_relay_minutes=second_relay_minutes,
+        second_relay_events=second_relay_events,
+        first_jump_hours=first_jump_hours,
+        first_jump_minutes=first_jump_minutes,
+        first_jump_events=first_jump_events,
+        second_jump_hours=second_jump_hours,
+        second_jump_minutes=second_jump_minutes,
+        second_jump_events=second_jump_events,
+        third_jump_hours=third_jump_hours,
+        third_jump_minutes=third_jump_minutes,
+        third_jump_events=third_jump_events,
+        fourth_jump_hours=fourth_jump_hours,
+        fourth_jump_minutes=fourth_jump_minutes,
+        fourth_jump_events=fourth_jump_events,
+        first_throw_hours=first_throw_hours,
+        first_throw_minutes=first_throw_minutes,
+        first_throw_events=first_throw_events,
+        second_throw_hours=second_throw_hours,
+        second_throw_minutes=second_throw_minutes,
+        second_throw_events=second_throw_events,
+        third_throw_hours=third_throw_hours,
+        third_throw_minutes=third_throw_minutes,
+        third_throw_events=third_throw_events,
+        fourth_throw_hours=fourth_throw_hours,
+        fourth_throw_minutes=fourth_throw_minutes,
+        fourth_throw_events=fourth_throw_events,
         access=access
     )
 

@@ -10,13 +10,13 @@ function showTab(n) {
         document.getElementById("previous").style.display = "none";
     } 
     else {
-        document.getElementById("previous").style.display = "inline";
+        document.getElementById("previous").style.display = "inline-block";
     }
     if (n == (tabs.length - 1)) {
         document.getElementById("next").style.display = "none";
     } 
     else {
-        document.getElementById("next").style.display = "inline";
+        document.getElementById("next").style.display = "inline-block";
     }
 }
 
