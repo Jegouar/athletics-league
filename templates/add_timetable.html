@@ -12,7 +12,7 @@
 <!-- Match details previously entered -->
                     <section class="tab">
                         <div class="pagelabel">
-                            <label>Check the match details</label>
+                            <label>Review the match details</label>
                         </div>
                         <div id="seasonlabel">
                             <label for="match_season">Season:</label>
@@ -123,7 +123,8 @@
                         <div class="time">
                             <div class="hour">
                                 <div class="custom-select">
-                                    <select name="first_sprint_hour" required>
+                                    <select name="first_sprint_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for first_sprint_hour in first_sprint_hours %}
                                             <option value="{{ first_sprint_hour.hour }}">{{ first_sprint_hour.hour }}</option>
                                         {% endfor %}
@@ -132,7 +133,8 @@
                             </div>
                             <div class="minute">
                                 <div class="custom-select">
-                                    <select name="first_sprint_minute" required>
+                                    <select name="first_sprint_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for first_sprint_minute in first_sprint_minutes %}
                                             <option value="{{ first_sprint_minute.minute }}">{{ first_sprint_minute.minute }}</option>
                                         {% endfor %}
@@ -145,7 +147,8 @@
                         </div>
                         <div class="event">
                             <div class="custom-select">
-                                <select name="first_sprint_name" required>
+                                <select name="first_sprint_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for first_sprint_event in first_sprint_events %}
                                         <option value="{{ first_sprint_event.event_name }}">{{ first_sprint_event.event_name }}</option>
                                     {% endfor %}
@@ -229,7 +232,8 @@
                         <div class="time">
                             <div class="hour">
                                 <div class="custom-select">
-                                    <select name="second_sprint_hour" required>
+                                    <select name="second_sprint_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for second_sprint_hour in second_sprint_hours %}
                                             <option value="{{ second_sprint_hour.hour }}">{{ second_sprint_hour.hour }}</option>
                                         {% endfor %}
@@ -238,7 +242,8 @@
                             </div>
                             <div class="minute">
                                 <div class="custom-select">
-                                    <select name="second_sprint_minute" required>
+                                    <select name="second_sprint_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for second_sprint_minute in second_sprint_minutes %}
                                             <option value="{{ second_sprint_minute.minute }}">{{ second_sprint_minute.minute }}</option>
                                         {% endfor %}
@@ -251,7 +256,8 @@
                         </div>
                         <div class="event">
                             <div class="custom-select">
-                                <select name="second_sprint_name" required>
+                                <select name="second_sprint_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for second_sprint_event in second_sprint_events %}
                                         <option value="{{ second_sprint_event.event_name }}">{{ second_sprint_event.event_name }}</option>
                                     {% endfor %}
@@ -327,7 +333,7 @@
 <!-- Third sprint event (optional) -->
                     <section class="tab">
                         <div class="pagelabel">
-                            <label>Add another sprint event</label>
+                            <label>Add a third sprint event</label>
                         </div>
                         <div class="timelabel">
                             <label for="third_sprint_time">Event time:</label>
@@ -336,6 +342,7 @@
                             <div class="hour">
                                 <div class="custom-select">
                                     <select name="third_sprint_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for third_sprint_hour in third_sprint_hours %}
                                             <option value="{{ third_sprint_hour.hour }}">{{ third_sprint_hour.hour }}</option>
                                         {% endfor %}
@@ -345,6 +352,7 @@
                             <div class="minute">
                                 <div class="custom-select">
                                     <select name="third_sprint_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for third_sprint_minute in third_sprint_minutes %}
                                             <option value="{{ third_sprint_minute.minute }}">{{ third_sprint_minute.minute }}</option>
                                         {% endfor %}
@@ -358,6 +366,7 @@
                         <div class="event">
                             <div class="custom-select">
                                 <select name="third_sprint_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for third_sprint_event in third_sprint_events %}
                                         <option value="{{ third_sprint_event.event_name }}">{{ third_sprint_event.event_name }}</option>
                                     {% endfor %}
@@ -433,7 +442,7 @@
 <!-- Fourth sprint event (optional) -->
                     <section class="tab">
                         <div class="pagelabel">
-                            <label>Add another sprint event</label>
+                            <label>Add a fourth sprint event</label>
                         </div>
                         <div class="timelabel">
                             <label for="fourth_sprint_time">Event time:</label>
@@ -442,6 +451,7 @@
                             <div class="hour">
                                 <div class="custom-select">
                                     <select name="fourth_sprint_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for fourth_sprint_hour in fourth_sprint_hours %}
                                             <option value="{{ fourth_sprint_hour.hour }}">{{ fourth_sprint_hour.hour }}</option>
                                         {% endfor %}
@@ -451,6 +461,7 @@
                             <div class="minute">
                                 <div class="custom-select">
                                     <select name="fourth_sprint_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for fourth_sprint_minute in fourth_sprint_minutes %}
                                             <option value="{{ fourth_sprint_minute.minute }}">{{ fourth_sprint_minute.minute }}</option>
                                         {% endfor %}
@@ -464,6 +475,7 @@
                         <div class="event">
                             <div class="custom-select">
                                 <select name="fourth_sprint_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for fourth_sprint_event in fourth_sprint_events %}
                                         <option value="{{ fourth_sprint_event.event_name }}">{{ fourth_sprint_event.event_name }}</option>
                                     {% endfor %}
@@ -547,7 +559,8 @@
                         <div class="time">
                             <div class="hour">
                                 <div class="custom-select">
-                                    <select name="first_middle_hour" required>
+                                    <select name="first_middle_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for first_middle_hour in first_middle_hours %}
                                             <option value="{{ first_middle_hour.hour }}">{{ first_middle_hour.hour }}</option>
                                         {% endfor %}
@@ -556,7 +569,8 @@
                             </div>
                             <div class="minute">
                                 <div class="custom-select">
-                                    <select name="first_middle_minute" required>
+                                    <select name="first_middle_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for first_middle_minute in first_middle_minutes %}
                                             <option value="{{ first_middle_minute.minute }}">{{ first_middle_minute.minute }}</option>
                                         {% endfor %}
@@ -569,7 +583,8 @@
                         </div>
                         <div class="event">
                             <div class="custom-select">
-                                <select name="first_middle_name" required>
+                                <select name="first_middle_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for first_middle_event in first_middle_events %}
                                         <option value="{{ first_middle_event.event_name }}">{{ first_middle_event.event_name }}</option>
                                     {% endfor %}
@@ -653,7 +668,8 @@
                         <div class="time">
                             <div class="hour">
                                 <div class="custom-select">
-                                    <select name="second_middle_hour" required>
+                                    <select name="second_middle_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for second_middle_hour in second_middle_hours %}
                                             <option value="{{ second_middle_hour.hour }}">{{ second_middle_hour.hour }}</option>
                                         {% endfor %}
@@ -662,7 +678,8 @@
                             </div>
                             <div class="minute">
                                 <div class="custom-select">
-                                    <select name="second_middle_minute" required>
+                                    <select name="second_middle_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for second_middle_minute in second_middle_minutes %}
                                             <option value="{{ second_middle_minute.minute }}">{{ second_middle_minute.minute }}</option>
                                         {% endfor %}
@@ -675,7 +692,8 @@
                         </div>
                         <div class="event">
                             <div class="custom-select">
-                                <select name="second_middle_name" required>
+                                <select name="second_middle_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for second_middle_event in second_middle_events %}
                                         <option value="{{ second_middle_event.event_name }}">{{ second_middle_event.event_name }}</option>
                                     {% endfor %}
@@ -759,7 +777,8 @@
                         <div class="time">
                             <div class="hour">
                                 <div class="custom-select">
-                                    <select name="first_distance_hour" required>
+                                    <select name="first_distance_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for first_distance_hour in first_distance_hours %}
                                             <option value="{{ first_distance_hour.hour }}">{{ first_distance_hour.hour }}</option>
                                         {% endfor %}
@@ -768,7 +787,8 @@
                             </div>
                             <div class="minute">
                                 <div class="custom-select">
-                                    <select name="first_distance_minute" required>
+                                    <select name="first_distance_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for first_distance_minute in first_distance_minutes %}
                                             <option value="{{ first_distance_minute.minute }}">{{ first_distance_minute.minute }}</option>
                                         {% endfor %}
@@ -781,7 +801,8 @@
                         </div>
                         <div class="event">
                             <div class="custom-select">
-                                <select name="first_distance_name" required>
+                                <select name="first_distance_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for first_distance_event in first_distance_events %}
                                         <option value="{{ first_distance_event.event_name }}">{{ first_distance_event.event_name }}</option>
                                     {% endfor %}
@@ -878,6 +899,7 @@
                             <div class="hour">
                                 <div class="custom-select">
                                     <select name="second_distance_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for second_distance_hour in second_distance_hours %}
                                             <option value="{{ second_distance_hour.hour }}">{{ second_distance_hour.hour }}</option>
                                         {% endfor %}
@@ -887,6 +909,7 @@
                             <div class="minute">
                                 <div class="custom-select">
                                     <select name="second_distance_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for second_distance_minute in second_distance_minutes %}
                                             <option value="{{ second_distance_minute.minute }}">{{ second_distance_minute.minute }}</option>
                                         {% endfor %}
@@ -900,6 +923,7 @@
                         <div class="event">
                             <div class="custom-select">
                                 <select name="second_distance_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for second_distance_event in second_distance_events %}
                                         <option value="{{ second_distance_event.event_name }}">{{ second_distance_event.event_name }}</option>
                                     {% endfor %}
@@ -987,7 +1011,7 @@
 <!-- Third distance event (optional) -->
                     <section class="tab">
                         <div class="pagelabel">
-                            <label>Add another distance event</label>
+                            <label>Add a third distance event</label>
                         </div>
                         <div class="timelabel">
                             <label for="third_distance_time">Event time:</label>
@@ -996,6 +1020,7 @@
                             <div class="hour">
                                 <div class="custom-select">
                                     <select name="third_distance_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for third_distance_hour in third_distance_hours %}
                                             <option value="{{ third_distance_hour.hour }}">{{ third_distance_hour.hour }}</option>
                                         {% endfor %}
@@ -1005,6 +1030,7 @@
                             <div class="minute">
                                 <div class="custom-select">
                                     <select name="third_distance_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for third_distance_minute in third_distance_minutes %}
                                             <option value="{{ third_distance_minute.minute }}">{{ third_distance_minute.minute }}</option>
                                         {% endfor %}
@@ -1018,6 +1044,7 @@
                         <div class="event">
                             <div class="custom-select">
                                 <select name="third_distance_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for third_distance_event in third_distance_events %}
                                         <option value="{{ third_distance_event.event_name }}">{{ third_distance_event.event_name }}</option>
                                     {% endfor %}
@@ -1105,7 +1132,7 @@
 <!-- Fourth distance event (optional) -->
                     <section class="tab">
                         <div class="pagelabel">
-                            <label>Add another distance event</label>
+                            <label>Add a fourth distance event</label>
                         </div>
                         <div class="timelabel">
                             <label for="fourth_distance_time">Event time:</label>
@@ -1114,6 +1141,7 @@
                             <div class="hour">
                                 <div class="custom-select">
                                     <select name="fourth_distance_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for fourth_distance_hour in fourth_distance_hours %}
                                             <option value="{{ fourth_distance_hour.hour }}">{{ fourth_distance_hour.hour }}</option>
                                         {% endfor %}
@@ -1123,6 +1151,7 @@
                             <div class="minute">
                                 <div class="custom-select">
                                     <select name="fourth_distance_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for fourth_distance_minute in fourth_distance_minutes %}
                                             <option value="{{ fourth_distance_minute.minute }}">{{ fourth_distance_minute.minute }}</option>
                                         {% endfor %}
@@ -1136,6 +1165,7 @@
                         <div class="event">
                             <div class="custom-select">
                                 <select name="fourth_distance_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for fourth_distance_event in fourth_distance_events %}
                                         <option value="{{ fourth_distance_event.event_name }}">{{ fourth_distance_event.event_name }}</option>
                                     {% endfor %}
@@ -1231,7 +1261,8 @@
                         <div class="time">
                             <div class="hour">
                                 <div class="custom-select">
-                                    <select name="first_relay_hour" required>
+                                    <select name="first_relay_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for first_relay_hour in first_relay_hours %}
                                             <option value="{{ first_relay_hour.hour }}">{{ first_relay_hour.hour }}</option>
                                         {% endfor %}
@@ -1240,7 +1271,8 @@
                             </div>
                             <div class="minute">
                                 <div class="custom-select">
-                                    <select name="first_relay_minute" required>
+                                    <select name="first_relay_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for first_relay_minute in first_relay_minutes %}
                                             <option value="{{ first_relay_minute.minute }}">{{ first_relay_minute.minute }}</option>
                                         {% endfor %}
@@ -1253,7 +1285,8 @@
                         </div>
                         <div class="event">
                             <div class="custom-select">
-                                <select name="first_relay_name" required>
+                                <select name="first_relay_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for first_relay_event in first_relay_events %}
                                         <option value="{{ first_relay_event.event_name }}">{{ first_relay_event.event_name }}</option>
                                     {% endfor %}
@@ -1289,7 +1322,8 @@
                         <div class="time">
                             <div class="hour">
                                 <div class="custom-select">
-                                    <select name="second_relay_hour" required>
+                                    <select name="second_relay_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for second_relay_hour in second_relay_hours %}
                                             <option value="{{ second_relay_hour.hour }}">{{ second_relay_hour.hour }}</option>
                                         {% endfor %}
@@ -1298,7 +1332,8 @@
                             </div>
                             <div class="minute">
                                 <div class="custom-select">
-                                    <select name="second_relay_minute" required>
+                                    <select name="second_relay_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for second_relay_minute in second_relay_minutes %}
                                             <option value="{{ second_relay_minute.minute }}">{{ second_relay_minute.minute }}</option>
                                         {% endfor %}
@@ -1311,7 +1346,8 @@
                         </div>
                         <div class="event">
                             <div class="custom-select">
-                                <select name="second_relay_name" required>
+                                <select name="second_relay_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for second_relay_event in second_relay_events %}
                                         <option value="{{ second_relay_event.event_name }}">{{ second_relay_event.event_name }}</option>
                                     {% endfor %}
@@ -1347,7 +1383,8 @@
                         <div class="time">
                             <div class="hour">
                                 <div class="custom-select">
-                                    <select name="first_jump_hour" required>
+                                    <select name="first_jump_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for first_jump_hour in first_jump_hours %}
                                             <option value="{{ first_jump_hour.hour }}">{{ first_jump_hour.hour }}</option>
                                         {% endfor %}
@@ -1356,7 +1393,8 @@
                             </div>
                             <div class="minute">
                                 <div class="custom-select">
-                                    <select name="first_jump_minute" required>
+                                    <select name="first_jump_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for first_jump_minute in first_jump_minutes %}
                                             <option value="{{ first_jump_minute.minute }}">{{ first_jump_minute.minute }}</option>
                                         {% endfor %}
@@ -1369,7 +1407,8 @@
                         </div>
                         <div class="event">
                             <div class="custom-select">
-                                <select name="first_jump_name" required>
+                                <select name="first_jump_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for first_jump_event in first_jump_events %}
                                         <option value="{{ first_jump_event.event_name }}">{{ first_jump_event.event_name }}</option>
                                     {% endfor %}
@@ -1441,7 +1480,8 @@
                         <div class="time">
                             <div class="hour">
                                 <div class="custom-select">
-                                    <select name="second_jump_hour" required>
+                                    <select name="second_jump_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for second_jump_hour in second_jump_hours %}
                                             <option value="{{ second_jump_hour.hour }}">{{ second_jump_hour.hour }}</option>
                                         {% endfor %}
@@ -1450,7 +1490,8 @@
                             </div>
                             <div class="minute">
                                 <div class="custom-select">
-                                    <select name="second_jump_minute" required>
+                                    <select name="second_jump_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for second_jump_minute in second_jump_minutes %}
                                             <option value="{{ second_jump_minute.minute }}">{{ second_jump_minute.minute }}</option>
                                         {% endfor %}
@@ -1463,7 +1504,8 @@
                         </div>
                         <div class="event">
                             <div class="custom-select">
-                                <select name="second_jump_name" required>
+                                <select name="second_jump_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for second_jump_event in second_jump_events %}
                                         <option value="{{ second_jump_event.event_name }}">{{ second_jump_event.event_name }}</option>
                                     {% endfor %}
@@ -1527,7 +1569,7 @@
 <!-- Third jump event -->
                     <section class="tab">
                         <div class="pagelabel">
-                            <label>Add another jump event</label>
+                            <label>Add a third jump event</label>
                         </div>
                         <div class="timelabel">
                             <label for="third_jump_time">Event time:</label>
@@ -1535,7 +1577,8 @@
                         <div class="time">
                             <div class="hour">
                                 <div class="custom-select">
-                                    <select name="third_jump_hour" required>
+                                    <select name="third_jump_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for third_jump_hour in third_jump_hours %}
                                             <option value="{{ third_jump_hour.hour }}">{{ third_jump_hour.hour }}</option>
                                         {% endfor %}
@@ -1544,7 +1587,8 @@
                             </div>
                             <div class="minute">
                                 <div class="custom-select">
-                                    <select name="third_jump_minute" required>
+                                    <select name="third_jump_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for third_jump_minute in third_jump_minutes %}
                                             <option value="{{ third_jump_minute.minute }}">{{ third_jump_minute.minute }}</option>
                                         {% endfor %}
@@ -1557,7 +1601,8 @@
                         </div>
                         <div class="event">
                             <div class="custom-select">
-                                <select name="third_jump_name" required>
+                                <select name="third_jump_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for third_jump_event in third_jump_events %}
                                         <option value="{{ third_jump_event.event_name }}">{{ third_jump_event.event_name }}</option>
                                     {% endfor %}
@@ -1621,7 +1666,7 @@
 <!-- Fourth jump event -->
                     <section class="tab">
                         <div class="pagelabel">
-                            <label>Add another jump event</label>
+                            <label>Add a fourth jump event</label>
                         </div>
                         <div class="timelabel">
                             <label for="fourth_jump_time">Event time:</label>
@@ -1629,7 +1674,8 @@
                         <div class="time">
                             <div class="hour">
                                 <div class="custom-select">
-                                    <select name="fourth_jump_hour" required>
+                                    <select name="fourth_jump_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for fourth_jump_hour in fourth_jump_hours %}
                                             <option value="{{ fourth_jump_hour.hour }}">{{ fourth_jump_hour.hour }}</option>
                                         {% endfor %}
@@ -1638,7 +1684,8 @@
                             </div>
                             <div class="minute">
                                 <div class="custom-select">
-                                    <select name="fourth_jump_minute" required>
+                                    <select name="fourth_jump_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for fourth_jump_minute in fourth_jump_minutes %}
                                             <option value="{{ fourth_jump_minute.minute }}">{{ fourth_jump_minute.minute }}</option>
                                         {% endfor %}
@@ -1651,7 +1698,8 @@
                         </div>
                         <div class="event">
                             <div class="custom-select">
-                                <select name="fourth_jump_name" required>
+                                <select name="fourth_jump_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for fourth_jump_event in fourth_jump_events %}
                                         <option value="{{ fourth_jump_event.event_name }}">{{ fourth_jump_event.event_name }}</option>
                                     {% endfor %}
@@ -1723,7 +1771,8 @@
                         <div class="time">
                             <div class="hour">
                                 <div class="custom-select">
-                                    <select name="first_throw_hour" required>
+                                    <select name="first_throw_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for first_throw_hour in first_throw_hours %}
                                             <option value="{{ first_throw_hour.hour }}">{{ first_throw_hour.hour }}</option>
                                         {% endfor %}
@@ -1732,7 +1781,8 @@
                             </div>
                             <div class="minute">
                                 <div class="custom-select">
-                                    <select name="first_throw_minute" required>
+                                    <select name="first_throw_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for first_throw_minute in first_throw_minutes %}
                                             <option value="{{ first_throw_minute.minute }}">{{ first_throw_minute.minute }}</option>
                                         {% endfor %}
@@ -1745,7 +1795,8 @@
                         </div>
                         <div class="event">
                             <div class="custom-select">
-                                <select name="first_throw_name" required>
+                                <select name="first_throw_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for first_throw_event in first_throw_events %}
                                         <option value="{{ first_throw_event.event_name }}">{{ first_throw_event.event_name }}</option>
                                     {% endfor %}
@@ -1817,7 +1868,8 @@
                         <div class="time">
                             <div class="hour">
                                 <div class="custom-select">
-                                    <select name="second_throw_hour" required>
+                                    <select name="second_throw_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for second_throw_hour in second_throw_hours %}
                                             <option value="{{ second_throw_hour.hour }}">{{ second_throw_hour.hour }}</option>
                                         {% endfor %}
@@ -1826,7 +1878,8 @@
                             </div>
                             <div class="minute">
                                 <div class="custom-select">
-                                    <select name="second_throw_minute" required>
+                                    <select name="second_throw_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for second_throw_minute in second_throw_minutes %}
                                             <option value="{{ second_throw_minute.minute }}">{{ second_throw_minute.minute }}</option>
                                         {% endfor %}
@@ -1839,7 +1892,8 @@
                         </div>
                         <div class="event">
                             <div class="custom-select">
-                                <select name="second_throw_name" required>
+                                <select name="second_throw_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for second_throw_event in second_throw_events %}
                                         <option value="{{ second_throw_event.event_name }}">{{ second_throw_event.event_name }}</option>
                                     {% endfor %}
@@ -1903,7 +1957,7 @@
 <!-- Third throw event -->
                     <section class="tab">
                         <div class="pagelabel">
-                            <label>Add another throw event</label>
+                            <label>Add a third throw event</label>
                         </div>
                         <div class="timelabel">
                             <label for="third_throw_time">Event time:</label>
@@ -1911,7 +1965,8 @@
                         <div class="time">
                             <div class="hour">
                                 <div class="custom-select">
-                                    <select name="third_throw_hour" required>
+                                    <select name="third_throw_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for third_throw_hour in third_throw_hours %}
                                             <option value="{{ third_throw_hour.hour }}">{{ third_throw_hour.hour }}</option>
                                         {% endfor %}
@@ -1920,7 +1975,8 @@
                             </div>
                             <div class="minute">
                                 <div class="custom-select">
-                                    <select name="third_throw_minute" required>
+                                    <select name="third_throw_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for third_throw_minute in third_throw_minutes %}
                                             <option value="{{ third_throw_minute.minute }}">{{ third_throw_minute.minute }}</option>
                                         {% endfor %}
@@ -1933,7 +1989,8 @@
                         </div>
                         <div class="event">
                             <div class="custom-select">
-                                <select name="third_throw_name" required>
+                                <select name="third_throw_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for third_throw_event in third_throw_events %}
                                         <option value="{{ third_throw_event.event_name }}">{{ third_throw_event.event_name }}</option>
                                     {% endfor %}
@@ -1997,7 +2054,7 @@
 <!-- Fourth throw event -->
                     <section class="tab">
                         <div class="pagelabel">
-                            <label>Add another throw event</label>
+                            <label>Add a fourth throw event</label>
                         </div>
                         <div class="timelabel">
                             <label for="fourth_throw_time">Event time:</label>
@@ -2005,7 +2062,8 @@
                         <div class="time">
                             <div class="hour">
                                 <div class="custom-select">
-                                    <select name="fourth_throw_hour" required>
+                                    <select name="fourth_throw_hour">
+                                        <option value="" disabled selected>HH</option>
                                         {% for fourth_throw_hour in fourth_throw_hours %}
                                             <option value="{{ fourth_throw_hour.hour }}">{{ fourth_throw_hour.hour }}</option>
                                         {% endfor %}
@@ -2014,7 +2072,8 @@
                             </div>
                             <div class="minute">
                                 <div class="custom-select">
-                                    <select name="fourth_throw_minute" required>
+                                    <select name="fourth_throw_minute">
+                                        <option value="" disabled selected>MM</option>
                                         {% for fourth_throw_minute in fourth_throw_minutes %}
                                             <option value="{{ fourth_throw_minute.minute }}">{{ fourth_throw_minute.minute }}</option>
                                         {% endfor %}
@@ -2027,7 +2086,8 @@
                         </div>
                         <div class="event">
                             <div class="custom-select">
-                                <select name="fourth_throw_name" required>
+                                <select name="fourth_throw_name">
+                                    <option value="" disabled selected>Select an event</option>
                                     {% for fourth_throw_event in fourth_throw_events %}
                                         <option value="{{ fourth_throw_event.event_name }}">{{ fourth_throw_event.event_name }}</option>
                                     {% endfor %}
@@ -2096,7 +2156,7 @@
                         </div>
                         <div id="commit">
                             <a href="{{ url_for('matches') }}">Cancel</a>
-                            <input type="submit" value="Submit">
+                            <input type="submit" id="submit" value="Submit">
                         </div>
                     </div>
                     

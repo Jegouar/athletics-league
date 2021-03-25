@@ -98,13 +98,13 @@
 
 @media only screen and (min-width: 600px) {
     #add_timetable, #edit_timetable {
-        height: 96vw;
+        height: 95vw;
     }
 }
 
 @media only screen and (min-width: 900px) {
     #add_timetable, #edit_timetable {
-        height: 90vw;
+        height: 82vw;
     }
 }
 
@@ -355,18 +355,18 @@ label {
 }
 
 .categories {
-    margin-bottom: 10vw;
-}
+        margin-bottom: 0vw;
+    }
 
 @media only screen and (min-width: 600px) {
     .categories {
-        margin-bottom: -2vw;
+        margin-bottom: -10vw;
     }
 }
 
 @media only screen and (min-width: 900px) {
     .categories {
-        margin-bottom: 10vw;
+        margin-bottom: -4vw;
     }
 }
 

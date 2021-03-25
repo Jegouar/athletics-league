@@ -646,66 +646,166 @@ def add_timetable(match_id):
         match_date = request.form.get(
             "match_season") + numeric_month + numeric_monthday
         # Time compiler
-        first_sprint_time = request.form.get(
-            "first_sprint_hour") + ":" + request.form.get(
-                "first_sprint_minute")
-        second_sprint_time = request.form.get(
-            "second_sprint_hour") + ":" + request.form.get(
-                "second_sprint_minute")
-        third_sprint_time = request.form.get(
-            "third_sprint_hour") + ":" + request.form.get(
-                "third_sprint_minute")
-        fourth_sprint_time = request.form.get(
-            "fourth_sprint_hour") + ":" + request.form.get(
-                "fourth_sprint_minute")
-        first_middle_time = request.form.get(
-            "first_middle_hour") + ":" + request.form.get(
-                "first_middle_minute")
-        second_middle_time = request.form.get(
-            "second_middle_hour") + ":" + request.form.get(
-                "second_middle_minute")
-        first_distance_time = request.form.get(
-            "first_distance_hour") + ":" + request.form.get(
-                "first_distance_minute")
-        second_distance_time = request.form.get(
-            "second_distance_hour") + ":" + request.form.get(
-                "second_distance_minute")
-        third_distance_time = request.form.get(
-            "third_distance_hour") + ":" + request.form.get(
-                "third_distance_minute")
-        fourth_distance_time = request.form.get(
-            "fourth_distance_hour") + ":" + request.form.get(
-                "fourth_distance_minute")
-        first_relay_time = request.form.get(
-            "first_relay_hour") + ":" + request.form.get(
-                "first_relay_minute")
-        second_relay_time = request.form.get(
-            "second_relay_hour") + ":" + request.form.get(
-                "second_relay_minute")
-        first_jump_time = request.form.get(
-            "first_jump_hour") + ":" + request.form.get(
-                "first_jump_minute")
-        second_jump_time = request.form.get(
-            "second_jump_hour") + ":" + request.form.get(
-                "second_jump_minute")
-        third_jump_time = request.form.get(
-            "third_jump_hour") + ":" + request.form.get(
-                "third_jump_minute")
-        fourth_jump_time = request.form.get(
-            "fourth_jump_hour") + ":" + request.form.get(
-                "fourth_jump_minute")
-        first_throw_time = request.form.get(
-            "first_throw_hour") + ":" + request.form.get(
-                "first_throw_minute")
-        second_throw_time = request.form.get(
-            "second_throw_hour") + ":" + request.form.get(
-                "second_throw_minute")
-        third_throw_time = request.form.get(
-            "third_throw_hour") + ":" + request.form.get(
-                "third_throw_minute")
-        fourth_throw_time = request.form.get(
-            "fourth_throw_hour") + ":" + request.form.get(
-                "fourth_throw_minute")
+        if request.form.get("first_sprint_hour") is None:
+            first_sprint_time = None
+        elif request.form.get("first_sprint_minute") is None:
+            first_sprint_time = None
+        else:
+            first_sprint_time = request.form.get(
+                "first_sprint_hour") + ":" + request.form.get(
+                    "first_sprint_minute")
+        if request.form.get("second_sprint_hour") is None:
+            second_sprint_time = None
+        elif request.form.get("second_sprint_minute") is None:
+            second_sprint_time = None
+        else:
+            second_sprint_time = request.form.get(
+                "second_sprint_hour") + ":" + request.form.get(
+                    "second_sprint_minute")
+        if request.form.get("third_sprint_hour") is None:
+            third_sprint_time = None
+        elif request.form.get("third_sprint_minute") is None:
+            third_sprint_time = None
+        else:
+            third_sprint_time = request.form.get(
+                "third_sprint_hour") + ":" + request.form.get(
+                    "third_sprint_minute")
+        if request.form.get("fourth_sprint_hour") is None:
+            fourth_sprint_time = None
+        elif request.form.get("fourth_sprint_minute") is None:
+            fourth_sprint_time = None
+        else:
+            fourth_sprint_time = request.form.get(
+                "fourth_sprint_hour") + ":" + request.form.get(
+                    "fourth_sprint_minute")
+        if request.form.get("first_middle_hour") is None:
+            first_middle_time = None
+        elif request.form.get("first_middle_minute") is None:
+            first_middle_time = None
+        else:
+            first_middle_time = request.form.get(
+                "first_middle_hour") + ":" + request.form.get(
+                    "first_middle_minute")
+        if request.form.get("second_middle_hour") is None:
+            second_middle_time = None
+        elif request.form.get("second_middle_minute") is None:
+            second_middle_time = None
+        else:
+            second_middle_time = request.form.get(
+                "second_middle_hour") + ":" + request.form.get(
+                    "second_middle_minute")
+        if request.form.get("first_distance_hour") is None:
+            first_distance_time = None
+        elif request.form.get("first_distance_minute") is None:
+            first_distance_time = None
+        else:
+            first_distance_time = request.form.get(
+                "first_distance_hour") + ":" + request.form.get(
+                    "first_distance_minute")
+        if request.form.get("second_distance_hour") is None:
+            second_distance_time = None
+        elif request.form.get("second_distance_minute") is None:
+            second_distance_time = None
+        else:
+            second_distance_time = request.form.get(
+                "second_distance_hour") + ":" + request.form.get(
+                    "second_distance_minute")
+        if request.form.get("third_distance_hour") is None:
+            third_distance_time = None
+        elif request.form.get("third_distance_minute") is None:
+            third_distance_time = None
+        else:
+            third_distance_time = request.form.get(
+                "third_distance_hour") + ":" + request.form.get(
+                    "third_distance_minute")
+        if request.form.get("fourth_distance_hour") is None:
+            fourth_distance_time = None
+        elif request.form.get("fourth_distance_minute") is None:
+            fourth_distance_time = None
+        else:
+            fourth_distance_time = request.form.get(
+                "fourth_distance_hour") + ":" + request.form.get(
+                    "fourth_distance_minute")
+        if request.form.get("first_relay_hour") is None:
+            first_relay_time = None
+        elif request.form.get("first_relay_minute") is None:
+            first_relay_time = None
+        else:
+            first_relay_time = request.form.get(
+                "first_relay_hour") + ":" + request.form.get(
+                    "first_relay_minute")
+        if request.form.get("second_relay_hour") is None:
+            second_relay_time = None
+        elif request.form.get("second_relay_minute") is None:
+            second_relay_time = None
+        else:
+            second_relay_time = request.form.get(
+                "second_relay_hour") + ":" + request.form.get(
+                    "second_relay_minute")
+        if request.form.get("first_jump_hour") is None:
+            first_jump_time = None
+        elif request.form.get("first_jump_minute") is None:
+            first_jump_time = None
+        else:
+            first_jump_time = request.form.get(
+                "first_jump_hour") + ":" + request.form.get(
+                    "first_jump_minute")
+        if request.form.get("second_jump_hour") is None:
+            second_jump_time = None
+        elif request.form.get("second_jump_minute") is None:
+            second_jump_time = None
+        else:
+            second_jump_time = request.form.get(
+                "second_jump_hour") + ":" + request.form.get(
+                    "second_jump_minute")
+        if request.form.get("third_jump_hour") is None:
+            third_jump_time = None
+        elif request.form.get("third_jump_minute") is None:
+            third_jump_time = None
+        else:
+            third_jump_time = request.form.get(
+                "third_jump_hour") + ":" + request.form.get(
+                    "third_jump_minute")
+        if request.form.get("fourth_jump_hour") is None:
+            fourth_jump_time = None
+        elif request.form.get("fourth_jump_minute") is None:
+            fourth_jump_time = None
+        else:
+            fourth_jump_time = request.form.get(
+                "fourth_jump_hour") + ":" + request.form.get(
+                    "fourth_jump_minute")
+        if request.form.get("first_throw_hour") is None:
+            first_throw_time = None
+        elif request.form.get("first_throw_minute") is None:
+            first_throw_time = None
+        else:
+            first_throw_time = request.form.get(
+                "first_throw_hour") + ":" + request.form.get(
+                    "first_throw_minute")
+        if request.form.get("second_throw_hour") is None:
+            second_throw_time = None
+        elif request.form.get("second_throw_minute") is None:
+            second_throw_time = None
+        else:
+            second_throw_time = request.form.get(
+                "second_throw_hour") + ":" + request.form.get(
+                    "second_throw_minute")
+        if request.form.get("third_throw_hour") is None:
+            third_throw_time = None
+        elif request.form.get("third_throw_minute") is None:
+            third_throw_time = None
+        else:
+            third_throw_time = request.form.get(
+                "third_throw_hour") + ":" + request.form.get(
+                    "third_throw_minute")
+        if request.form.get("fourth_throw_hour") is None:
+            fourth_throw_time = None
+        elif request.form.get("fourth_throw_minute") is None:
+            fourth_throw_time = None
+        else:
+            fourth_throw_time = request.form.get(
+                "fourth_throw_hour") + ":" + request.form.get(
+                    "fourth_throw_minute")
         # Categories array compiler
         first_sprint_categories = [
             request.form.get("first_sprint_M35A"),
@@ -965,106 +1065,166 @@ def add_timetable(match_id):
         fourth_throw_categories = list(
             filter(None, fourth_throw_categories))
         # Match event dictionary compiler
-        first_sprint_event = {
-            "event_time": first_sprint_time,
-            "event_name": request.form.get("first_sprint_name"),
-            "event_categories": first_sprint_categories
-        }
-        second_sprint_event = {
-            "event_time": second_sprint_time,
-            "event_name": request.form.get("second_sprint_name"),
-            "event_categories": second_sprint_categories
-        }
-        third_sprint_event = {
-            "event_time": third_sprint_time,
-            "event_name": request.form.get("third_sprint_name"),
-            "event_categories": third_sprint_categories
-        }
-        fourth_sprint_event = {
-            "event_time": fourth_sprint_time,
-            "event_name": request.form.get("fourth_sprint_name"),
-            "event_categories": fourth_sprint_categories
-        }
-        first_middle_event = {
-            "event_time": first_middle_time,
-            "event_name": request.form.get("first_middle_name"),
-            "event_categories": first_middle_categories
-        }
-        second_middle_event = {
-            "event_time": second_middle_time,
-            "event_name": request.form.get("second_middle_name"),
-            "event_categories": second_middle_categories
-        }
-        first_distance_event = {
-            "event_time": first_distance_time,
-            "event_name": request.form.get("first_distance_name"),
-            "event_categories": first_distance_categories
-        }
-        second_distance_event = {
-            "event_time": second_distance_time,
-            "event_name": request.form.get("second_distance_name"),
-            "event_categories": second_distance_categories
-        }
-        third_distance_event = {
-            "event_time": third_distance_time,
-            "event_name": request.form.get("third_distance_name"),
-            "event_categories": third_distance_categories
-        }
-        fourth_distance_event = {
-            "event_time": fourth_distance_time,
-            "event_name": request.form.get("fourth_distance_name"),
-            "event_categories": fourth_distance_categories
-        }
-        first_relay_event = {
-            "event_time": first_relay_time,
-            "event_name": request.form.get("first_relay_name"),
-            "event_categories": first_relay_categories
-        }
-        second_relay_event = {
-            "event_time": second_relay_time,
-            "event_name": request.form.get("second_relay_name"),
-            "event_categories": second_relay_categories
-        }
-        first_jump_event = {
-            "event_time": first_jump_time,
-            "event_name": request.form.get("first_jump_name"),
-            "event_categories": first_jump_categories
-        }
-        second_jump_event = {
-            "event_time": second_jump_time,
-            "event_name": request.form.get("second_jump_name"),
-            "event_categories": second_jump_categories
-        }
-        third_jump_event = {
-            "event_time": third_jump_time,
-            "event_name": request.form.get("third_jump_name"),
-            "event_categories": third_jump_categories
-        }
-        fourth_jump_event = {
-            "event_time": fourth_jump_time,
-            "event_name": request.form.get("fourth_jump_name"),
-            "event_categories": fourth_jump_categories
-        }
-        first_throw_event = {
-            "event_time": first_throw_time,
-            "event_name": request.form.get("first_throw_name"),
-            "event_categories": first_throw_categories
-        }
-        second_throw_event = {
-            "event_time": second_throw_time,
-            "event_name": request.form.get("second_throw_name"),
-            "event_categories": second_throw_categories
-        }
-        third_throw_event = {
-            "event_time": third_throw_time,
-            "event_name": request.form.get("third_throw_name"),
-            "event_categories": third_throw_categories
-        }
-        fourth_throw_event = {
-            "event_time": fourth_throw_time,
-            "event_name": request.form.get("fourth_throw_name"),
-            "event_categories": fourth_throw_categories
-        }
+        if request.form.get("first_sprint_name") is None:
+            first_sprint_event = None
+        else:
+            first_sprint_event = {
+                "event_time": first_sprint_time,
+                "event_name": request.form.get("first_sprint_name"),
+                "event_categories": first_sprint_categories
+            }
+        if request.form.get("second_sprint_name") is None:
+            second_sprint_event = None
+        else:
+            second_sprint_event = {
+                "event_time": second_sprint_time,
+                "event_name": request.form.get("second_sprint_name"),
+                "event_categories": second_sprint_categories
+            }
+        if request.form.get("third_sprint_name") is None:
+            third_sprint_event = None
+        else:  
+            third_sprint_event = {
+                "event_time": third_sprint_time,
+                "event_name": request.form.get("third_sprint_name"),
+                "event_categories": third_sprint_categories
+            }
+        if request.form.get("fourth_sprint_name") is None:
+            fourth_sprint_event = None
+        else: 
+            fourth_sprint_event = {
+                "event_time": fourth_sprint_time,
+                "event_name": request.form.get("fourth_sprint_name"),
+                "event_categories": fourth_sprint_categories
+            }
+        if request.form.get("first_middle_name") is None:
+            first_middle_event = None
+        else:
+            first_middle_event = {
+                "event_time": first_middle_time,
+                "event_name": request.form.get("first_middle_name"),
+                "event_categories": first_middle_categories
+            }
+        if request.form.get("second_middle_name") is None:
+            second_middle_event = None
+        else:
+            second_middle_event = {
+                "event_time": second_middle_time,
+                "event_name": request.form.get("second_middle_name"),
+                "event_categories": second_middle_categories
+            }
+        if request.form.get("first_distance_name") is None:
+            first_distance_event = None
+        else:
+            first_distance_event = {
+                "event_time": first_distance_time,
+                "event_name": request.form.get("first_distance_name"),
+                "event_categories": first_distance_categories
+            }
+        if request.form.get("second_distance_name") is None:
+            second_distance_event = None
+        else:
+            second_distance_event = {
+                "event_time": second_distance_time,
+                "event_name": request.form.get("second_distance_name"),
+                "event_categories": second_distance_categories
+            }
+        if request.form.get("third_distance_name") is None:
+            third_distance_event = None
+        else:
+            third_distance_event = {
+                "event_time": third_distance_time,
+                "event_name": request.form.get("third_distance_name"),
+                "event_categories": third_distance_categories
+            }
+        if request.form.get("fourth_distance_name") is None:
+            fourth_distance_event = None
+        else:
+            fourth_distance_event = {
+                "event_time": fourth_distance_time,
+                "event_name": request.form.get("fourth_distance_name"),
+                "event_categories": fourth_distance_categories
+            }
+        if request.form.get("first_relay_name") is None:
+            first_relay_event = None
+        else:
+            first_relay_event = {
+                "event_time": first_relay_time,
+                "event_name": request.form.get("first_relay_name"),
+                "event_categories": first_relay_categories
+            }
+        if request.form.get("second_relay_name") is None:
+            second_relay_event = None
+        else:
+            second_relay_event = {
+                "event_time": second_relay_time,
+                "event_name": request.form.get("second_relay_name"),
+                "event_categories": second_relay_categories
+            }
+        if request.form.get("first_jump_name") is None:
+            first_jump_event = None
+        else:
+            first_jump_event = {
+                "event_time": first_jump_time,
+                "event_name": request.form.get("first_jump_name"),
+                "event_categories": first_jump_categories
+            }
+        if request.form.get("second_jump_name") is None:
+            second_jump_event = None
+        else:
+            second_jump_event = {
+                "event_time": second_jump_time,
+                "event_name": request.form.get("second_jump_name"),
+                "event_categories": second_jump_categories
+            }
+        if request.form.get("third_jump_name") is None:
+            third_jump_event = None
+        else:
+            third_jump_event = {
+                "event_time": third_jump_time,
+                "event_name": request.form.get("third_jump_name"),
+                "event_categories": third_jump_categories
+            }
+        if request.form.get("fourth_jump_name") is None:
+            fourth_jump_event = None
+        else:
+            fourth_jump_event = {
+                "event_time": fourth_jump_time,
+                "event_name": request.form.get("fourth_jump_name"),
+                "event_categories": fourth_jump_categories
+            }
+        if request.form.get("first_throw_name") is None:
+            first_throw_event = None
+        else:
+            first_throw_event = {
+                "event_time": first_throw_time,
+                "event_name": request.form.get("first_throw_name"),
+                "event_categories": first_throw_categories
+            }
+        if request.form.get("second_throw_name") is None:
+            second_throw_event = None
+        else:
+            second_throw_event = {
+                "event_time": second_throw_time,
+                "event_name": request.form.get("second_throw_name"),
+                "event_categories": second_throw_categories
+            }
+        if request.form.get("third_throw_name") is None:
+            third_throw_event = None
+        else:
+            third_throw_event = {
+                "event_time": third_throw_time,
+                "event_name": request.form.get("third_throw_name"),
+                "event_categories": third_throw_categories
+            }
+        if request.form.get("fourth_throw_name") is None:
+            fourth_throw_event = None
+        else:
+            fourth_throw_event = {
+                "event_time": fourth_throw_time,
+                "event_name": request.form.get("fourth_throw_name"),
+                "event_categories": fourth_throw_categories
+            }
         # Match timetable array compiler
         match_timetable = [
             first_sprint_event,
