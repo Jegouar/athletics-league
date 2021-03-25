@@ -59,8 +59,8 @@
 
 .postit {
     position: absolute;
-    left: 20%;
-    bottom: 20%;
+    left: 10%;
+    bottom: 0%;
     padding: 2vw;
     background-color: rgb(250,235,140);
     font-family: 'Permanent Marker', cursive;
@@ -434,9 +434,20 @@ label {
     }
 }
 
-
 /* Hide all steps by default: */
 .tab {
     display: none;
 }
 
+/* Timetable */
+
+table {
+    border-collapse: collapse;
+    border: 0.25vw solid rgba(35,35,35,0.8);
+    margin-bottom: 10vw;
+}
+
+td {
+    border: 0.1vw solid rgba(35,35,35,0.8);
+    padding: 0.5vw;
+}
