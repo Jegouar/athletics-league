@@ -1083,7 +1083,7 @@ def add_timetable(match_id):
             }
         if request.form.get("third_sprint_name") is None:
             third_sprint_event = None
-        else:  
+        else:
             third_sprint_event = {
                 "event_time": third_sprint_time,
                 "event_name": request.form.get("third_sprint_name"),
@@ -1091,7 +1091,7 @@ def add_timetable(match_id):
             }
         if request.form.get("fourth_sprint_name") is None:
             fourth_sprint_event = None
-        else: 
+        else:
             fourth_sprint_event = {
                 "event_time": fourth_sprint_time,
                 "event_name": request.form.get("fourth_sprint_name"),

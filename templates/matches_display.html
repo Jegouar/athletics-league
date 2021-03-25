@@ -22,6 +22,18 @@
                     <p id="lat{{ match.match_season }}{{ match.match_number }}">{{ match.venue_latitude }}</p>
                     <p id="lng{{ match.match_season }}{{ match.match_number }}">{{ match.venue_longitude }}</p>
                 </div>
+                <div class="sheet" id="table{{ match.match_season }}{{ match.match_number }}">
+                    <h2>Timetable</h2>
+                    <table>
+                        {% for event in match.match_timetable %}
+                            <tr>
+                                <td>{{ event.event_time }}</td>
+                                <td>{{ event.event_name }}</td>
+                                <td>{{ event.event_categories[0] }}  {{ event.event_categories[1] }}  {{ event.event_categories[2] }}  {{ event.event_categories[3] }}  {{ event.event_categories[4] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
             </div>   
         </details>
     {% endfor %}
@@ -29,5 +41,6 @@
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDOVg-dREo0Ck1QqKT0fQyRQGP_hCp1l8&callback=initMap&libraries=&v=weekly"></script>
     <script src="{{ url_for('static', filename='scripts/maps.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/postit.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/timetable.js') }}"></script>
 
 {% endblock %}
