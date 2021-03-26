@@ -20,7 +20,7 @@
             {% for club in clubs %}
                 <li>
                     <span class="button"><a href="{{ url_for('edit_club', club_id=club._id) }}">Edit</a></span>
-                    <a href="{{ club.club_website }}">{{ club.club_name }}</a>
+                    <a href="{{ club.club_website }}" target="_blank">{{ club.club_name }}</a>
                     <span>
                         <span class="astring">{{ club.club_number }}</span>
                         <span class="bstring">{{ club.club_number }}{{ club.club_number }}</span>
@@ -35,7 +35,7 @@
         <ul>
             <li><a href="{{ url_for('matches') }}">Matches</a></li>
             <li><a href="#">Declarations</a></li>
-            <li><a href="#">Results</a></li>
+            <li><a href="https://www.thepowerof10.info/results/resultslookup.aspx?datefrom=1-Jan-2000&dateto=31-Dec-2030&terraintypecodes=TIDEX&title=Southern+Counties+Veterans%27+League+Western+Division" target="_blank">Results</a></li>
             <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
         </ul>

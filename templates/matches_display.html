@@ -24,7 +24,7 @@
                 </div>
                 <div class="sheet" id="table{{ match.match_season }}{{ match.match_number }}">
                     <h2>Timetable</h2>
-                    <table>
+                    <table id="timetable{{ match.match_season }}{{ match.match_number }}">
                         {% for event in match.match_timetable %}
                             <tr>
                                 <td>{{ event.event_time }}</td>
@@ -42,5 +42,6 @@
     <script src="{{ url_for('static', filename='scripts/maps.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/postit.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/timetable.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/tableorder.js') }}"></script>
 
 {% endblock %}

@@ -13,7 +13,7 @@
 <body>
     <header>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 142.87">
-            <a href="http://www.scvac.org.uk/">
+            <a href="http://www.scvac.org.uk/" target="_blank">
                 <g class="colour">
                     <g id="background">
                         <path d="M70.54,74.5 l7.7,8 c2.16,2,2.51,4,.56,6.29 l-10.09,14 c-3,4.09-6.34,7.74-10.77,10.14 a79.81,79.81,0,0,1-14.08,5.45 c-6.81,2.15-13.31,5.5-20,8.1 a3.15,3.15,0,0,1-2.35.26 c-2.64-2.21-4.92-5.42-4.65-9.06.35-3.86,3.63-6.22,6-8.93,2.83-3,5.69-6.11,7.67-9.76,2.68-5,3.8-10.76,6.64-15.64 C35.82,74.03,33.98,66.83,30.13,58.65 a42.62,42.62,0,0,0,13.74,83 c36.74.15,56.17-44.18,31.74-71.06 C74.37,71.52,70.98,74.14,70.54,74.5Z"/>
@@ -68,7 +68,7 @@
         <ul>
             {% for club in clubs %}
                 <li>
-                    <a href="{{ club.club_website }}">{{ club.club_name }}</a>
+                    <a href="{{ club.club_website }}" target="_blank">{{ club.club_name }}</a>
                     <span>
                         <span class="astring">{{ club.club_number }}</span>
                         <span class="bstring">{{ club.club_number }}{{ club.club_number }}</span>
@@ -83,7 +83,7 @@
         <ul>
             <li><a href="{{ url_for('matches_display') }}">Matches</a></li>
             <li><a href="#">Declarations</a></li>
-            <li><a href="#">Results</a></li>
+            <li><a href="https://www.thepowerof10.info/results/resultslookup.aspx?datefrom=1-Jan-2000&dateto=31-Dec-2030&terraintypecodes=TIDEX&title=Southern+Counties+Veterans%27+League+Western+Division" target="_blank">Results</a></li>
             <li><a href="{{ url_for('login') }}">Log In</a></li>
             <li><a href="{{ url_for('register') }}">Register</a></li>
         </ul>
