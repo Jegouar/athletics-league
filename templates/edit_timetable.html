@@ -1,0 +1,2172 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/board.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/paper.css') }}" type="text/css">
+
+    <details open>
+        <summary>Edit events for {{ match.match_season }} Match {{ match.match_number }}</summary>
+        <div id="board">
+            <div class="sheet">
+                <form id="add_timetable" autocomplete="off" method="POST" action="{{ url_for('edit_timetable', match_id=match._id) }}">
+<!-- Match details previously entered -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Review the match details</label>
+                        </div>
+                        <div id="seasonlabel">
+                            <label for="match_season">Season:</label>
+                        </div>
+                        <div id="season" class="custom-select">
+                            <select id="match_season" name="match_season" required>
+                                {% for season in seasons %}
+                                    {% if season.season_year == match.match_season %}
+                                        <option value="{{ season.season_year }}" selected>{{ season.season_year }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div id="numberlabel">
+                            <label for="match_number">Match number:</label>
+                        </div>
+                        <div id="number">
+                            <div class="radio">
+                                <label for="one" class="radiolabel">&emsp;1
+                                    {% if match.match_number == "1" %}
+                                        <input type="radio" id="one" name="match_number" value="1" checked>
+                                    {% endif %}
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="two" class="radiolabel">&emsp;2
+                                    {% if match.match_number == "2" %}
+                                        <input type="radio" id="two" name="match_number" value="2" checked>
+                                    {% endif %}
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="three" class="radiolabel">&emsp;3
+                                    {% if match.match_number == "3" %}
+                                        <input type="radio" id="three" name="match_number" value="3" checked>
+                                    {% endif %}
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="radio">
+                                <label for="four" class="radiolabel">&emsp;4
+                                    {% if match.match_number == "4" %}
+                                        <input type="radio" id="four" name="match_number" value="4" checked>
+                                    {% endif %}
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div id="weekdaylabel">
+                            <label for="match_weekday">Weekday:</label>
+                        </div>
+                        <div id="weekday" class="custom-select">
+                            <select id="match_weekday" name="match_weekday" required>
+                                {% for weekday in weekdays %}
+                                    {% if weekday.weekday_name == match.match_weekday %}
+                                        <option value="{{ weekday.weekday_name }}" selected>{{ weekday.weekday_name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div id="monthdaylabel">
+                            <label for="match_monthday">Date:</label>
+                        </div>
+                        <div id="monthday" class="custom-select">
+                            <select id="match_monthday" name="match_monthday" required>
+                                {% for monthday in monthdays %}
+                                    {% if monthday.monthday_name == match.match_monthday %}
+                                        <option value="{{ monthday.monthday_name }}" selected>{{ monthday.monthday_name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div id="monthlabel">
+                            <label for="match_month">Month:</label>
+                        </div>
+                        <div id="month" class="custom-select">
+                            <select id="match_month" name="match_month" required>
+                                {% for month in months %}
+                                    {% if month.month_name == match.match_month %}
+                                        <option value="{{ month.month_name }}" selected>{{ month.month_name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div id="venuelabel">
+                            <label for="match_venue">Venue:</label><br>
+                        </div>
+                        <div id="venue" class="custom-select">
+                            <select id="match_venue" name="match_venue" required>
+                                {% for venue in venues %}
+                                    {% if venue.venue_name == match.match_venue %}
+                                        <option value="{{ venue.venue_name }}" selected>{{ venue.venue_name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </section>
+<!-- First sprint event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the first sprint event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="first_sprint_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="first_sprint_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for first_sprint_hour in first_sprint_hours %}
+                                            <option value="{{ first_sprint_hour.hour }}">{{ first_sprint_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="first_sprint_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for first_sprint_minute in first_sprint_minutes %}
+                                            <option value="{{ first_sprint_minute.minute }}">{{ first_sprint_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="first_sprint_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="first_sprint_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for first_sprint_event in first_sprint_events %}
+                                        <option value="{{ first_sprint_event.event_name }}">{{ first_sprint_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="first_sprint_M35A" class="radiolabel">&emsp;M35 A
+                                    <input type="checkbox" id="first_sprint_M35A" name="first_sprint_M35A" value="M35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_sprint_M35B" class="radiolabel">&emsp;M35 B
+                                    <input type="checkbox" id="first_sprint_M35B" name="first_sprint_M35B" value="M35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_sprint_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="first_sprint_M50" name="first_sprint_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_sprint_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="first_sprint_M60" name="first_sprint_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_sprint_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="first_sprint_MNS" name="first_sprint_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_sprint_W35A" class="radiolabel">&emsp;W35 A
+                                    <input type="checkbox" id="first_sprint_W35A" name="first_sprint_W35A" value="W35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_sprint_W35B" class="radiolabel">&emsp;W35 B
+                                    <input type="checkbox" id="first_sprint_W35B" name="first_sprint_W35B" value="W35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_sprint_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="first_sprint_W50" name="first_sprint_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_sprint_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="first_sprint_W60" name="first_sprint_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_sprint_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="first_sprint_WNS" name="first_sprint_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- Second sprint event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the second sprint event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="second_sprint_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="second_sprint_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for second_sprint_hour in second_sprint_hours %}
+                                            <option value="{{ second_sprint_hour.hour }}">{{ second_sprint_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="second_sprint_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for second_sprint_minute in second_sprint_minutes %}
+                                            <option value="{{ second_sprint_minute.minute }}">{{ second_sprint_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="second_sprint_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="second_sprint_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for second_sprint_event in second_sprint_events %}
+                                        <option value="{{ second_sprint_event.event_name }}">{{ second_sprint_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="second_sprint_M35A" class="radiolabel">&emsp;M35 A
+                                    <input type="checkbox" id="second_sprint_M35A" name="second_sprint_M35A" value="M35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_sprint_M35B" class="radiolabel">&emsp;M35 B
+                                    <input type="checkbox" id="second_sprint_M35B" name="second_sprint_M35B" value="M35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_sprint_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="second_sprint_M50" name="second_sprint_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_sprint_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="second_sprint_M60" name="second_sprint_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_sprint_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="second_sprint_MNS" name="second_sprint_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_sprint_W35A" class="radiolabel">&emsp;W35 A
+                                    <input type="checkbox" id="second_sprint_W35A" name="second_sprint_W35A" value="W35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_sprint_W35B" class="radiolabel">&emsp;W35 B
+                                    <input type="checkbox" id="second_sprint_W35B" name="second_sprint_W35B" value="W35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_sprint_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="second_sprint_W50" name="second_sprint_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_sprint_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="second_sprint_W60" name="second_sprint_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_sprint_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="second_sprint_WNS" name="second_sprint_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- Third sprint event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the third sprint event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="third_sprint_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="third_sprint_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for third_sprint_hour in third_sprint_hours %}
+                                            <option value="{{ third_sprint_hour.hour }}">{{ third_sprint_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="third_sprint_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for third_sprint_minute in third_sprint_minutes %}
+                                            <option value="{{ third_sprint_minute.minute }}">{{ third_sprint_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="third_sprint_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="third_sprint_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for third_sprint_event in third_sprint_events %}
+                                        <option value="{{ third_sprint_event.event_name }}">{{ third_sprint_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="third_sprint_M35A" class="radiolabel">&emsp;M35 A
+                                    <input type="checkbox" id="third_sprint_M35A" name="third_sprint_M35A" value="M35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_sprint_M35B" class="radiolabel">&emsp;M35 B
+                                    <input type="checkbox" id="third_sprint_M35B" name="third_sprint_M35B" value="M35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_sprint_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="third_sprint_M50" name="third_sprint_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_sprint_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="third_sprint_M60" name="third_sprint_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_sprint_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="third_sprint_MNS" name="third_sprint_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_sprint_W35A" class="radiolabel">&emsp;W35 A
+                                    <input type="checkbox" id="third_sprint_W35A" name="third_sprint_W35A" value="W35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_sprint_W35B" class="radiolabel">&emsp;W35 B
+                                    <input type="checkbox" id="third_sprint_W35B" name="third_sprint_W35B" value="W35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_sprint_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="third_sprint_W50" name="third_sprint_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_sprint_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="third_sprint_W60" name="third_sprint_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_sprint_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="third_sprint_WNS" name="third_sprint_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- Fourth sprint event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the fourth sprint event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="fourth_sprint_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="fourth_sprint_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for fourth_sprint_hour in fourth_sprint_hours %}
+                                            <option value="{{ fourth_sprint_hour.hour }}">{{ fourth_sprint_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="fourth_sprint_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for fourth_sprint_minute in fourth_sprint_minutes %}
+                                            <option value="{{ fourth_sprint_minute.minute }}">{{ fourth_sprint_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="fourth_sprint_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="fourth_sprint_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for fourth_sprint_event in fourth_sprint_events %}
+                                        <option value="{{ fourth_sprint_event.event_name }}">{{ fourth_sprint_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="fourth_sprint_M35A" class="radiolabel">&emsp;M35 A
+                                    <input type="checkbox" id="fourth_sprint_M35A" name="fourth_sprint_M35A" value="M35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_sprint_M35B" class="radiolabel">&emsp;M35 B
+                                    <input type="checkbox" id="fourth_sprint_M35B" name="fourth_sprint_M35B" value="M35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_sprint_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="fourth_sprint_M50" name="fourth_sprint_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_sprint_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="fourth_sprint_M60" name="fourth_sprint_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_sprint_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="fourth_sprint_MNS" name="fourth_sprint_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_sprint_W35A" class="radiolabel">&emsp;W35 A
+                                    <input type="checkbox" id="fourth_sprint_W35A" name="fourth_sprint_W35A" value="W35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_sprint_W35B" class="radiolabel">&emsp;W35 B
+                                    <input type="checkbox" id="fourth_sprint_W35B" name="fourth_sprint_W35B" value="W35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_sprint_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="fourth_sprint_W50" name="fourth_sprint_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_sprint_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="fourth_sprint_W60" name="fourth_sprint_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_sprint_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="fourth_sprint_WNS" name="fourth_sprint_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- First middle-distance event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the first middle-distance event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="first_middle_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="first_middle_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for first_middle_hour in first_middle_hours %}
+                                            <option value="{{ first_middle_hour.hour }}">{{ first_middle_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="first_middle_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for first_middle_minute in first_middle_minutes %}
+                                            <option value="{{ first_middle_minute.minute }}">{{ first_middle_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="first_middle_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="first_middle_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for first_middle_event in first_middle_events %}
+                                        <option value="{{ first_middle_event.event_name }}">{{ first_middle_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="first_middle_M35A" class="radiolabel">&emsp;M35 A
+                                    <input type="checkbox" id="first_middle_M35A" name="first_middle_M35A" value="M35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_middle_M35B" class="radiolabel">&emsp;M35 B
+                                    <input type="checkbox" id="first_middle_M35B" name="first_middle_M35B" value="M35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_middle_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="first_middle_M50" name="first_middle_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_middle_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="first_middle_M60" name="first_middle_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_middle_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="first_middle_MNS" name="first_middle_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_middle_W35A" class="radiolabel">&emsp;W35 A
+                                    <input type="checkbox" id="first_middle_W35A" name="first_middle_W35A" value="W35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_middle_W35B" class="radiolabel">&emsp;W35 B
+                                    <input type="checkbox" id="first_middle_W35B" name="first_middle_W35B" value="W35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_middle_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="first_middle_W50" name="first_middle_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_middle_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="first_middle_W60" name="first_middle_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_middle_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="first_middle_WNS" name="first_middle_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- Second middle-distance event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the second middle-distance event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="second_middle_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="second_middle_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for second_middle_hour in second_middle_hours %}
+                                            <option value="{{ second_middle_hour.hour }}">{{ second_middle_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="second_middle_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for second_middle_minute in second_middle_minutes %}
+                                            <option value="{{ second_middle_minute.minute }}">{{ second_middle_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="second_middle_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="second_middle_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for second_middle_event in second_middle_events %}
+                                        <option value="{{ second_middle_event.event_name }}">{{ second_middle_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="second_middle_M35A" class="radiolabel">&emsp;M35 A
+                                    <input type="checkbox" id="second_middle_M35A" name="second_middle_M35A" value="M35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_middle_M35B" class="radiolabel">&emsp;M35 B
+                                    <input type="checkbox" id="second_middle_M35B" name="second_middle_M35B" value="M35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_middle_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="second_middle_M50" name="second_middle_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_middle_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="second_middle_M60" name="second_middle_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_middle_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="second_middle_MNS" name="second_middle_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_middle_W35A" class="radiolabel">&emsp;W35 A
+                                    <input type="checkbox" id="second_middle_W35A" name="second_middle_W35A" value="W35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_middle_W35B" class="radiolabel">&emsp;W35 B
+                                    <input type="checkbox" id="second_middle_W35B" name="second_middle_W35B" value="W35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_middle_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="second_middle_W50" name="second_middle_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_middle_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="second_middle_W60" name="second_middle_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_middle_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="second_middle_WNS" name="second_middle_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- First distance event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the first distance event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="first_distance_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="first_distance_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for first_distance_hour in first_distance_hours %}
+                                            <option value="{{ first_distance_hour.hour }}">{{ first_distance_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="first_distance_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for first_distance_minute in first_distance_minutes %}
+                                            <option value="{{ first_distance_minute.minute }}">{{ first_distance_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="first_distance_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="first_distance_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for first_distance_event in first_distance_events %}
+                                        <option value="{{ first_distance_event.event_name }}">{{ first_distance_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="first_distance_M35" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="first_distance_M35" name="first_distance_M35" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_distance_M35A" class="radiolabel">&emsp;M35 A
+                                    <input type="checkbox" id="first_distance_M35A" name="first_distance_M35A" value="M35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_distance_M35B" class="radiolabel">&emsp;M35 B
+                                    <input type="checkbox" id="first_distance_M35B" name="first_distance_M35B" value="M35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_distance_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="first_distance_M50" name="first_distance_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_distance_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="first_distance_M60" name="first_distance_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_distance_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="first_distance_MNS" name="first_distance_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_distance_W35" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="first_distance_W35" name="first_distance_W35" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_distance_W35A" class="radiolabel">&emsp;W35 A
+                                    <input type="checkbox" id="first_distance_W35A" name="first_distance_W35A" value="W35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_distance_W35B" class="radiolabel">&emsp;W35 B
+                                    <input type="checkbox" id="first_distance_W35B" name="first_distance_W35B" value="W35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_distance_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="first_distance_W50" name="first_distance_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_distance_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="first_distance_W60" name="first_distance_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_distance_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="first_distance_WNS" name="first_distance_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- Second distance event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the second distance event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="second_distance_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="second_distance_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for second_distance_hour in second_distance_hours %}
+                                            <option value="{{ second_distance_hour.hour }}">{{ second_distance_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="second_distance_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for second_distance_minute in second_distance_minutes %}
+                                            <option value="{{ second_distance_minute.minute }}">{{ second_distance_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="second_distance_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="second_distance_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for second_distance_event in second_distance_events %}
+                                        <option value="{{ second_distance_event.event_name }}">{{ second_distance_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="second_distance_M35" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="second_distance_M35" name="second_distance_M35" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_distance_M35A" class="radiolabel">&emsp;M35 A
+                                    <input type="checkbox" id="second_distance_M35A" name="second_distance_M35A" value="M35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_distance_M35B" class="radiolabel">&emsp;M35 B
+                                    <input type="checkbox" id="second_distance_M35B" name="second_distance_M35B" value="M35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_distance_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="second_distance_M50" name="second_distance_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_distance_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="second_distance_M60" name="second_distance_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_distance_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="second_distance_MNS" name="second_distance_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_distance_W35" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="second_distance_W35" name="second_distance_W35" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_distance_W35A" class="radiolabel">&emsp;W35 A
+                                    <input type="checkbox" id="second_distance_W35A" name="second_distance_W35A" value="W35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_distance_W35B" class="radiolabel">&emsp;W35 B
+                                    <input type="checkbox" id="second_distance_W35B" name="second_distance_W35B" value="W35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_distance_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="second_distance_W50" name="second_distance_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_distance_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="second_distance_W60" name="second_distance_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_distance_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="second_distance_WNS" name="second_distance_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- Third distance event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the third distance event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="third_distance_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="third_distance_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for third_distance_hour in third_distance_hours %}
+                                            <option value="{{ third_distance_hour.hour }}">{{ third_distance_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="third_distance_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for third_distance_minute in third_distance_minutes %}
+                                            <option value="{{ third_distance_minute.minute }}">{{ third_distance_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="third_distance_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="third_distance_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for third_distance_event in third_distance_events %}
+                                        <option value="{{ third_distance_event.event_name }}">{{ third_distance_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="third_distance_M35" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="third_distance_M35" name="third_distance_M35" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_distance_M35A" class="radiolabel">&emsp;M35 A
+                                    <input type="checkbox" id="third_distance_M35A" name="third_distance_M35A" value="M35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_distance_M35B" class="radiolabel">&emsp;M35 B
+                                    <input type="checkbox" id="third_distance_M35B" name="third_distance_M35B" value="M35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_distance_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="third_distance_M50" name="third_distance_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_distance_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="third_distance_M60" name="third_distance_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_distance_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="third_distance_MNS" name="third_distance_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_distance_W35" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="third_distance_W35" name="third_distance_W35" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_distance_W35A" class="radiolabel">&emsp;W35 A
+                                    <input type="checkbox" id="third_distance_W35A" name="third_distance_W35A" value="W35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_distance_W35B" class="radiolabel">&emsp;W35 B
+                                    <input type="checkbox" id="third_distance_W35B" name="third_distance_W35B" value="W35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_distance_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="third_distance_W50" name="third_distance_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_distance_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="third_distance_W60" name="third_distance_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_distance_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="third_distance_WNS" name="third_distance_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- Fourth distance event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the fourth distance event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="fourth_distance_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="fourth_distance_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for fourth_distance_hour in fourth_distance_hours %}
+                                            <option value="{{ fourth_distance_hour.hour }}">{{ fourth_distance_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="fourth_distance_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for fourth_distance_minute in fourth_distance_minutes %}
+                                            <option value="{{ fourth_distance_minute.minute }}">{{ fourth_distance_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="fourth_distance_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="fourth_distance_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for fourth_distance_event in fourth_distance_events %}
+                                        <option value="{{ fourth_distance_event.event_name }}">{{ fourth_distance_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="fourth_distance_M35" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="fourth_distance_M35" name="fourth_distance_M35" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_distance_M35A" class="radiolabel">&emsp;M35 A
+                                    <input type="checkbox" id="fourth_distance_M35A" name="fourth_distance_M35A" value="M35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_distance_M35B" class="radiolabel">&emsp;M35 B
+                                    <input type="checkbox" id="fourth_distance_M35B" name="fourth_distance_M35B" value="M35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_distance_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="fourth_distance_M50" name="fourth_distance_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_distance_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="fourth_distance_M60" name="fourth_distance_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_distance_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="fourth_distance_MNS" name="fourth_distance_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_distance_W35" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="fourth_distance_W35" name="fourth_distance_W35" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_distance_W35A" class="radiolabel">&emsp;W35 A
+                                    <input type="checkbox" id="fourth_distance_W35A" name="fourth_distance_W35A" value="W35A">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_distance_W35B" class="radiolabel">&emsp;W35 B
+                                    <input type="checkbox" id="fourth_distance_W35B" name="fourth_distance_W35B" value="W35B">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_distance_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="fourth_distance_W50" name="fourth_distance_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_distance_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="fourth_distance_W60" name="fourth_distance_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_distance_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="fourth_distance_WNS" name="fourth_distance_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- First relay event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the first relay event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="first_relay_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="first_relay_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for first_relay_hour in first_relay_hours %}
+                                            <option value="{{ first_relay_hour.hour }}">{{ first_relay_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="first_relay_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for first_relay_minute in first_relay_minutes %}
+                                            <option value="{{ first_relay_minute.minute }}">{{ first_relay_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="first_relay_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="first_relay_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for first_relay_event in first_relay_events %}
+                                        <option value="{{ first_relay_event.event_name }}">{{ first_relay_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="first_relay_M35" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="first_relay_M35" name="first_relay_M35" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_relay_W35" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="first_relay_W35" name="first_relay_W35" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- Second relay event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the second relay event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="second_relay_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="second_relay_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for second_relay_hour in second_relay_hours %}
+                                            <option value="{{ second_relay_hour.hour }}">{{ second_relay_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="second_relay_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for second_relay_minute in second_relay_minutes %}
+                                            <option value="{{ second_relay_minute.minute }}">{{ second_relay_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="second_relay_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="second_relay_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for second_relay_event in second_relay_events %}
+                                        <option value="{{ second_relay_event.event_name }}">{{ second_relay_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="second_relay_M35" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="second_relay_M35" name="second_relay_M35" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_relay_W35" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="second_relay_W35" name="second_relay_W35" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- First jump event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the first jump event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="first_jump_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="first_jump_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for first_jump_hour in first_jump_hours %}
+                                            <option value="{{ first_jump_hour.hour }}">{{ first_jump_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="first_jump_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for first_jump_minute in first_jump_minutes %}
+                                            <option value="{{ first_jump_minute.minute }}">{{ first_jump_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="first_jump_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="first_jump_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for first_jump_event in first_jump_events %}
+                                        <option value="{{ first_jump_event.event_name }}">{{ first_jump_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="first_jump_M35" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="first_jump_M35" name="first_jump_M35" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_jump_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="first_jump_M50" name="first_jump_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_jump_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="first_jump_M60" name="first_jump_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_jump_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="first_jump_MNS" name="first_jump_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_jump_W35" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="first_jump_W35" name="first_jump_W35" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_jump_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="first_jump_W50" name="first_jump_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_jump_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="first_jump_W60" name="first_jump_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_jump_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="first_jump_WNS" name="first_jump_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- Second jump event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the second jump event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="second_jump_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="second_jump_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for second_jump_hour in second_jump_hours %}
+                                            <option value="{{ second_jump_hour.hour }}">{{ second_jump_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="second_jump_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for second_jump_minute in second_jump_minutes %}
+                                            <option value="{{ second_jump_minute.minute }}">{{ second_jump_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="second_jump_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="second_jump_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for second_jump_event in second_jump_events %}
+                                        <option value="{{ second_jump_event.event_name }}">{{ second_jump_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="second_jump_M35" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="second_jump_M35" name="second_jump_M35" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_jump_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="second_jump_M50" name="second_jump_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_jump_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="second_jump_M60" name="second_jump_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_jump_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="second_jump_MNS" name="second_jump_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_jump_W35" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="second_jump_W35" name="second_jump_W35" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_jump_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="second_jump_W50" name="second_jump_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_jump_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="second_jump_W60" name="second_jump_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_jump_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="second_jump_WNS" name="second_jump_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- Third jump event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the third jump event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="third_jump_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="third_jump_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for third_jump_hour in third_jump_hours %}
+                                            <option value="{{ third_jump_hour.hour }}">{{ third_jump_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="third_jump_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for third_jump_minute in third_jump_minutes %}
+                                            <option value="{{ third_jump_minute.minute }}">{{ third_jump_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="third_jump_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="third_jump_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for third_jump_event in third_jump_events %}
+                                        <option value="{{ third_jump_event.event_name }}">{{ third_jump_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="third_jump_M35" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="third_jump_M35" name="third_jump_M35" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_jump_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="third_jump_M50" name="third_jump_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_jump_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="third_jump_M60" name="third_jump_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_jump_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="third_jump_MNS" name="third_jump_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_jump_W35" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="third_jump_W35" name="third_jump_W35" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_jump_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="third_jump_W50" name="third_jump_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_jump_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="third_jump_W60" name="third_jump_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_jump_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="third_jump_WNS" name="third_jump_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- Fourth jump event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the fourth jump event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="fourth_jump_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="fourth_jump_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for fourth_jump_hour in fourth_jump_hours %}
+                                            <option value="{{ fourth_jump_hour.hour }}">{{ fourth_jump_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="fourth_jump_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for fourth_jump_minute in fourth_jump_minutes %}
+                                            <option value="{{ fourth_jump_minute.minute }}">{{ fourth_jump_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="fourth_jump_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="fourth_jump_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for fourth_jump_event in fourth_jump_events %}
+                                        <option value="{{ fourth_jump_event.event_name }}">{{ fourth_jump_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="fourth_jump_M35" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="fourth_jump_M35" name="fourth_jump_M35" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_jump_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="fourth_jump_M50" name="fourth_jump_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_jump_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="fourth_jump_M60" name="fourth_jump_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_jump_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="fourth_jump_MNS" name="fourth_jump_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_jump_W35" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="fourth_jump_W35" name="fourth_jump_W35" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_jump_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="fourth_jump_W50" name="fourth_jump_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_jump_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="fourth_jump_W60" name="fourth_jump_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_jump_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="fourth_jump_WNS" name="fourth_jump_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- First throw event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the first throw event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="first_throw_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="first_throw_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for first_throw_hour in first_throw_hours %}
+                                            <option value="{{ first_throw_hour.hour }}">{{ first_throw_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="first_throw_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for first_throw_minute in first_throw_minutes %}
+                                            <option value="{{ first_throw_minute.minute }}">{{ first_throw_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="first_throw_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="first_throw_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for first_throw_event in first_throw_events %}
+                                        <option value="{{ first_throw_event.event_name }}">{{ first_throw_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="first_throw_M35" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="first_throw_M35" name="first_throw_M35" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_throw_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="first_throw_M50" name="first_throw_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_throw_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="first_throw_M60" name="first_throw_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_throw_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="first_throw_MNS" name="first_throw_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_throw_W35" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="first_throw_W35" name="first_throw_W35" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_throw_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="first_throw_W50" name="first_throw_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_throw_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="first_throw_W60" name="first_throw_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="first_throw_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="first_throw_WNS" name="first_throw_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- Second throw event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the second throw event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="second_throw_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="second_throw_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for second_throw_hour in second_throw_hours %}
+                                            <option value="{{ second_throw_hour.hour }}">{{ second_throw_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="second_throw_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for second_throw_minute in second_throw_minutes %}
+                                            <option value="{{ second_throw_minute.minute }}">{{ second_throw_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="second_throw_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="second_throw_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for second_throw_event in second_throw_events %}
+                                        <option value="{{ second_throw_event.event_name }}">{{ second_throw_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="second_throw_M35" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="second_throw_M35" name="second_throw_M35" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_throw_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="second_throw_M50" name="second_throw_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_throw_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="second_throw_M60" name="second_throw_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_throw_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="second_throw_MNS" name="second_throw_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_throw_W35" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="second_throw_W35" name="second_throw_W35" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_throw_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="second_throw_W50" name="second_throw_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_throw_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="second_throw_W60" name="second_throw_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="second_throw_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="second_throw_WNS" name="second_throw_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- Third throw event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the third throw event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="third_throw_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="third_throw_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for third_throw_hour in third_throw_hours %}
+                                            <option value="{{ third_throw_hour.hour }}">{{ third_throw_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="third_throw_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for third_throw_minute in third_throw_minutes %}
+                                            <option value="{{ third_throw_minute.minute }}">{{ third_throw_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="third_throw_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="third_throw_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for third_throw_event in third_throw_events %}
+                                        <option value="{{ third_throw_event.event_name }}">{{ third_throw_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="third_throw_M35" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="third_throw_M35" name="third_throw_M35" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_throw_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="third_throw_M50" name="third_throw_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_throw_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="third_throw_M60" name="third_throw_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_throw_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="third_throw_MNS" name="third_throw_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_throw_W35" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="third_throw_W35" name="third_throw_W35" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_throw_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="third_throw_W50" name="third_throw_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_throw_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="third_throw_W60" name="third_throw_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="third_throw_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="third_throw_WNS" name="third_throw_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- Fourth throw event -->
+                    <section class="tab">
+                        <div class="pagelabel">
+                            <label>Edit the fourth throw event</label>
+                        </div>
+                        <div class="timelabel">
+                            <label for="fourth_throw_time">Event time:</label>
+                        </div>
+                        <div class="time">
+                            <div class="hour">
+                                <div class="custom-select">
+                                    <select name="fourth_throw_hour">
+                                        <option value="" disabled selected>HH</option>
+                                        {% for fourth_throw_hour in fourth_throw_hours %}
+                                            <option value="{{ fourth_throw_hour.hour }}">{{ fourth_throw_hour.hour }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="minute">
+                                <div class="custom-select">
+                                    <select name="fourth_throw_minute">
+                                        <option value="" disabled selected>MM</option>
+                                        {% for fourth_throw_minute in fourth_throw_minutes %}
+                                            <option value="{{ fourth_throw_minute.minute }}">{{ fourth_throw_minute.minute }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eventlabel">
+                            <label for="fourth_throw_name">Event name:</label>
+                        </div>
+                        <div class="event">
+                            <div class="custom-select">
+                                <select name="fourth_throw_name">
+                                    <option value="" disabled selected>Select an event</option>
+                                    {% for fourth_throw_event in fourth_throw_events %}
+                                        <option value="{{ fourth_throw_event.event_name }}">{{ fourth_throw_event.event_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="categorieslabel">
+                            <label for="event_categories">Event categories:</label>
+                        </div>
+                        <div class="categories">
+                            <div class="checkbox">
+                                <label for="fourth_throw_M35" class="radiolabel">&emsp;M35
+                                    <input type="checkbox" id="fourth_throw_M35" name="fourth_throw_M35" value="M35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_throw_M50" class="radiolabel">&emsp;M50
+                                    <input type="checkbox" id="fourth_throw_M50" name="fourth_throw_M50" value="M50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_throw_M60" class="radiolabel">&emsp;M60
+                                    <input type="checkbox" id="fourth_throw_M60" name="fourth_throw_M60" value="M60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_throw_MNS" class="radiolabel">&emsp;M NS
+                                    <input type="checkbox" id="fourth_throw_MNS" name="fourth_throw_MNS" value="MNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_throw_W35" class="radiolabel">&emsp;W35
+                                    <input type="checkbox" id="fourth_throw_W35" name="fourth_throw_W35" value="W35">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_throw_W50" class="radiolabel">&emsp;W50
+                                    <input type="checkbox" id="fourth_throw_W50" name="fourth_throw_W50" value="W50">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_throw_W60" class="radiolabel">&emsp;W60
+                                    <input type="checkbox" id="fourth_throw_W60" name="fourth_throw_W60" value="W60">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label for="fourth_throw_WNS" class="radiolabel">&emsp;W NS
+                                    <input type="checkbox" id="fourth_throw_WNS" name="fourth_throw_WNS" value="WNS">
+                                    <span class="squarecheckmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+<!-- Buttons -->
+                    <div id="buttons">
+                        <div id="progress">
+                            <input type="button" id="previous" value="Go back" onclick="sequence(-1)">
+                            <input type="button" id="next" value="Go on" onclick="sequence(1)">
+                        </div>
+                        <div id="commit">
+                            <a href="{{ url_for('matches') }}">Cancel</a>
+                            <input type="submit" id="submit" value="Submit">
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>   
+    </details>
+
+    <script src="{{ url_for('static', filename='scripts/select.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/sheet.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/timetableform.js') }}"></script>
+
+{% endblock %}
