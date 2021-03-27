@@ -285,6 +285,4 @@ function timetableRotation() {
 
 }
 
-timetableRotation()
-
-
+timetableRotation();

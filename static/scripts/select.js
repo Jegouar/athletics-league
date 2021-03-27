@@ -54,7 +54,7 @@ function closeAllSelect(element) {
     let selectSelected = document.getElementsByClassName("select-selected");
     for (let i = 0; i < selectSelected.length; i++) {
         if (element == selectSelected[i]) {
-            arrNo.push(i)
+            arrNo.push(i);
         } 
         else {
             selectSelected[i].classList.remove("select-arrow-active");
@@ -62,7 +62,7 @@ function closeAllSelect(element) {
     }
     for (let i = 0; i < selectItems.length; i++) {
         if (arrNo.indexOf(i)) {
-        selectItems[i].classList.add("select-hide");
+            selectItems[i].classList.add("select-hide");
         }
     }
 }

@@ -6,4 +6,4 @@ function sheetRotation() {
     document.querySelector(".sheet").style.transform = angledSheet;
 }
 
-sheetRotation()
+sheetRotation();

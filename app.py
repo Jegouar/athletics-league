@@ -102,11 +102,11 @@ def login():
         if existing_user:
             if check_password_hash(
                 existing_user["password"], request.form.get("password")):
-                session["user"] = request.form.get("username").lower()
-                flash("Welcome, {}".format(
-                    request.form.get("username")))
-                return redirect(url_for(
-                    "profile", username=session["user"]))
+                    session["user"] = request.form.get("username").lower()
+                    flash("Welcome, {}".format(
+                        request.form.get("username")))
+                    return redirect(url_for(
+                        "profile", username=session["user"]))
             else:
                 flash("One or both of those aren't quite right")
                 return redirect(url_for("login"))
@@ -195,10 +195,10 @@ def add_match():
             venue_longitude = -1.2844304304305583
         elif request.form.get(
             "match_venue") == "Horspath Athletics and Sports Ground":
-            venue_address = "Horspath Road, Oxford, Oxfordshire"
-            venue_postcode = "OX4 2RR"
-            venue_latitude = 51.7375972575029
-            venue_longitude = -1.1871759304287552
+                venue_address = "Horspath Road, Oxford, Oxfordshire"
+                venue_postcode = "OX4 2RR"
+                venue_latitude = 51.7375972575029
+                venue_longitude = -1.1871759304287552
         elif request.form.get("match_venue") == "Palmer Park Stadium":
             venue_address = "Wokingham Road, Earley, Reading, Berkshire"
             venue_postcode = "RG6 1LF"
@@ -211,10 +211,10 @@ def add_match():
             venue_longitude = -1.76940873043505
         elif request.form.get(
             "match_venue") == "Crookham Common Athletics Track":
-            venue_address = "Thatcham, Berkshire"
-            venue_postcode = "RG19 8ET"
-            venue_latitude = 51.380717539827984
-            venue_longitude = -1.2511990592783035
+                venue_address = "Thatcham, Berkshire"
+                venue_postcode = "RG19 8ET"
+                venue_latitude = 51.380717539827984
+                venue_longitude = -1.2511990592783035
         elif request.form.get("match_venue") == "John Nike Stadium":
             venue_address = "2 South Hill Road, Bracknell, Berkshire"
             venue_postcode = "RG12 7NN"
@@ -358,10 +358,10 @@ def edit_match(match_id):
             venue_longitude = -1.2844304304305583
         elif request.form.get(
             "match_venue") == "Horspath Athletics and Sports Ground":
-            venue_address = "Horspath Road, Oxford, Oxfordshire"
-            venue_postcode = "OX4 2RR"
-            venue_latitude = 51.7375972575029
-            venue_longitude = -1.1871759304287552
+                venue_address = "Horspath Road, Oxford, Oxfordshire"
+                venue_postcode = "OX4 2RR"
+                venue_latitude = 51.7375972575029
+                venue_longitude = -1.1871759304287552
         elif request.form.get("match_venue") == "Palmer Park Stadium":
             venue_address = "Wokingham Road, Earley, Reading, Berkshire"
             venue_postcode = "RG6 1LF"
@@ -374,10 +374,10 @@ def edit_match(match_id):
             venue_longitude = -1.76940873043505
         elif request.form.get(
             "match_venue") == "Crookham Common Athletics Track":
-            venue_address = "Thatcham, Berkshire"
-            venue_postcode = "RG19 8ET"
-            venue_latitude = 51.380717539827984
-            venue_longitude = -1.2511990592783035
+                venue_address = "Thatcham, Berkshire"
+                venue_postcode = "RG19 8ET"
+                venue_latitude = 51.380717539827984
+                venue_longitude = -1.2511990592783035
         elif request.form.get("match_venue") == "John Nike Stadium":
             venue_address = "2 South Hill Road, Bracknell, Berkshire"
             venue_postcode = "RG12 7NN"
@@ -529,10 +529,10 @@ def add_timetable(match_id):
             venue_longitude = -1.2844304304305583
         elif request.form.get(
             "match_venue") == "Horspath Athletics and Sports Ground":
-            venue_address = "Horspath Road, Oxford, Oxfordshire"
-            venue_postcode = "OX4 2RR"
-            venue_latitude = 51.7375972575029
-            venue_longitude = -1.1871759304287552
+                venue_address = "Horspath Road, Oxford, Oxfordshire"
+                venue_postcode = "OX4 2RR"
+                venue_latitude = 51.7375972575029
+                venue_longitude = -1.1871759304287552
         elif request.form.get("match_venue") == "Palmer Park Stadium":
             venue_address = "Wokingham Road, Earley, Reading, Berkshire"
             venue_postcode = "RG6 1LF"
@@ -545,10 +545,10 @@ def add_timetable(match_id):
             venue_longitude = -1.76940873043505
         elif request.form.get(
             "match_venue") == "Crookham Common Athletics Track":
-            venue_address = "Thatcham, Berkshire"
-            venue_postcode = "RG19 8ET"
-            venue_latitude = 51.380717539827984
-            venue_longitude = -1.2511990592783035
+                venue_address = "Thatcham, Berkshire"
+                venue_postcode = "RG19 8ET"
+                venue_latitude = 51.380717539827984
+                venue_longitude = -1.2511990592783035
         elif request.form.get("match_venue") == "John Nike Stadium":
             venue_address = "2 South Hill Road, Bracknell, Berkshire"
             venue_postcode = "RG12 7NN"
@@ -1479,10 +1479,10 @@ def edit_timetable(match_id):
             venue_longitude = -1.2844304304305583
         elif request.form.get(
             "match_venue") == "Horspath Athletics and Sports Ground":
-            venue_address = "Horspath Road, Oxford, Oxfordshire"
-            venue_postcode = "OX4 2RR"
-            venue_latitude = 51.7375972575029
-            venue_longitude = -1.1871759304287552
+                venue_address = "Horspath Road, Oxford, Oxfordshire"
+                venue_postcode = "OX4 2RR"
+                venue_latitude = 51.7375972575029
+                venue_longitude = -1.1871759304287552
         elif request.form.get("match_venue") == "Palmer Park Stadium":
             venue_address = "Wokingham Road, Earley, Reading, Berkshire"
             venue_postcode = "RG6 1LF"
@@ -1495,10 +1495,10 @@ def edit_timetable(match_id):
             venue_longitude = -1.76940873043505
         elif request.form.get(
             "match_venue") == "Crookham Common Athletics Track":
-            venue_address = "Thatcham, Berkshire"
-            venue_postcode = "RG19 8ET"
-            venue_latitude = 51.380717539827984
-            venue_longitude = -1.2511990592783035
+                venue_address = "Thatcham, Berkshire"
+                venue_postcode = "RG19 8ET"
+                venue_latitude = 51.380717539827984
+                venue_longitude = -1.2511990592783035
         elif request.form.get("match_venue") == "John Nike Stadium":
             venue_address = "2 South Hill Road, Bracknell, Berkshire"
             venue_postcode = "RG12 7NN"
@@ -2416,7 +2416,6 @@ def edit_timetable(match_id):
         fourth_throw_events=fourth_throw_events,
         access=access
     )
-
 
 
 if __name__ == "__main__":

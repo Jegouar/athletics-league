@@ -285,7 +285,7 @@ function postitRotation() {
     
 }
 
-postitRotation()
+postitRotation();
 
 
 function postimeRotation() {
@@ -573,4 +573,4 @@ function postimeRotation() {
     
 }
 
-postimeRotation()
+postimeRotation();

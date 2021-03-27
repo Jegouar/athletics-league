@@ -129,4 +129,4 @@ function randomTransform() {
     document.querySelector("section ul li:nth-child(8) span .astring").style.transform = transforma8;
 }
 
-randomTransform()
+randomTransform();

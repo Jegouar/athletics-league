@@ -141,9 +141,50 @@ Expected outcome: New match appears in database. Matches page displayed with fla
 <p><u>Step 5: Attempt to edit a match</u><br>
 Expected outcome: Form loaded with existing values. Changes made in database. Matches page displayed with flash message<em> - successful</em></p>
 <p><u>Step 6: Attempt to add a timetable</u><br>
-Expected outcome: Form loaded with existing values. Changes made in database. Matches page displayed with flash message<em> - successful</em></p>
-
-
+Expected outcome: Changes made in database. Matches page displayed with flash message<em> - successful</em></p>
+<p><u>Step 7: Attempt to edit a timetable</u><br>
+Expected outcome: Changes made in database. Matches page displayed with flash message<em> - successful</em><br>
+Desirable outcomes not achieved: Form loaded with existing values.</p>
+<p><u>Step 8: Attempt to delete a match</u><br>
+Expected outcome: Changes made in database. Matches page displayed with flash message<em> - successful</em></p>
+<h2>Code Validation</h2>
+<p>The following online tools were used to check code:</p>
+<ul>
+<li>HTML - W3C Markup Validation Service</li>
+<li>CSS - W3C CSS Validation Service</li>
+<li>JavaScript - BeautifyTools JavaScript Validator</li>
+<li>Python - ExtendsClass Python syntax checker</li>
+</ul>
 <h2>Deployment</h2>
-<p>This site is hosted using GitHub pages, deployed directly from the master branch with the page name index.html to deploy correctly. 
-The deployed site will update automatically upon new commits to the master branch.
+<p>Gitpod was used for writing the code for this application, with regular commits and then pushes to a GitHub repository.
+Heroku was chosen as a suitable host because it can run Python code, unlike GitHub pages which was used for previous projects.</p>
+<p>In order to deploy to Heroku, I had to follow these steps from my dashboard:</p>
+<ol>
+<li>Click 'New' and 'Create new app'.</li>
+<li>Fill in the 'App name' and select 'Europe' from the 'Choose a region' options.</li>
+<li>Click 'Create app'</li>
+<li>From the 'Deployment method' options, select GitHub.</li>
+<li>From 'Connect to GitHub', use the search box to find the appropriate repository.</li>
+<li>Click 'Connect'</li>
+<li>Click 'Settings'</li>
+<li>Click 'Reveal Config Vars'</li>
+<li>Add the following Key-Value pairs:
+<ul>IP - 0.0.0.0</ul>
+<ul>PORT - 5000</ul>
+<ul>SECRET_KEY - (from env.py file)</ul>
+<ul>MONGO_URI - </ul>
+<ul>MONGO_DBNAME - </ul>
+</li>
+<li>Click 'Deploy'</li>
+<li>Click 'Enable Automatic Deploys'</li>
+</ol>
+<p>A requirements.txt and Procfile were created in Gitpod to enable Heroku to run the app.
+Once development is complete, click 'Open app' to open the app from Heroku.</p>
+<p>It is also possible to clone the GitHub repository and run the application locally:</p>
+<ol>
+<li>From the main page of the repository, click 'Code'.</li>
+<li>Click the copy icon next to the URL.</li>
+<li>In an IDE, change the current working directory to where you want the cloned directory to be created.</li>
+<li>Type 'git clone' and paste the previously copied URL.</li>
+<li>Press enter to create the clone.</li>
+</ol>
